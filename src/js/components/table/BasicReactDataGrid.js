@@ -3,7 +3,7 @@
 
 import React, {Component, PropTypes} from 'react';
 import ReactDataGrid from 'react-data-grid';
-import * as grid_actions from '../redux/actions/grid_actions';
+import * as grid_actions from '../../redux/actions/grid_actions';
 import { connect } from 'react-redux';
 
 class BasicReactDataGrid extends Component {

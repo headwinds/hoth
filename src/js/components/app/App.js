@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import BasicReactDataGrid from 'components/BasicReactDataGrid';
-import HothVisualize from 'components/HothVisualize';
+import BasicReactDataGrid from 'components/table/BasicReactDataGrid';
+import HothVisualize from 'components/visual/HothVisualize';
 
 require('./app.scss');
 

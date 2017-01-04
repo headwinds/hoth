@@ -14,6 +14,7 @@ It's also nice to have a project that doesn't try to do everthing so that I can 
 * how do I add (HMR) Hot Module Replacement so that I can see my results without refreshing the browser
 * learn the new approaches in D3 v4
 * implement complex table interactions with redux hooks
+* explore how python can mine twitter
 
 
 ### Tech Articles

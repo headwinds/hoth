@@ -1,39 +1,8 @@
-.gradle
-*.db
-/build/
-!gradle/wrapper/gradle-wrapper.jar
-logs
+### config ###
+poles/config
+config
+dist
 node_modules
-docs
-
-### STS ###
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-.checkstyle
-
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-/bin/
-
-### macOS ###
-.DS_Store
-
-### swagger ###
-LICENSE
 
 ### sublime ###
 *.sublime-workspace
@@ -44,3 +13,5 @@ coverage
 
 ### yarn ###
 yarn.lock
+
+

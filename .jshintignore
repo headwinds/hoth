@@ -1,0 +1,5 @@
+node_modules
+test/data/**
+src/main/webapp/js/libs/**
+src/main/webapp/dist
+coverage

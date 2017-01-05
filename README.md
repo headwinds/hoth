@@ -6,7 +6,7 @@ This is my morning experimental project and log.
 
 My morning ritual includes:
 
-* showering where I plan to major goals for the day
+* showering where I wake up my brain and plan major goals for the day
 * taking my 2 daugters (2 & 5) to school
 * 3KM walk to work (24-7) where I refine my game plan while listening to podcasts
 * I'm usually at my desk around 8:30. 

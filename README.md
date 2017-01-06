@@ -1,22 +1,10 @@
 # HOTH
 
-This is my morning experimental project and log. 
-
-### Rituals
-
-My morning ritual includes:
-
-* showering where I wake up my brain and plan major goals for the day
-* taking my 2 daugters (2 & 5) to school
-* 3KM walk to work (24-7) where I refine my game plan while listening to podcasts
-* I'm usually at my desk around 8:30. 
-* I have coffee & cereal 
-* fire up my machine and open this project
-* work on a side project for 2 hrs 
+This is my morning experimental project and log. Although it's personal, I hope it might be part of some discourse at some point if I can come with something worthwhile. 
 
 ### Contributing
 
-If you fork this project, obviously your morning ritual will be different. Actually I don't expect any forks and certainly no pull requests at this point since this is primarily a solo project but I would be happy to discuss any ideas.
+I don't expect any forks and certainly no pull requests at this point since this is primarily a solo project but I would be happy to discuss any ideas.
 
 ### Personal Reporting
 
@@ -33,6 +21,19 @@ It's also nice to have a project that doesn't try to do everthing so that I can 
 
 ### Goals
 
+#### Life 
+
+* attempt to learn something new everyday 
+* attempt to contribute something more meaningful/spiritual that spotlights environmental concerns
+
+#### Design
+
+* compelling visualization of polar tweets 
+* get inspired by ancient sea-fairing explorers and sci-fi captain's log (Captain's Log, Stardate 41263.3 vs Captain's Log Supplemental)
+* pick a nice colour palette, fonts, and design the flat iconography
+
+#### Tech 
+
 * how to load scss from the same directory as my component (also investigate the advantages of postCSS/linting CSS)
 * how I can setup eslint to visually lint while I code
 * get better at unit testing with Karma & Jasmine 
@@ -40,16 +41,14 @@ It's also nice to have a project that doesn't try to do everthing so that I can 
 * learn the new approaches in D3 v4
 * implement complex table interactions with redux hooks
 * explore how python can mine twitter and process tweets with NLP
-* attempt to learn something new everyday 
-* attempt to contribute something more meaningful/spiritual that spotlights environmental concerns
-
+* explore the ELK stack starting with elastic search
 
 ### Tech Articles
-[adding sass support](https://shellmonger.com/2016/01/19/adding-sass-support-to-webpack/)
+[adding sass support](https://shellmonger.com/2016/01/19/adding-sass-support-to-webpack/)      
 
 ### Github Repos
-[awesome dataviz](https://github.com/fasouto/awesome-dataviz)
+[awesome dataviz](https://github.com/fasouto/awesome-dataviz)     
 [awesome python](https://github.com/vinta/awesome-python)
 
-#### Github Referencing Star Wars
-[dagoba](https://github.com/dxnn/dagoba)
+### Github Referencing Star Wars
+[dagoba](https://github.com/dxnn/dagoba)     

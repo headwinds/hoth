@@ -1,5 +1,5 @@
 /* eslint-disable */
-/* to do: lint this file */
+/* to do: lint this file 
 
 import React, {Component, PropTypes} from 'react';
 import ReactDataGrid from 'react-data-grid';
@@ -70,3 +70,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timeline);
+*/

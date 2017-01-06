@@ -1,5 +1,5 @@
 ### config ###
-poles/config
+poles/config.py
 config
 dist
 node_modules

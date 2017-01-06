@@ -7,24 +7,21 @@ require('./app.scss');
 
 class App extends Component {
 
-	constructor(props,context) {
-	    super(props,context);
-	}
+  constructor(props,context) {
+    super(props,context);
+    this.name = 'App';
+  }
 
-	render() {
-	    return (
-		     <div className="site-header-app-container">
-		     	<div className="site-header-container grid">
-		     		<BasicReactDataGrid />
-		     	</div> 
-		     	<div className="site-header-container hoth">
-		     		<HothVisualize />
-		     	</div>
-		     </div>
-	    );
-  	}
+  render() { return (
+    <div className="site-header-app-container">
+        <div className="site-header-container grid">
+          <BasicReactDataGrid />
+        </div> 
+        <div className="site-header-container hoth">
+          <HothVisualize />
+       </div>
+    </div>) }
 }
-
 
 const mapStateToProps = (state) => ({
   app: state.app,
@@ -35,6 +32,5 @@ const mapDispatchToProps = (dispatch) => {
     dispatch
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

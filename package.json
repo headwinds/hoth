@@ -12,9 +12,9 @@
     "test": "./node_modules/karma/bin/karma start karma.conf.js --single-run",
     "ptest": "mocha --require ignore-styles --recursive --compilers js:babel-register -",
     "start": "http-server -p 3000 ./dist",
-    "lint": "npm run lint:js",
-    "lint:eslint": "eslint --ignore-path .jshintignore --ignore-pattern internals/scripts",
-    "lint:js": "npm run lint:eslint -- . "
+    "lint": "npm run lint:node && npm run lint:browser",
+    "lint:node": "eslint --config=./.eslintrc *.js src/js/components/*.js",
+    "lint:browser": "eslint --config=./src/.eslintrc src/js/components/**/*.js"
   },
   "keywords": [
     "react",
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "classnames": "^1.2.0",
+    "components": "^0.1.0",
     "d3": "^4.4.0",
     "es5-shim": "^4.0.3",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -74,9 +75,12 @@
     "css-loader": "^0.26.1",
     "del": "^1.2.1",
     "enzyme": "^2.4.1",
-    "eslint": "^1.10.3",
-    "eslint-loader": "^1.2.0",
-    "eslint-plugin-react": "^3.15.0",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
     "faker": "^3.0.1",
     "gh-pages": "^0.2.0",
     "http-server": "^0.9.0",

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import BasicReactDataGrid from 'components/table/BasicReactDataGrid';
-import HothVisualize from 'components/visual/HothVisualize';
+import EchoBase from 'components/echobase/EchoBase';
 
 require('./app.scss');
 
@@ -12,15 +11,11 @@ class App extends Component {
     this.name = 'App';
   }
 
-  render() { return (
-    <div className="site-header-app-container">
-        <div className="site-header-container grid">
-          <BasicReactDataGrid />
-        </div> 
-        <div className="site-header-container hoth">
-          <HothVisualize />
-       </div>
-    </div>) }
+  render() { 
+    return (
+      <EchoBase />
+    ) 
+  }
 }
 
 const mapStateToProps = (state) => ({

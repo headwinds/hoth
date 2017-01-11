@@ -12,8 +12,6 @@ class BasicReactDataGrid extends Component {
     super(props,context);
     this.state = this.props.grid;
     this.rowGetter = this.rowGetter.bind(this);
-
-    console.warn("BasicReactDataGrid BUG: I have no idea where to set the prop isScrolling?! well some idea, on methods Canvas and Row");
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,7 +20,7 @@ class BasicReactDataGrid extends Component {
   }
 
   componentDidMount(){
-    if (!this.state.fetching) this.props.getTweets();  
+    
   }
 
   componentDidUpdate(){

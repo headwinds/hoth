@@ -59,7 +59,7 @@ module.exports = {
                     'css?sourceMap!sass?sourceMap'
                 )
       },
-      {test: /\.js$/, loader: [ "babel-loader", "eslint-loader" ], exclude: ["/node_modules/","/coverage/"]},
+      {test: /\.js$/, loaders: [ "babel-loader", "eslint-loader" ], exclude: ["/node_modules/","/coverage/"]},
       // Needed for the css-loader when [bootstrap-webpack](https://github.com/bline/bootstrap-webpack)
       // loads bootstrap's css.
       {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff'},

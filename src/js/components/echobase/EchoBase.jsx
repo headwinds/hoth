@@ -41,9 +41,10 @@ class EchoBase extends Component {
   render(){
     return(
        <div className="site-header-app-container">
+        {/*
         <div className="site-header-container grid">
           <BasicReactDataGrid />
-        </div> 
+        </div>*/} 
         <div className="site-header-container hoth">
           <HothVisualize />
        </div>

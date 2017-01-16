@@ -47,6 +47,8 @@
  * -----------------------------------------------------------------------------
  */
 
+$secondaryWidth: 250px;
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
 	border: 0;
 	font-family: inherit;
@@ -3756,7 +3758,7 @@ a.post-thumbnail:hover {
 		float: left;
 		margin: 0 0 0 -100%;
 		min-height: 100vh;
-		width: 122px;
+		width: $secondaryWidth;
 	}
 
 	.primary-sidebar {
@@ -3813,7 +3815,7 @@ a.post-thumbnail:hover {
 
 	.secondary-navigation ul li:hover > ul,
 	.secondary-navigation ul li.focus > ul {
-		left: 162px;
+		left: $secondaryWidth;
 	}
 
 	.secondary-navigation .menu-item-has-children > a {
@@ -4082,7 +4084,7 @@ a.post-thumbnail:hover {
 	}
 
 	#secondary {
-		width: 162px;
+		width: $secondaryWidth;
 	}
 
 	.secondary-navigation,

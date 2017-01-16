@@ -11,12 +11,15 @@ from twitter import *
 
 import sys
 import csv
+import json
 
 latitude = 63.7467	# geographical centre of search
 longitude = 68.5170	# geographical centre of search
 max_range = 1000 		# search range in kilometres
 num_results = 10		# minimum results to obtain
-outfile = "output.csv"
+outfileCSV = "northern.csv"
+outfileJSON = "northern.json"
+outfileJSONRaw = "northernRaw.json"
 
 #-----------------------------------------------------------------------
 # load our API credentials 
@@ -33,13 +36,13 @@ twitter = Twitter(
 #-----------------------------------------------------------------------
 # open a file to write (mode "w"), and create a CSV writer object
 #-----------------------------------------------------------------------
-csvfile = file(outfile, "w")
+csvfile = file(outfileCSV, "w")
 csvwriter = csv.writer(csvfile)
 
 #-----------------------------------------------------------------------
 # add headings to our CSV file
 #-----------------------------------------------------------------------
-row = [ "user", "text", "latitude", "longitude" ]
+row = [ "id", "value", "user", "text", "latitude", "longitude" ]
 csvwriter.writerow(row)
 
 #-----------------------------------------------------------------------
@@ -61,15 +64,24 @@ while result_count <  num_results:
 		# only process a result if it has a geolocation
 		#-----------------------------------------------------------------------
 		if result["geo"]:
+			userid = result["user"]["id"]
 			user = result["user"]["screen_name"]
+			value = result["user"]["followers_count"]
 			text = result["text"]
 			text = text.encode('ascii', 'replace')
 			latitude = result["geo"]["coordinates"][0]
 			longitude = result["geo"]["coordinates"][1]
 
 			# now write this row to our CSV file
-			row = [ user, text, latitude, longitude ]
+			row = [ userid, value, user, text, latitude, longitude ]
 			csvwriter.writerow(row)
+			# now write this row to our JSON file too except there is a problem here since they prints only 1 result
+			objData = {"id": userid, "value": value, "name": user, "text": text, "latitude": latitude, "longitude": longitude}
+			jsonData = json.dumps(objData)
+			with open(outfileJSON, 'w') as outfile:
+			  json.dump(jsonData, outfile)
+			with open(outfileJSONRaw, 'w') as outfile:
+			  json.dump(result, outfile)  
 			result_count += 1
 		last_id = result["id"]
 

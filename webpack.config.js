@@ -34,7 +34,6 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([ 
-      { from: 'src/react-datagrid-assets', to: 'react-datagrid-assets' },
       { from: 'src/index.html', to: 'index.html' },
       { from: 'src/css/genericons.css', to: 'css/genericons.css' },
       { from: 'src/data/', to: 'data' }

@@ -4,7 +4,7 @@ This is my morning experimental project and log. Although it's personal, I hope 
 
 ### Contributing
 
-I don't expect any forks and certainly no pull requests at this point since this is primarily a solo project but I would be happy to discuss any ideas.
+I don't expect any forks and certainly no pull requests at this point since this is primarily a solo project but I would be happy to discuss any ideas. I encourage you to create your own.
 
 ### Personal Reporting
 
@@ -24,13 +24,15 @@ It's also nice to have a project that doesn't try to do everthing so that I can 
 #### Life 
 
 * attempt to learn something new everyday 
-* attempt to contribute something more meaningful/spiritual that spotlights environmental concerns
+* attempt to contribute something more meaningful that spotlights environmental concerns
+* expose/measure/compare what people closest to the problem are actually saying about it
 
 #### Design
 
-* compelling visualization of polar tweets 
+* a compelling visualization of polar tweets 
 * get inspired by ancient sea-fairing explorers and sci-fi captain's log (Captain's Log, Stardate 41263.3 vs Captain's Log Supplemental)
 * pick a nice colour palette, fonts, and design the flat iconography
+* make it fun/challenging 
 
 #### Tech 
 
@@ -43,8 +45,16 @@ It's also nice to have a project that doesn't try to do everthing so that I can 
 * explore how python can mine twitter and process tweets with NLP
 * explore the ELK stack starting with elastic search
 
+### Inspiration
+[rawgraphs.io](http://rawgraphs.io/)
+[shrdlurn.sidaw.xyz](https://worksheets.codalab.org/worksheets/0x9fe4d080bac944e9a6bd58478cb05e5e/)
+
+### Antartica
+[troll station](https://en.wikipedia.org/wiki/Troll_(research_station))
+
 ### Tech Articles
-[adding sass support](https://shellmonger.com/2016/01/19/adding-sass-support-to-webpack/)      
+[adding sass support](https://shellmonger.com/2016/01/19/adding-sass-support-to-webpack/)  
+[adding scss to create-react-app](https://medium.com/@Connorelsea/using-sass-with-create-react-app-7125d691376)    
 
 ### Github Repos
 [awesome dataviz](https://github.com/fasouto/awesome-dataviz)     

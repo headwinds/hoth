@@ -29,6 +29,7 @@
     "classnames": "^1.2.0",
     "components": "^0.1.0",
     "d3": "^4.4.0",
+    "date-fns": "^1.26.0",
     "es5-shim": "^4.0.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "fbjs": "^0.6.1",

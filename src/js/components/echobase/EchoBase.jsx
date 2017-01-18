@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import BasicReactDataGrid from 'components/table/BasicReactDataGrid';
 import HothVisualize from 'components/visual/HothVisualize';
+import HothHud from 'components/visual/HothHud';
 
 class EchoBase extends Component {
 
@@ -45,9 +46,13 @@ class EchoBase extends Component {
         <div className="site-header-container grid">
           <BasicReactDataGrid />
         </div>*/} 
+        <div className="site-header-container hud">
+            <HothHud />
+        </div>  
         <div className="site-header-container hoth">
           <HothVisualize />
-       </div>
+        </div>
+    
       </div>
     )
   }

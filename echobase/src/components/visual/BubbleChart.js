@@ -25,6 +25,9 @@ export function drawBubbleChart(){
 	    .padding(1.5);
 
 	d3.csv("data/northern.csv", function(d) {
+
+		console.log(d);
+
 	  d.value = +d.value;
 	  if (d.value) return d;
 	}, function(error, classes) {

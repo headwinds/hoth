@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 import configureStore from './redux/configureStore';
-import App from './components/app/App';
+import App from './App';
 import './index.css';
 
 const store = configureStore();

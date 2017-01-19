@@ -1,0 +1,9 @@
+.simpleHothBg {
+	background-color: $primary;
+	width: 500px;
+	height: 200px;
+	a {
+		color: $blizzard;
+		font-size: 50px;
+	}
+}

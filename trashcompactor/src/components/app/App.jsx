@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import EchoBase from 'components/echobase/EchoBase';
+//import EchoBase from '../echobase/EchoBase';
+import AppLayout from './AppSimple';
 
-require('./app.scss');
+//require('./app.css');
 
 class App extends Component {
 
@@ -13,7 +14,7 @@ class App extends Component {
 
   render() { 
     return (
-      <EchoBase />
+      <AppLayout />
     ) 
   }
 }

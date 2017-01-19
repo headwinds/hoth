@@ -1,3 +1,5 @@
+![Alt text](hoth.jpg?raw=true)  
+
 # HOTH
 
 This is my morning experimental project and log. Although it's personal, I hope it might be part of some discourse at some point if I can come with something worthwhile. 
@@ -46,19 +48,26 @@ It's also nice to have a project that doesn't try to do everthing so that I can 
 * explore the ELK stack starting with elastic search
 
 ### Inspiration
-[rawgraphs.io](http://rawgraphs.io/)
-[shrdlurn.sidaw.xyz](https://worksheets.codalab.org/worksheets/0x9fe4d080bac944e9a6bd58478cb05e5e/)
+[rawgraphs.io](http://rawgraphs.io/)     
+[shrdlurn.sidaw.xyz](https://worksheets.codalab.org/worksheets/0x9fe4d080bac944e9a6bd58478cb05e5e/)   
 
 ### Antartica
-[troll station](https://en.wikipedia.org/wiki/Troll_(research_station))
+[troll station](https://en.wikipedia.org/wiki/Troll_(research_station))    
 
 ### Tech Articles
-[adding sass support](https://shellmonger.com/2016/01/19/adding-sass-support-to-webpack/)  
-[adding scss to create-react-app](https://medium.com/@Connorelsea/using-sass-with-create-react-app-7125d691376)    
+[create-react-app postCSS](https://github.com/DavidWells/PostCSS-tutorial)    
+[adding scss to create-react-app](https://medium.com/@Connorelsea/using-sass-with-create-react-app-7125d691376)       
 
 ### Github Repos
-[awesome dataviz](https://github.com/fasouto/awesome-dataviz)     
-[awesome python](https://github.com/vinta/awesome-python)
+[awesome dataviz](https://github.com/fasouto/awesome-dataviz)         
+[awesome python](https://github.com/vinta/awesome-python)     
 
-### Github Referencing Star Wars
+### Github Referencing Star Wars  
 [dagoba](https://github.com/dxnn/dagoba)     
+
+### Other D3-like Data Viz Libraries
+[vega](https://vega.github.io/)     
+[plotly](https://plot.ly/)     
+[bokeh](http://bokeh.pydata.org/en/latest/)     
+
+![Alt text](leia.jpg?raw=true)  

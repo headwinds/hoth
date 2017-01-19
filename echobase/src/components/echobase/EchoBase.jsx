@@ -1,14 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-import BasicReactDataGrid from 'components/table/BasicReactDataGrid';
-import HothVisualize from 'components/visual/HothVisualize';
-import HothHud from 'components/visual/HothHud';
+import HothVisualize from '../visual/HothVisualize';
+import HothHud from '../visual/HothHud';
 
 class EchoBase extends Component {
 
   constructor(props,context){
     super(props,context);
 
+    this.viz = null; 
   }
 
   componentWillMount(){
@@ -35,13 +35,21 @@ class EchoBase extends Component {
   
   }
 
+  showGame() {
+    // 600px will open it enough...
+  }
+
+  hideGame() {
+
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.state !== this.props.state; 
   }
 
   render(){
     return(
-       <div className="site-header-app-container">
+       <div className="site-header-app-container" ref={ (div)=>{ this.viz = div} }>
         {/*
         <div className="site-header-container grid">
           <BasicReactDataGrid />

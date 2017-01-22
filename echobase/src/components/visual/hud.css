@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Nixie+One|Sarpanch');
+
+.hud {
+  margin-top: 50px;
+  margin-left: 10px;
+  z-index: 2;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: block;
+
+  .hud_textContainer {
+    display: block;
+    max-width: 400px;
+  }
+
+  .hud_title {
+    font-family: "Sarpanch", Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    font-size: 30px;
+    color: $blackSnout;
+    margin: 20px;
+  }
+
+  .hud_subTitle {
+    font-family: "Sarpanch", Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    color: $explorer;
+    margin: 5px;
+  }
+
+  .hud_message {
+    font-family: "Nixie One", Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    color: $blackSnout;
+    margin-top: 20px;
+  }
+
+  .hud_controlsContainer {
+
+  }
+
+}
+
+
+

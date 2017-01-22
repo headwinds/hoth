@@ -4,6 +4,16 @@
 
 This is my morning experimental project and log. Although it's personal, I hope it might be part of some discourse at some point if I can come with something worthwhile. 
 
+This project is split between two main folders:
+
+### Poles
+
+A Python service app that mines twitter once a month pulling tweets near our western poles. 
+
+### Echobase
+
+A React/Redux UI app that visualizes these tweets and fronts my blog providing a menu of logs.  
+
 ### Contributing
 
 I don't expect any forks and certainly no pull requests at this point since this is primarily a solo project but I would be happy to discuss any ideas. I encourage you to create your own.
@@ -48,26 +58,30 @@ It's also nice to have a project that doesn't try to do everthing so that I can 
 * explore the ELK stack starting with elastic search
 
 ### Inspiration
-[rawgraphs.io](http://rawgraphs.io/)     
-[shrdlurn.sidaw.xyz](https://worksheets.codalab.org/worksheets/0x9fe4d080bac944e9a6bd58478cb05e5e/)   
+* [rawgraphs.io](http://rawgraphs.io/)     
+* [shrdlurn.sidaw.xyz](https://worksheets.codalab.org/worksheets/0x9fe4d080bac944e9a6bd58478cb05e5e/) 
+* [topic models](http://blog.rolffredheim.com/2013/11/visualising-structure-in-topic-models.html)  
+* [conditional-probability](http://setosa.io/ev/conditional-probability/)
 
 ### Antartica
-[troll station](https://en.wikipedia.org/wiki/Troll_(research_station))    
+* [troll station](https://en.wikipedia.org/wiki/Troll_(research_station))    
 
 ### Tech Articles
-[create-react-app postCSS](https://github.com/DavidWells/PostCSS-tutorial)    
-[adding scss to create-react-app](https://medium.com/@Connorelsea/using-sass-with-create-react-app-7125d691376)       
+* [create-react-app postCSS](https://github.com/DavidWells/PostCSS-tutorial)    
+* [adding scss to create-react-app](https://medium.com/@Connorelsea/using-sass-with-create-react-app-7125d691376)       
 
 ### Github Repos
-[awesome dataviz](https://github.com/fasouto/awesome-dataviz)         
-[awesome python](https://github.com/vinta/awesome-python)     
+* [awesome dataviz](https://github.com/fasouto/awesome-dataviz)          
+* [awesome python](https://github.com/vinta/awesome-python)  
+* [deep-text-correcter](http://atpaino.com/2017/01/03/deep-text-correcter.html)   
 
 ### Github Referencing Star Wars  
-[dagoba](https://github.com/dxnn/dagoba)     
+* [dagoba](https://github.com/dxnn/dagoba)     
 
 ### Other D3-like Data Viz Libraries
-[vega](https://vega.github.io/)     
-[plotly](https://plot.ly/)     
-[bokeh](http://bokeh.pydata.org/en/latest/)     
+* [vega](https://vega.github.io/)     
+* [altair](https://github.com/altair-viz/altair)
+* [plotly](https://plot.ly/)     
+* [bokeh](http://bokeh.pydata.org/en/latest/)     
 
 ![Alt text](leia.jpg?raw=true)  

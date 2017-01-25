@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import HothVisualize from '../visual/HothVisualize';
 import HothHud from '../visual/HothHud';
+import classNames from 'classnames';
+import styles from './Echobase';
 
 class EchoBase extends Component {
 
@@ -48,16 +50,18 @@ class EchoBase extends Component {
   }
 
   render(){
+    const hudClass = classNames('site_header_container','hud');
+    const hothClass = classNames('site_header_container','hoth');
     return(
-       <div className="site-header-app-container" ref={ (div)=>{ this.viz = div} }>
+       <div className={styles.site_header_app_container} ref={ (div)=>{ this.viz = div} }>
         {/*
         <div className="site-header-container grid">
           <BasicReactDataGrid />
         </div>*/} 
-        <div className="site-header-container hud">
+        <div className={hudClass}>
             <HothHud />
         </div>  
-        <div className="site-header-container hoth">
+        <div className={hothClass}>
           <HothVisualize />
         </div>
     

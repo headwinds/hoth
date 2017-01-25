@@ -109,6 +109,12 @@
   }
 }
 
+.category_title {
+  font-size: 24px;
+  color: $blackSnout;
+  font-family: $headlineFont;
+  font-weight: bold;
+}
 
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
@@ -799,39 +805,6 @@ div.caption.alignright .caption-text {
   display: none;
 }
 
-/* Clearing floats */
-
-.footer_sidebar:before,
-.footer_sidebar:after,
-.hentry:before,
-.hentry:after,
-.gallery:before,
-.gallery:after,
-.slider_direction_nav:before,
-.slider_direction_nav:after,
-.contributor_info:before,
-.contributor_info:after,
-.search_box:before,
-.search_box:after,
-[class*="content"]:before,
-[class*="content"]:after,
-[class*="site"]:before,
-[class*="site"]:after {
-  content: "";
-  display: table;
-}
-
-.footer_sidebar:after,
-.hentry:after,
-.gallery:after,
-.slider-direction-nav:after,
-.contributor-info:after,
-.search-box:after,
-[class*="content"]:after,
-[class*="site"]:after {
-  clear: both;
-}
-
 /* Genericons */
 
 .bypostauthor > article .fn:before,
@@ -892,35 +865,9 @@ span + .edit-link:before,
   min-height: 32px;
 }
 
-#site-header {
-  position: relative;
-  z-index: 3;
-}
 
-.site_header {
-  background-color: #999;
-  position: relative;
-  width: 100%;
-  z-index: 4;
-}
 
-.site_header_app_container{
-  display: block;
-  position: relative;
-  top: 0px;
-  left: 0px;
-  height: 200px;
-  width: 100%;
-  overflow: hidden;
-}
 
-.site_header_container {
-  display: block;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-}
 
 .hud {
   z-index: 3;

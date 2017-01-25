@@ -16,11 +16,11 @@ export default function HothHud() {
   const place = 'Antartica'.toUpperCase();
 
   const latlong = '72°00′43.5″S 2°31′56″E';
-  const where = 'Queen Maud Land'.toUpperCase();
-  const base = 'Troll Station'.toUpperCase();
-  const about = base + ' ' + where + ' population 8';
-  const temp =  '−60 °C (−76 °F) and wind speeds of 60 meters per second (200 ft/s)'
-  const measures = 'measures aerosols, organic and inorganic pollution, ozone and ultraviolet (UV) radiation, ozone depletion and the Antarctic ozone hole';
+  const where = 'Queen Maud Land';
+  const base = 'Troll Station';
+  const about = base + ' ' + where + ' Population 8';
+  const temp =  '−60 °C (−76 °F) Wind Speeds 60 m/s (200 ft/s)'
+  const measures = 'Measures aerosols, organic and inorganic pollution, ozone and ultraviolet (UV) radiation, ozone depletion and the Antarctic ozone hole';
 
   const expand = () => {
 
@@ -35,7 +35,7 @@ export default function HothHud() {
         <h2 className={styles.hud_subTitle}>{latlong}</h2>
         <p className={styles.hud_message}>{measures}</p>
       </div>
-      <div className={styles.controlsContainer}>
+      <div className={styles.hud_controlsContainer}>
         <button onClick={ expand() }> <img src={expandIcon} alt="expand" /></button>
       </div>
     </div>

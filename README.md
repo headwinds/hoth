@@ -10,9 +10,21 @@ This project is split between two main folders:
 
 A Python service app that mines twitter once a month pulling tweets near our western poles. 
 
+```
+cd poles
+python poles.py
+
+```
+
 ### Echobase
 
 A React/Redux UI app that visualizes these tweets and fronts my blog providing a menu of logs.  
+
+```
+cd echobase
+npm install
+npm start
+```
 
 ### Contributing
 
@@ -22,7 +34,11 @@ I don't expect any forks and certainly no pull requests at this point since this
 
 I want to get back to open, personal research and blogging an emphasis on the LOG. I like the concept of a Ship Captain's log where instead of writing an entire article, the captain would capture what happened that day or over a brief peroid of time. The entries would add to a post with an over arching themes along with a few tangents.    
 
-On Jan 1st/2017, I started using [Reporter](http://www.reporter-app.com/) to help track my personal data and with the plan to visualize it; possibly quarterly depending on what it looks like by then.  
+On Jan 1st/2017, I started using [Reporter](http://www.reporter-app.com/) to help track my personal data with the plan to visualize it; possibly quarterly depending on what it looks like by then. But after a few weeks, I had stopped using Reporter daily and now want to explore why. 
+
+I believe it's missing some fun; a few distrations. Why do I open Twitter everyday and not Reporter? If Reporter asked a questons intermixed with interesting tweets, would it be more compelling?  What if I was forced to report before using Twitter? There doesn't appear to be any way to automatically launch an i0S app on start up.
+
+### React & Redux
 
 I'm going to use my last post of 2016, [Redux Table](http://headwinds.net/2016/04/redux-data-table/), as a starting point for this new design. 
 
@@ -55,7 +71,8 @@ It's also nice to have a project that doesn't try to do everthing so that I can 
 * learn the new approaches in D3 v4
 * implement complex table interactions with redux hooks
 * explore how python can mine twitter and process tweets with NLP
-* explore the ELK stack starting with elastic search
+* explore the ELK stack starting with elastic search; possibly [use logstash without kibana](https://github.com/nomiddlename/log4js-node)
+
 
 ### Inspiration
 * [rawgraphs.io](http://rawgraphs.io/)     

@@ -76,7 +76,47 @@ const logs = [
       link: 'http://headwinds.net/about',
       name: 'headwinds'
     }
+  },
+  { 
+    article: {
+      title: 'My Midsummers Night Race',
+      link: 'http://headwinds.net/2012/08/my-midsummers-night-race/index.html',
+      meta: 'Sports, Nutrition',
+      dateTime: '2012-08-28T18:41:51+00:00',
+      dateTimeDisplay: 'August 28, 2012',
+    },
+    author: {
+      link: 'http://headwinds.net/about',
+      name: 'headwinds'
+    }
+  },
+  { 
+    article: {
+      title: 'End to End Round Table Review',
+      link: 'http://headwinds.net/2012/06/end-to-end-javascript-round-table-review/index.html',
+      meta: 'App Design &amp; Development, Javascript, Interface Development',
+      dateTime: '2012-06-06T18:41:51+00:00',
+      dateTimeDisplay: 'June 06, 2012',
+    },
+    author: {
+      link: 'http://headwinds.net/about',
+      name: 'headwinds'
+    }
+  },
+  { 
+    article: {
+      title: 'Sierra Sessions Workshop',
+      link: 'http://headwinds.net/2012/05/announcing-my-upcoming-interactive-workshop-introducing-html5-and-javascript/index.html',
+      meta: 'App Design &amp; Development, Interface Development, Workshops',
+      dateTime: '2012-05-16T18:41:51+00:00',
+      dateTimeDisplay: 'May 16, 2012',
+    },
+    author: {
+      link: 'http://headwinds.net/about',
+      name: 'headwinds'
+    }
   }
 ]  
 
 export default logs;
+

@@ -4,6 +4,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {drawBubbleChart} from './BubbleChart';
+import {drawActivity} from './HothActivity';
 
 class HothVisualize extends Component {
 
@@ -30,7 +31,8 @@ class HothVisualize extends Component {
 	}
 
 	visualize(){
-		drawBubbleChart(); 
+		//drawBubbleChart(); 
+		drawActivity();
 	}
 
 	render () {

@@ -1,119 +1,99 @@
-# To run this code, first edit config.py with your configuration, then:
-#
-# mkdir data
-# python twitter_stream_download.py -q apple -d data
-# 
-# It will produce the list of tweets for the query "apple" 
-# in the file data/stream_apple.json
-#
-# I want to turn this script into a search for tweets close to either the southern or northern pole 
-# so instead of apple I want pass lat/long and a radius 
-# also I want to limit my dataset to a number of rows
-#
-# https://dev.twitter.com/rest/public/search
-#
-# When you want to know what Tweets are coming from a specific location, with a specific language:
-# You want all recent Tweets in Portuguese, near Maracana soccer stadium in Rio de Janeiro
-# Your search URL is: https://api.twitter.com/1.1/search/tweets.json?q=&geocode=-22.912214,-43.230182,1km&lang=pt&result_type=recent
-#
+#!/usr/bin/python
 
-import tweepy
-from tweepy import Stream
-from tweepy import OAuthHandler
-from tweepy.streaming import StreamListener
-import time
-import argparse
-import string
-import config
+#-----------------------------------------------------------------------
+# twitter-search-geo
+#  - performs a search for tweets close to Iqaluit ( the capital of Nunavut - 63.7467, 68.5170 ), and outputs
+#    them to a CSV file.
+# https://github.com/ideoforms/python-twitter-examples/blob/master/twitter-search-geo.py
+#-----------------------------------------------------------------------
+
+from twitter import *
+
+import sys
+import csv
 import json
 
-# Iqaluit is the capital of Nunavut - 63.7467, 68.5170  
+latitude = 63.7467	# geographical centre of search
+longitude = 68.5170	# geographical centre of search
+max_range = 1000 		# search range in kilometres
+num_results = 10		# minimum results to obtain
+outfileCSV = "northern.csv"
+outfileJSON = "northern.json"
+outfileJSONRaw = "northernRaw.json"
 
-radius = "100km"
-nPLat = 63.7467
-nPLong = 68.5170
-lang = "en"
+#-----------------------------------------------------------------------
+# load our API credentials 
+#-----------------------------------------------------------------------
+config = {}
+execfile("config.py", config)
 
-# q=&geocode=-22.912214,-43.230182,1km&lang=en&result_type=recent
+#-----------------------------------------------------------------------
+# create twitter API object
+#-----------------------------------------------------------------------
+twitter = Twitter(
+		        auth = OAuth(config["access_token"], config["access_secret"], config["consumer_key"], config["consumer_secret"]))
 
-sPLat = 0
-sPLong = 0 
+#-----------------------------------------------------------------------
+# open a file to write (mode "w"), and create a CSV writer object
+#-----------------------------------------------------------------------
+csvfile = file(outfileCSV, "w")
+csvwriter = csv.writer(csvfile)
 
-def get_parser():
-    """Get parser for command line arguments."""
-    parser = argparse.ArgumentParser(description="Twitter Downloader")
-    parser.add_argument("-q",
-                        "--query",
-                        dest="query",
-                        help="Query/Filter",
-                        default='-')
-    parser.add_argument("-d",
-                        "--data-dir",
-                        dest="data_dir",
-                        help="Output/Data Directory")
-    return parser
+#-----------------------------------------------------------------------
+# add headings to our CSV file
+#-----------------------------------------------------------------------
+row = [ "id", "value", "user", "text", "latitude", "longitude" ]
+csvwriter.writerow(row)
 
+#-----------------------------------------------------------------------
+# the twitter API only allows us to query up to 100 tweets at a time.
+# to search for more, we will break our search up into 10 "pages", each
+# of which will include 100 matching tweets.
+#-----------------------------------------------------------------------
+result_count = 0
+last_id = None
+while result_count <  num_results:
+	#-----------------------------------------------------------------------
+	# perform a search based on latitude and longitude
+	# twitter API docs: https://dev.twitter.com/docs/api/1/get/search
+	#-----------------------------------------------------------------------
+	query = twitter.search.tweets(q = "", geocode = "%f,%f,%dkm" % (latitude, longitude, max_range), count = 100, max_id = last_id)
 
-class MyListener(StreamListener):
-    """Custom StreamListener for streaming data."""
+	for result in query["statuses"]:
+		#-----------------------------------------------------------------------
+		# only process a result if it has a geolocation
+		#-----------------------------------------------------------------------
+		if result["geo"]:
+			userid = result["user"]["id"]
+			user = result["user"]["screen_name"]
+			value = result["user"]["followers_count"]
+			text = result["text"]
+			text = text.encode('ascii', 'replace')
+			latitude = result["geo"]["coordinates"][0]
+			longitude = result["geo"]["coordinates"][1]
 
-    def __init__(self, data_dir, query):
-        query_fname = format_filename(query)
-        self.outfile = "%s/stream_%s.json" % (data_dir, query_fname)
+			# now write this row to our CSV file
+			row = [ userid, value, user, text, latitude, longitude ]
+			csvwriter.writerow(row)
+			# now write this row to our JSON file too except there is a problem here since they prints only 1 result
+			objData = {"id": userid, "value": value, "name": user, "text": text, "latitude": latitude, "longitude": longitude}
+			jsonData = json.dumps(objData)
+			with open(outfileJSON, 'w') as outfile:
+			  json.dump(jsonData, outfile)
+			with open(outfileJSONRaw, 'w') as outfile:
+			  json.dump(result, outfile)  
+			result_count += 1
+		last_id = result["id"]
 
-    def on_data(self, data):
-        try:
-            with open(self.outfile, 'a') as f:
-                f.write(data)
-                print(data)
-                return True
-        except BaseException as e:
-            print("Error on_data: %s" % str(e))
-            time.sleep(5)
-        return True
+	#-----------------------------------------------------------------------
+	# let the user know where we're up to
+	#-----------------------------------------------------------------------
+	print "got %d results" % result_count
 
-    def on_error(self, status):
-        print(status)
-        return True
+#-----------------------------------------------------------------------
+# we're all finished, clean up and go home.
+#-----------------------------------------------------------------------
+csvfile.close()
 
+print "written to %s" % outfile
 
-def format_filename(fname):
-    """Convert file name into a safe string.
-
-    Arguments:
-        fname -- the file name to convert
-    Return:
-        String -- converted file name
-    """
-    return ''.join(convert_valid(one_char) for one_char in fname)
-
-
-def convert_valid(one_char):
-    """Convert a character into '_' if invalid.
-
-    Arguments:
-        one_char -- the char to convert
-    Return:
-        Character -- converted char
-    """
-    valid_chars = "-_.%s%s" % (string.ascii_letters, string.digits)
-    if one_char in valid_chars:
-        return one_char
-    else:
-        return '_'
-
-@classmethod
-def parse(cls, api, raw):
-    status = cls.first_parse(api, raw)
-    setattr(status, 'json', json.dumps(raw))
-    return status
-
-if __name__ == '__main__':
-    parser = get_parser()
-    args = parser.parse_args()
-    auth = OAuthHandler(config.consumer_key, config.consumer_secret)
-    auth.set_access_token(config.access_token, config.access_secret)
-    api = tweepy.API(auth)
-
-    twitter_stream = Stream(auth, MyListener(args.data_dir, args.query))
-    twitter_stream.filter(track=[args.query])

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Nixie+One|Sarpanch');
+@import url('https://fonts.googleapis.com/css?family=Nixie+One');
 
 .hud {
   margin-top: 50px;
@@ -15,33 +15,48 @@
   }
 
   .hud_title {
-    font-family: "Sarpanch", Helvetica, sans-serif;
+    font-family: $headlineFont;
     margin: 0px;
     padding: 0px;
     font-size: 30px;
-    color: $blackSnout;
+    color: $explorer;
     margin: 20px;
   }
 
   .hud_subTitle {
-    font-family: "Sarpanch", Helvetica, sans-serif;
+    font-family: $headlineFont;
     margin: 0px;
     padding: 0px;
     font-size: 16px;
+    font-weight: bold;
     color: $explorer;
-    margin: 5px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    line-height: 24px;
   }
 
   .hud_message {
-    font-family: "Nixie One", Helvetica, sans-serif;
+    font-family: $headlineFont;
     margin: 0px;
     padding: 0px;
     font-size: 14px;
-    color: $blackSnout;
+    color: $explorer;
     margin-top: 20px;
   }
 
   .hud_controlsContainer {
+    
+    button {
+      background-color: transparent;
+    }
+
+    button:active, button:focus {
+      outline: none;
+    }
+
+    a {
+      background-color: transparent;
+    }
 
   }
 

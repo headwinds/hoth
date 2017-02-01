@@ -1,13 +1,14 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import styles from './HothHeader.css';
 import logo from './cabinquestLogo.svg';
 import identity from './identity';
 
 const HothHeader = () => {
+
   return (   
     <header id="masthead" className={styles.hoth_header} role="banner">
       <div className={styles.logoContainer}>
-        <img src={logo} width="100" />
+        <img src={logo} width="100" alt="headwinds logo" />
       </div>
       <div className={styles.header_main}>
         <h1 className={styles.title}><a href={identity.link} rel="home">{identity.name}</a> </h1>
@@ -24,8 +25,5 @@ const HothHeader = () => {
   )
 }
 
-HothHeader.propTypes = {
-  identity: PropTypes.object.isRequired
-};
 
 export default HothHeader;

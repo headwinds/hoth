@@ -4,7 +4,6 @@ import LogMenuItem from './LogMenuItem';
 import LogCategoryItem from './LogCategoryItem';
 import logs from './logs';
 import categories from './categories';
-import identity from './identity';
 import classNames from 'classnames';
 import HothHeader from '../header/HothHeader';
 
@@ -29,7 +28,7 @@ export default function LogMenu() {
 					<div className={styles.logContainer}></div>
 					<script src="bundle.js"></script>
 			</div>
-			<HothHeader identity={identity} />
+			<HothHeader />
 			<div id="main" className={styles.site_main}>
 				<div id="main_content" className={styles.main_content}>
 					<div id="primary" className={styles.content_area}>

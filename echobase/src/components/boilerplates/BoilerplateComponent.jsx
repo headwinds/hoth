@@ -1,8 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import * as actions from 'state/actions/actions_projects';
 import { connect } from 'react-redux';
-// grommet 
-import Section from 'grommet/components/Section';
 
 class BoilerplateComponent extends Component {
 
@@ -41,7 +39,7 @@ class BoilerplateComponent extends Component {
 
 	render(){
 		return(
-			<Section></Section>
+			<div></div>
 		)
 	}
 

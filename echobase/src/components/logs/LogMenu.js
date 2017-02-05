@@ -27,14 +27,16 @@ export default function LogMenu() {
 	return (
 		<div id="page" className={pageClassNames}>
 			<div id="content" className={styles.site_content} role="main">
-				<div style={tweetStyle}>	
-					<TweetEmbed id='827905410543685632' />
-				</div>
-				{displayLogs}
-				<div>
+				<div className={styles.split}>
+					<div style={tweetStyle}>	
+						<TweetEmbed id='827905410543685632' />
+					</div>
+					<div className={styles.logsColumn}>
+					{displayLogs}
 					<h2 className={styles.category_title}>CATEGORIES</h2>		
 					{displayCategories}
-				</div>	
+					</div>
+				</div>
 			</div>
 		</div>
   );

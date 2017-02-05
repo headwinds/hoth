@@ -1,7 +1,7 @@
-const indentity = { 
+const identity = { 
     name: 'headwinds studio',
     link: 'https://www.headwinds.net',
-    slogan: 'apps for the young @ heart',
+    slogan: 'apps for the young @ 💛',
     works: {
       name: "works",
       link: 'https://www.headwinds.net/works'
@@ -16,4 +16,4 @@ const indentity = {
     }
 };
 
-export default indentity;
+export default identity;

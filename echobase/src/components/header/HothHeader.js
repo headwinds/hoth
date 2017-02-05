@@ -1,16 +1,16 @@
 import React from 'react';
 import styles from './HothHeader.css';
-import logo from './cabinquestLogo.svg';
+import logo from './headwinds.svg';
 import identity from '../../data/identity';
 
 const HothHeader = () => {
   return (   
     <header id="masthead" className={styles.hoth_header} role="banner">
       <div className={styles.logoContainer}>
-        <img src={logo} width="100" />
+       <a href={identity.link} rel="home"> <img src={logo} width="100" /></a>
       </div>
       <div className={styles.header_main}>
-        <h1 className={styles.title}><a href={identity.link} rel="home">{identity.name}</a> </h1>
+        <h1 className={styles.title}>{identity.name}</h1>
         <h2 className={styles.description}>{identity.slogan}</h2>
       </div>  
       <div className={styles.menu}>

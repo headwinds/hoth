@@ -66,7 +66,7 @@ export default class BuffaloLog extends Component {
 						<p>When Codepen implements a file system, it will more truly mirror how we prototype modular apps without all the headache of configuring increasing deliver time by day and overall joy of jumpoing right into the flow</p>
 					</div>
 				</article>
-			<HothFooter />
+			<HothHeader />
 		</div>
   )};
 }

@@ -61,6 +61,18 @@
 
 }
 
+.split {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.logsColumn {
+  display: block;
+  max-width: 600px;
+  margin-left: 20px;
+}
+
 .logMenuItem {
   display: block;
   margin-bottom: 20px;
@@ -219,7 +231,7 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1;
 }
 
@@ -1158,6 +1170,7 @@ a.post-thumbnail:hover {
   margin-bottom: 12px;
   margin: 0 0 12px 0;
   text-transform: uppercase;
+  font-family: $contentFont;
 }
 
 .entry-title a {

@@ -6,7 +6,7 @@ import LogMenu from '../logs/LogMenu';
 import BuffaloLog from '../logs/buffalo/BuffaloLog';
 import HothHeader from '../header/HothHeader';
 
-const key = "buffalo1"
+const key = "buffalo"
 
 class App extends Component {
   render() {

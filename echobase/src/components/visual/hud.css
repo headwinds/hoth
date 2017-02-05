@@ -24,24 +24,24 @@
   }
 
   .hud_subTitle {
-    font-family: $headlineFont;
-    margin: 0px;
-    padding: 0px;
+    font-family: $contentFont;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: normal;
     color: $explorer;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 30px;
     line-height: 24px;
   }
 
   .hud_message {
-    font-family: $headlineFont;
+    font-family: $contentFont;
     margin: 0px;
     padding: 0px;
     font-size: 14px;
     color: $explorer;
     margin-top: 20px;
+    margin-left: 30px;
   }
 
   .hud_controlsContainer {

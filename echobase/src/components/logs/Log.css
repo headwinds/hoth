@@ -62,13 +62,16 @@
 }
 
 .logMenuItem {
+  display: block;
+  margin-bottom: 20px;
 
   .date {
 
   }
 
   .meta{
-
+    font-size: 12px;
+    color: $glass;
   }
 
   .article {
@@ -76,12 +79,10 @@
 
     }
 
-    .dateTime {
-
-    }
-
     .dateDisplay {
-
+      font-size: 12px;
+      color: $numberCruncher;
+      margin-bottom: 50px;
     }
 
     .byline {
@@ -90,12 +91,20 @@
   }
 }
 
+.catItem{
+  text-align: left;
+  color: $sand;
+  font-size: 12px;
+}
+
 .log_title {
   font-size:24px;
   font-weight: normal;
   pointer-events: all;
   cursor: pointer;
-  margin: 10px;
+  margin: 0px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   padding: 0px; 
 }
 
@@ -110,16 +119,16 @@
 }
 
 .category_title {
-  font-size: 24px;
-  color: $blackSnout;
-  font-family: $headlineFont;
+  font-size: 16px;
+  color: $numberCruncher;
+  font-family: $contentFont;
   font-weight: bold;
 }
 
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
   border: 0;
-  font-family: inherit;
+  font-family: $contentFont;
   font-size: 100%;
   font-style: inherit;
   font-weight: inherit;
@@ -140,6 +149,7 @@ hgroup,
 nav,
 section {
   display: block;
+  text-align: left;
 }
 
 audio,
@@ -399,6 +409,7 @@ img {
   -ms-interpolation-mode: bicubic;
   border: 0;
   vertical-align: middle;
+  width: 100%;
 }
 
 figure {
@@ -529,6 +540,12 @@ hr {
   background: #2C3539;
   color: #fff;
   text-shadow: none;
+}
+
+
+
+h1, h2, p {
+  text-align: left;
 }
 
 
@@ -4088,7 +4105,9 @@ a.post-thumbnail:hover {
 
   .site_content,
   .site-main .widecolumn {
-    margin-left: 222px;
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
   }
 
   .site:before {

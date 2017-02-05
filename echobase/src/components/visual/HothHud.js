@@ -36,7 +36,7 @@ export default function HothHud() {
         <p className={styles.hud_message}>{measures}</p>
       </div>
       <div className={styles.hud_controlsContainer}>
-        <button onClick={ expand() }> <img src={expandIcon} alt="expand" /></button>
+        {/*<button onClick={ expand() }> <img src={expandIcon} alt="expand" /></button>*/}
       </div>
     </div>
   );

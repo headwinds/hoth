@@ -25,6 +25,7 @@
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.9.0",
     "fs-extra": "^0.30.0",
+    "ftp-deploy": "^1.1.0",
     "html-webpack-plugin": "2.22.0",
     "json-loader": "0.5.4",
     "opn": "4.0.2",
@@ -48,6 +49,8 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-redux": "^5.0.2",
+    "react-social-embed": "0.0.3",
+    "react-tweet-embed": "^1.0.3",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
   },

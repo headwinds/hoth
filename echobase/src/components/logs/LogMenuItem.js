@@ -11,7 +11,9 @@ export default function LogMenuItem( props ) {
         </div>  
         <h2 className={styles.log_title}><a href={content.article.link}>{content.article.title}</a></h2>
         <div className={styles.meta}>
-          <span className={styles.dateDisplay}><a href={content.article.link}><time className={styles.dateTime} dateTime={content.article.dateTime}>{content.article.dateTimeDisplay}</time></a></span> <span className={styles.byline}><span className={styles.author}><a className={styles.link}>{content.author.name}</a></span></span>
+          <span className={styles.dateDisplay}>
+            {content.article.dateTimeDisplay}
+          </span> 
         </div>
       </header>
     </article>  

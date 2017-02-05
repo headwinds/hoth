@@ -68,7 +68,7 @@ const logs = [
     article: {
       title: 'a bit of an app store swindle',
       link: 'http://headwinds.net/2013/04/a-bit-of-an-app-store-swindle/',
-      meta: 'App Design &amp; Development, iOS, Interface Development',
+      meta: 'App Design and Development, iOS, Interface Development',
       dateTime: '2013-04-17T18:41:51+00:00',
       dateTimeDisplay: 'April 17, 2013',
     },
@@ -94,7 +94,7 @@ const logs = [
     article: {
       title: 'End to End Round Table Review',
       link: 'http://headwinds.net/2012/06/end-to-end-javascript-round-table-review/index.html',
-      meta: 'App Design &amp; Development, Javascript, Interface Development',
+      meta: 'App Design and Development, Javascript, Interface Development',
       dateTime: '2012-06-06T18:41:51+00:00',
       dateTimeDisplay: 'June 06, 2012',
     },
@@ -107,7 +107,7 @@ const logs = [
     article: {
       title: 'Sierra Sessions Workshop',
       link: 'http://headwinds.net/2012/05/announcing-my-upcoming-interactive-workshop-introducing-html5-and-javascript/index.html',
-      meta: 'App Design &amp; Development, Interface Development, Workshops',
+      meta: 'App Design and Development, Interface Development, Workshops',
       dateTime: '2012-05-16T18:41:51+00:00',
       dateTimeDisplay: 'May 16, 2012',
     },

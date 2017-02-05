@@ -1,6 +1,6 @@
 const categories = [
   { 
-    title: 'App Design &amp; Development'
+    title: 'App Design and Development'
   },
   { 
     title: 'Indie Gaming'

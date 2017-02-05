@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './HothHeader.css';
+import styles from './HothFooter.css';
 import logo from './cabinquestLogo.svg';
 import identity from '../../data/identity';
 
-const HothHeader = () => {
+const HothFooter = () => {
   return (   
     <header id="masthead" className={styles.hoth_header} role="banner">
       <div className={styles.logoContainer}>
@@ -24,4 +24,4 @@ const HothHeader = () => {
   )
 }
 
-export default HothHeader;
+export default HothFooter;

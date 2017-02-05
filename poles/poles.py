@@ -21,6 +21,11 @@ outfileCSV = "northern.csv"
 outfileJSON = "northern.json"
 outfileJSONRaw = "northernRaw.json"
 
+bellwoodslat = 43.647459
+bellwoodslong = -79.413852
+bellwoodsCSV = "bellwoods.csv"
+bellwoods_max_range = 1 	
+
 #-----------------------------------------------------------------------
 # load our API credentials 
 #-----------------------------------------------------------------------
@@ -43,8 +48,17 @@ csvwriter = csv.writer(csvfile)
 # add headings to our CSV file
 #-----------------------------------------------------------------------
 row = [ "id", "value", "user", "text", "latitude", "longitude" ]
-csvwriter.writerow(row)
+rowText = [ "text", "latitude", "longitude" ]
+csvwriter.writerow(rowText)
 
+#-----------------------------------------------------------------------
+# row validation
+#-----------------------------------------------------------------------
+def validateRow(row):
+	validRow = True
+	# if row["text"]
+
+	return validRow;
 #-----------------------------------------------------------------------
 # the twitter API only allows us to query up to 100 tweets at a time.
 # to search for more, we will break our search up into 10 "pages", each
@@ -57,7 +71,7 @@ while result_count <  num_results:
 	# perform a search based on latitude and longitude
 	# twitter API docs: https://dev.twitter.com/docs/api/1/get/search
 	#-----------------------------------------------------------------------
-	query = twitter.search.tweets(q = "", geocode = "%f,%f,%dkm" % (latitude, longitude, max_range), count = 100, max_id = last_id)
+	query = twitter.search.tweets(q = "", geocode = "%f,%f,%dkm" % (bellwoodslat, bellwoodslong, bellwoods_max_range), count = 100, max_id = last_id)
 
 	for result in query["statuses"]:
 		#-----------------------------------------------------------------------
@@ -71,18 +85,21 @@ while result_count <  num_results:
 			text = text.encode('ascii', 'replace')
 			latitude = result["geo"]["coordinates"][0]
 			longitude = result["geo"]["coordinates"][1]
-
-			# now write this row to our CSV file
-			row = [ userid, value, user, text, latitude, longitude ]
-			csvwriter.writerow(row)
-			# now write this row to our JSON file too except there is a problem here since they prints only 1 result
-			objData = {"id": userid, "value": value, "name": user, "text": text, "latitude": latitude, "longitude": longitude}
-			jsonData = json.dumps(objData)
-			with open(outfileJSON, 'w') as outfile:
-			  json.dump(jsonData, outfile)
-			with open(outfileJSONRaw, 'w') as outfile:
-			  json.dump(result, outfile)  
-			result_count += 1
+			# validate the content 
+			validRow = validateRow(row)
+			if validRow: 
+				# now write this row to our CSV file if its valid 
+				# row = [ userid, value, user, text, latitude, longitude ]
+			 	rowText = [ text, latitude, longitude ]
+				csvwriter.writerow(rowText)
+				# now write this row to our JSON file too except there is a problem here since they prints only 1 result
+				# objData = {"id": userid, "value": value, "name": user, "text": text, "latitude": latitude, "longitude": longitude}
+				# jsonData = json.dumps(objData)
+				#with open(outfileJSON, 'w') as outfile:
+				#  json.dump(jsonData, outfile)
+				#with open(outfileJSONRaw, 'w') as outfile:
+				#  json.dump(result, outfile)  
+				result_count += 1
 		last_id = result["id"]
 
 	#-----------------------------------------------------------------------
@@ -95,5 +112,5 @@ while result_count <  num_results:
 #-----------------------------------------------------------------------
 csvfile.close()
 
-print "written to %s" % outfile
+# print "written to %s" % outfile
 

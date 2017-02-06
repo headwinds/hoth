@@ -103,22 +103,7 @@
   }
 }
 
-.catItem{
-  text-align: left;
-  color: $sand;
-  font-size: 12px;
-}
 
-.log_title {
-  font-size:24px;
-  font-weight: normal;
-  pointer-events: all;
-  cursor: pointer;
-  margin: 0px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  padding: 0px; 
-}
 
 .simpleHothBg {
   background-color: $primary;
@@ -655,10 +640,10 @@ input[type="submit"]:active {
 
 /* Responsive images. Fluid images for posts, comments, and widgets */
 
-.comment-content img,
-.entry-content img,
-.entry-summary img,
-#site-header img,
+.comment_content img,
+.entry_content img,
+.entry_summary img,
+#site_header img,
 .widget img,
 .caption {
   max-width: 100%;
@@ -1156,12 +1141,14 @@ a.post-thumbnail:hover {
  * -----------------------------------------------------------------------------
  */
 
-.entry-header {
+.entry_header {
   position: relative;
   z-index: 1;
   padding-bottom: 5px;
-    padding-top: 10px;
+  padding-top: 10px;
 }
+
+
 
 .entry-title {
   font-size: 33px;

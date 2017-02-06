@@ -49,11 +49,12 @@
   }
 
   li {
-    background-color: #CCC;
+    background-color: #eee;
     margin-bottom: 5px;
     padding: 3px;
     border-radius: 5px;
-    width: 100px;
+    width: auto;
+    text-align: center;
   
     a {
       font-size: 12px;

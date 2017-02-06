@@ -12,12 +12,47 @@ from twitter import *
 import sys
 import csv
 import json
+import argparse
 
-latitude = 63.7467	# geographical centre of search
-longitude = 68.5170	# geographical centre of search
-max_range = 1000 		# search range in kilometres
+from termcolor import colored
+
+
+parser = argparse.ArgumentParser(
+	prog='POLES',
+	description='Creates csv of twitter data from our poles')
+
+# a path for the location data to be saved in a csv
+parser.add_argument('file', type=str, 
+                   help='assign a filename')
+# the lat of the location 
+parser.add_argument('lat', type=float, default=63.7467,
+                   help='assign the latitute')
+# the long of the location 
+parser.add_argument('long', type=float, default=68.5170,
+                   help='assign the longitude)')
+
+# the long of the location 
+parser.add_argument('range', type=int, default=5,
+                   help='assign the radius range in kms)')
+
+# the long of the location 
+parser.add_argument('--max', type=int, default=5,
+                   help='max records to be created)')
+
+args = parser.parse_args()
+
+
+# Toronto City Hall - python poles.py 'cityhall.csv' 43.653908 -79.384293 5  
+
+latitude = args.lat	# geographical centre of search
+longitude = args.long	# geographical centre of search
+max_range = args.range	 		# search range in kilometres
 num_results = 10		# minimum results to obtain
-outfileCSV = "northern.csv"
+
+print colored("file name: %s" % args.file,'green')
+print colored("using max records: %s" % args.max,'green')
+
+outfileCSV = args.file
 outfileJSON = "northern.json"
 outfileJSONRaw = "northernRaw.json"
 
@@ -71,7 +106,7 @@ while result_count <  num_results:
 	# perform a search based on latitude and longitude
 	# twitter API docs: https://dev.twitter.com/docs/api/1/get/search
 	#-----------------------------------------------------------------------
-	query = twitter.search.tweets(q = "", geocode = "%f,%f,%dkm" % (bellwoodslat, bellwoodslong, bellwoods_max_range), count = 100, max_id = last_id)
+	query = twitter.search.tweets(q = "", geocode = "%f,%f,%dkm" % (latitude, longitude, max_range), count = 100, max_id = last_id)
 
 	for result in query["statuses"]:
 		#-----------------------------------------------------------------------
@@ -105,12 +140,15 @@ while result_count <  num_results:
 	#-----------------------------------------------------------------------
 	# let the user know where we're up to
 	#-----------------------------------------------------------------------
-	print "got %d results" % result_count
+	print colored("got %d results" % result_count,'white')
+
 
 #-----------------------------------------------------------------------
 # we're all finished, clean up and go home.
 #-----------------------------------------------------------------------
 csvfile.close()
 
+
+# don't print json yet 
 # print "written to %s" % outfile
 

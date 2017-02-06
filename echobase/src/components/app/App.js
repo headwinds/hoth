@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import styles from './App.css';
 import { connect } from 'react-redux';
-import Echobase from '../echobase/Echobase';
+import MedicalCentre from '../medicalcentre/MedicalCentre';
 import LogMenu from '../logs/LogMenu';
 import BuffaloLog from '../logs/buffalo/BuffaloLog';
 import HothHeader from '../header/HothHeader';
 
-const key = "buffalo"
-
 class App extends Component {
   render() {
+    const getContent = key => {
 
-    const getContent = () => {
+      console.log("App - key: ", key); 
+
       switch(key) { 
-        default :
         case "main" :
           return (
             <div>
               <HothHeader />
-              <Echobase />
+              <MedicalCentre />
               <LogMenu />
               <HothHeader />
             </div>  
@@ -27,12 +26,16 @@ class App extends Component {
           return (
              <BuffaloLog />
           )
+        default :
+          return (
+             <BuffaloLog />
+          )  
       }
     }
 
     return (
       <div className={styles.app}>
-        { getContent() }
+        { getContent("buffalo") }
       </div>
     );
   }

@@ -21,7 +21,6 @@ export default function LogMenu() {
 		return(<LogCategoryItem key={key} content={category} />)
 	});
 	 
-  const navClassNames = classNames('site_navigation', 'primary_navigation');
   const pageClassNames = classNames('hfeed', 'site');
 
 	return (

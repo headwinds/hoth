@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import HothVisualize from '../visual/HothVisualize';
 import HothHud from '../visual/HothHud';
 import classNames from 'classnames';
-import styles from './Echobase';
+import styles from './MedicalCentre';
 
-class EchoBase extends Component {
+class MedicalCentre extends Component {
 
   constructor(props,context){
     super(props,context);
@@ -71,7 +71,7 @@ class EchoBase extends Component {
 
 }
 
-EchoBase.propTypes = {
+MedicalCentre.propTypes = {
   dispatch: PropTypes.func.isRequired
 }
 
@@ -85,4 +85,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EchoBase);
+export default connect(mapStateToProps, mapDispatchToProps)(MedicalCentre);

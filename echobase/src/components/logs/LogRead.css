@@ -57,5 +57,11 @@ a:hover {
 }
 
 li {
-  background-color: #eee;
+  background-color: transparent;
 }
+
+.tdlr {
+  color:#000; 
+  font-size: 16px;
+}
+

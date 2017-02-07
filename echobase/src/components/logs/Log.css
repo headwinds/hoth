@@ -57,6 +57,16 @@
   @import url('https://fonts.googleapis.com/css?family=Sarpanch');
 */
 
+.categoriesColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 12px;
+  color: $glass;
+  text-align: left;
+  margin-bottom: 100px;
+}
+
 .logContainer {
 
 }
@@ -75,6 +85,7 @@
 
 .logMenuItem {
   display: block;
+  margin-top: 20px;
   margin-bottom: 20px;
 
   .date {
@@ -215,9 +226,22 @@ h1 {
   line-height: 1.3846153846;
 }
 
-h2 {
+h2.log_title {
+  margin: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0px;
+}
+
+a.logMenuTitle {
+  margin: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0px;
   font-size: 18px;
   line-height: 1;
+  color: $blackSnout;
+  font-weight: normal;
 }
 
 h3 {

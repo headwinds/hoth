@@ -27,7 +27,7 @@ const logs = [
   },
   { 
     article: {
-      title: 'Gandalf casts Marionette’s CollectionView herds ItemView hobbits',
+      title: 'Working with Backbone/Marionette CollectionView and ItemViews',
       link: 'http://headwinds.net/2013/11/marionettejs-collectionview/',
       meta: 'Interface Development, Javascript',
       dateTime: '2013-11-25T19:08:17+00:00',

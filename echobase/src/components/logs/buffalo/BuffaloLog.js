@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import TweetEmbed from 'react-tweet-embed';
-import HothHeader from '../../header/HothHeader';
 import styles from '../LogRead.css';
 import buffaloPlunker from "./buffaloPlunker.png";
 import buffaloGems from "./buffaloGems.png";
@@ -20,7 +19,6 @@ export default class BuffaloLog extends Component {
 
 		return (
 		<div id="page" >
-			<HothHeader />
 				<div className={styles.log}>
 					<article className={styles.log_article}> 
 						<div id="main" className={styles.log_title_container}>
@@ -70,7 +68,6 @@ export default class BuffaloLog extends Component {
 						</div>
 					</article>
 				</div>
-			<HothHeader />
 		</div>
   )};
 }

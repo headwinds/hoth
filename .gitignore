@@ -14,4 +14,7 @@ coverage
 ### yarn ###
 yarn.lock
 
+### private ###
+src/config
+
 

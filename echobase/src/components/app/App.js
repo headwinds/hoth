@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import MedicalCentre from '../medicalcentre/MedicalCentre';
 import LogMenu from '../logs/LogMenu';
 import BuffaloLog from '../logs/buffalo/BuffaloLog';
+import GridLog from '../logs/grid/GridLog';
 import HothHeader from '../header/HothHeader';
 
 class App extends Component {
@@ -12,30 +13,33 @@ class App extends Component {
 
       console.log("App - key: ", key); 
 
+      const getDefault = () => (
+        <div>
+          <MedicalCentre />
+          <LogMenu />
+        </div>  
+      )
+
       switch(key) { 
         case "main" :
-          return (
-            <div>
-              <HothHeader />
-              <MedicalCentre />
-              <LogMenu />
-              <HothHeader />
-            </div>  
-          )
+          return getDefault(); 
         case "buffalo" :
           return (
              <BuffaloLog />
           )
-        default :
+        case "grid" :
           return (
-             <BuffaloLog />
+            <GridLog />
           )  
+        default :
+          return getDefault(); 
       }
     }
 
     return (
       <div className={styles.app}>
-        { getContent("buffalo") }
+        <HothHeader />
+        { getContent("main") }
       </div>
     );
   }

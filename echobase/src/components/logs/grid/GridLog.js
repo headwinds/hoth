@@ -9,7 +9,7 @@ export default class GridLog extends Component {
 			<div className={styles.log}>
 				<article className={styles.log_article}> 
 					<div id="main" className={styles.log_title_container}>
-						<h1 className={styles.log_title}>A Stab at a Redux Data Grid and the Github Spirit</h1>
+						<h1 className={styles.log_title}>A Stab at a React Redux Grid and the Github Spirit</h1>
 						<h2 className={styles.log_date}>March 10, 2016</h2>	
 					</div>
 					<div className={styles.log_content}>

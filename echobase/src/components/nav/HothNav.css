@@ -1,4 +1,4 @@
-.hoth_header {
+.hoth_nav {
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
@@ -11,37 +11,51 @@
   height: 100px;
   z-index: 4;
 
-  .logoContainer {
-    display: block;
-    width: 100px;
-  }
-
   h1,h2 {
     font-family: $headlineFont;
     color: $glass;
   }
 
+  .logo {
+     display: block;
+     display: flex;
+    justify-content: flex-start;
 
-  .title {
-    font-size: 20px;
-    margin: 0px;
-    margin-top: 40px;
-    padding: 0px;
-
-    a {
-      margin: 0px;
-      padding: 0px;
-      font-size: 20px;
+    .mark {
+      display: block;
+      width: 100px;
+      height: auto;
     }
-  }
 
-  .description {
-    font-size: 12px;
-    margin: 0px;
-    margin-left: 10px;
-    font-style: italic;
-    padding: 0px;
+    .brand {
+      display: block;
+      width: 400px;
+      height: auto;
+    }
 
+
+    .title {
+      font-size: 20px;
+      margin: 0px;
+      margin-top: 40px;
+      padding: 0px;
+
+      a {
+        margin: 0px;
+        padding: 0px;
+        font-size: 20px;
+      }
+    }
+
+    .description {
+      font-size: 12px;
+      margin: 0px;
+      margin-left: 10px;
+      font-style: italic;
+      padding: 0px;
+      width: 200px;
+
+    }
   }
 
   ul {

@@ -7,7 +7,7 @@ import logs from './logs';
 import TweetEmbed from 'react-tweet-embed';
 import categories from './categories';
 import classNames from 'classnames';
-import * as logActions from '../../redux/actions/log_actions'; 
+//import * as logActions from '../../redux/actions/log_actions';
 
 class LogMenu extends Component {
 

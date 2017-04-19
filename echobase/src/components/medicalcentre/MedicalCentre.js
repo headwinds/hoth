@@ -11,6 +11,7 @@ class MedicalCentre extends Component {
     super(props,context);
 
     this.viz = null; 
+    console.log("MedicalCentre constructor this.props: ", this.props);
   }
 
   componentWillMount(){
@@ -64,7 +65,6 @@ class MedicalCentre extends Component {
         <div className={hothClass}>
           <HothVisualize />
         </div>
-    
       </div>
     )
   }
@@ -76,7 +76,7 @@ MedicalCentre.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  boilerplateState: state.boilerplateState,
+  app: state.app,
 });
 
 const mapDispatchToProps = (dispatch) => {

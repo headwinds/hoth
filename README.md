@@ -32,7 +32,9 @@ I don't expect any forks and certainly no pull requests at this point since this
 
 ### Personal Reporting
 
-I want to get back to open, personal research and blogging an emphasis on the LOG. I like the concept of a Ship Captain's log where instead of writing an entire article, the captain would capture what happened that day or over a brief peroid of time. The entries would add to a post with an over arching themes along with a few tangents.    
+I want to get back to open, personal research and blogging an emphasis on the LOG. I like the concept of a Ship Captain's log where instead of writing an entire article, the captain would capture what happened that day or over a brief peroid of time. The entries would add to a post with an over arching themes along with a few tangents.  
+
+[My Morning Routine](http://www.treehugger.com/culture/my-morning-routine-offers-glimpse-how-other-people-start-their-days.html). MMR means something entirely different to any fans of [Starcraft MMR](http://us.battle.net/sc2/en/blog/20308080/patch-37-separate-mmr-per-race-9-29-2016).   
 
 On Jan 1st/2017, I started using [Reporter](http://www.reporter-app.com/) to help track my personal data with the plan to visualize it; possibly quarterly depending on what it looks like by then. But after a few weeks, I had stopped using Reporter daily and now want to explore why. 
 

@@ -1,7 +1,7 @@
 const identity = { 
-    name: 'headwinds studio',
+    name: 'headwinds',
     link: 'https://www.headwinds.net',
-    slogan: 'apps for the young @ 💛',
+    slogan: '',
     works: {
       name: "works",
       link: 'https://www.headwinds.net/works'

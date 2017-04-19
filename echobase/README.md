@@ -10,5 +10,7 @@ I'll be using Javascript and Python to create these experiments featuring author
 
 #### week 1 - Nearest Neighbor 
 
+test
+
 resources       
 [nearest neighbor](https://www.burakkanber.com/blog/machine-learning-in-js-k-nearest-neighbor-part-1/)

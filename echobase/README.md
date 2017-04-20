@@ -8,7 +8,7 @@ I'll be using Javascript and Python to create these experiments featuring author
 
 ## Medical Centre
 
-#### week 1 - Nearest Neighbor 
+#### week 1 - kNN - Nearest Neighbor 
 
 test
 

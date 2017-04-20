@@ -4,12 +4,38 @@ import styles from './HothNav.css';
 import identity from '../../data/identity';
 import {TweenMax, TimelineMax, Back, Quad} from 'gsap';
 import CSSPlugin from 'gsap/CSSPlugin';
-import AnchorItem from './AnchorItem';
+import TweetEmbed from 'react-tweet-embed';
 import Logo from './Logo';
 import DragonDropship from './DragonDropship';
+import * as _ from 'lodash';
+import ColorUtil from '../../utils/ColorUtil';
 
 
 class HothNav extends Component {
+
+  constructor(props){
+	super(props);
+
+	this.state = {
+		isAnimating: false,
+		ships: [],
+	}
+  }
+
+  componentDidMount(){
+
+  	this.positionShips();
+  }
+
+  positionShips(){
+  	let delay = 0;
+	_.each( this.state.ships, (ship, index) => {
+		//TweenMax.to(ship, 2, {css:{top:"70px", backgroundColor:"#FF0000"}, ease:Quad.easeOut});
+		delay = index * 2;
+		let newLeft = index * 100 + "px";
+		TweenMax.to(ship, 2, {css:{top:"100px", left: newLeft}, ease:Quad.easeOut, delay: delay});
+	});
+  }
 
   render() {
     
@@ -29,21 +55,32 @@ class HothNav extends Component {
       }
     }
 
+    const getShips = () => {
+
+    	const colours = ColorUtil.getColours();
+
+    	return (
+			<ul>
+				<li className={styles.menu_item} ref={ div => {this.state.ships[0] = div}}><a href="/"><DragonDropship name={"home"} colour={colours[2]}></DragonDropship></a></li>
+				<li className={styles.menu_item} ref={ div => {this.state.ships[1] = div}}><a href="/logs"><DragonDropship name={"logs"} colour={colours[6]}></DragonDropship></a></li>
+				<li className={styles.menu_item} ref={ div => {this.state.ships[2] = div}}><a href={identity.works.link}><DragonDropship name={identity.works.name} colour={colours[3]}></DragonDropship></a></li>
+				<li className={styles.menu_item} ref={ div => {this.state.ships[3] = div}}><a href={identity.about.link}><DragonDropship name={identity.about.name} colour={colours[4]}></DragonDropship></a></li>
+				<li className={styles.menu_item} ref={ div => {this.state.ships[4] = div}}><a href={identity.contact.link}><DragonDropship name={identity.contact.name} colour={colours[5]}></DragonDropship></a></li>
+				<li className={styles.menu_item} ref={ div => {this.state.ships[5] = div}}>
+					<a className="twitter-share-button" href={tweetUrl}>
+						<img src={tweet} alt="tweet" />
+					</a>
+				</li>
+			</ul>
+		)
+	}
+
+
     return (   
       <div  className={styles.hoth_nav}>
         { getLogo() }
         <div className={styles.menu}>
-          <ul>
-			  <li className={styles.menu_item}><a href="/"><DragonDropship name={"home"}></DragonDropship></a></li>
-			  <li className={styles.menu_item}><a href={identity.works.link}><DragonDropship name={identity.works.name}></DragonDropship></a></li>
-			  <li className={styles.menu_item}><a href={identity.about.link}><DragonDropship name={identity.about.name}></DragonDropship></a></li>
-			  <li className={styles.menu_item}><a href={identity.contact.link}><DragonDropship name={identity.contact.name}></DragonDropship></a></li>
-            <li>
-                <a className="twitter-share-button" href={tweetUrl}>
-                  <img src={tweet} alt="tweet" />
-                </a> 
-            </li>
-          </ul>
+			{getShips()}
         </div>
       </div>
     )

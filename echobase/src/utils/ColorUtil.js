@@ -1,9 +1,32 @@
+import globalVariable from '../../config/variables';
+import * as _ from "lodash";
+
 let colorUtil;
 class ColorUtil {
 
     constructor(){
 
     }
+
+    getColours(){
+		const keys = ["lips",
+			"drySoil",
+			"sand",
+			"glass",
+			"numberCruncher",
+			"higherGround",
+			"mailaise",
+			"explorer",
+			"blackSnout"]
+
+		const colours = _.map(keys, key => {
+			return globalVariable[key];
+		});
+
+		console.log("colours: ", colours);
+
+		return colours;
+	}
 
     hexToRgb(hex) {
 	    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

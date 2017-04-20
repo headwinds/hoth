@@ -85,13 +85,14 @@ export function drawActivity(){
 	  }
 
 	  node.append("rect")
-		.attr("id", function(d) { return d.id; })
-		.attr("width", function(d) { return d.r; })
-		.attr("height", function(d) { return d.r; })
-		.style("fill", function(d, i) { return getColor(i); })
-		.on("mouseover", function(){return tooltip.style("visibility", "visible");})
-		.on("mousemove", function(d){ return updateTooltip(d.title)})
-		.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+		  .attr("id", function(d) { return d.id; })
+		  .attr("width", function(d) { return d.r; })
+		  .attr("height", function(d) { return d.r; })
+		  .style("fill", function(d, i) { return getColor(i); })
+		  .style("cursor", "pointer")
+		  .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+		  .on("mousemove", function(d){ return updateTooltip(d.title)})
+		  .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
 	  node.append("clipPath")
 	      .attr("id", function(d) { return "clip-" + d.id; })

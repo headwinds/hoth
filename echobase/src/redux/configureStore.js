@@ -5,7 +5,8 @@ import createLogger from 'redux-logger'
 import {appReducer} from './reducers/app_reducer';
 import {logReducer} from './reducers/log_reducer';
 import {gridReducer} from './reducers/grid_reducer';
-import { routerReducer } from 'react-router-redux'
+import {browserHistory} from 'react-router';
+import { routerMiddleware, routerReducer } from 'react-router-redux'
 
 const loggerMiddleware = createLogger();
 
@@ -21,8 +22,9 @@ export default function configureStore(preloadedState) {
     rootReducer,
     preloadedState,
     applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware
+		thunkMiddleware,
+		loggerMiddleware,
+		routerMiddleware(browserHistory)
     )
   )
 }

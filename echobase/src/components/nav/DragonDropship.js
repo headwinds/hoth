@@ -63,7 +63,7 @@ export default class DragonDropship extends Component {
   	render(){
 
 	  const tipStyle = {display: "block", position: "absolute", zIndex: 1, top: 45, left: 50};
-	  const tipTxtStyle = {background: "white", padding: "0px 10px"};
+	  const tipTxtStyle = {background: "white", padding: "0px 10px", fontStyle: "Arial", fontSize: "12px", color:this.props.colour};
 	  const shipStyle = {display: "block", position: "absolute", zIndex: 0};
 
 	  return (<div ref={ div => { this.ship = div }}>

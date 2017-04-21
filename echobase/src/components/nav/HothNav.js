@@ -9,6 +9,7 @@ import Logo from './Logo';
 import DragonDropship from './DragonDropship';
 import * as _ from 'lodash';
 import ColorUtil from '../../utils/ColorUtil';
+import {push} from 'react-router-redux';
 
 
 class HothNav extends Component {
@@ -19,6 +20,7 @@ class HothNav extends Component {
 	this.state = {
 		isAnimating: false,
 		ships: [],
+		currentRoute: '/'
 	}
   }
 
@@ -36,6 +38,16 @@ class HothNav extends Component {
 		TweenMax.to(ship, 2, {css:{top:"100px", left: newLeft}, ease:Quad.easeOut, delay: delay});
 	});
   }
+
+  changeRoute(e, newRoute){
+
+  	if (this.state.currentRoute !== newRoute) {
+		this.props.navigateTo(newRoute);
+		this.state.currentRoute = newRoute;
+	}
+
+  }
+
 
   render() {
     
@@ -61,8 +73,8 @@ class HothNav extends Component {
 
     	return (
 			<ul>
-				<li className={styles.menu_item} ref={ div => {this.state.ships[0] = div}}><a href="/"><DragonDropship name={"home"} colour={colours[2]}></DragonDropship></a></li>
-				<li className={styles.menu_item} ref={ div => {this.state.ships[1] = div}}><a href="/logs"><DragonDropship name={"logs"} colour={colours[6]}></DragonDropship></a></li>
+				<li className={styles.menu_item} ref={ div => {this.state.ships[0] = div}} onClick={ e => {this.changeRoute(e, "/")}}><DragonDropship name={"home"} colour={colours[2]}></DragonDropship></li>
+				<li className={styles.menu_item} ref={ div => {this.state.ships[1] = div}} onClick={ e => {this.changeRoute(e, "/logs")}}><DragonDropship name={"logs"} colour={colours[6]}></DragonDropship></li>
 				<li className={styles.menu_item} ref={ div => {this.state.ships[2] = div}}><a href={identity.works.link}><DragonDropship name={identity.works.name} colour={colours[3]}></DragonDropship></a></li>
 				<li className={styles.menu_item} ref={ div => {this.state.ships[3] = div}}><a href={identity.about.link}><DragonDropship name={identity.about.name} colour={colours[4]}></DragonDropship></a></li>
 				<li className={styles.menu_item} ref={ div => {this.state.ships[4] = div}}><a href={identity.contact.link}><DragonDropship name={identity.contact.name} colour={colours[5]}></DragonDropship></a></li>
@@ -86,15 +98,16 @@ class HothNav extends Component {
     )
   }
 }
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   app: state.app,
   log: state.log
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch
-  }
-}
+const mapDispatchToProps = dispatch => ({
+	navigateTo: newRoute => {
+		dispatch(push(newRoute))
+	},
+	dispatch
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(HothNav);

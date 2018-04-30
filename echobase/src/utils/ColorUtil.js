@@ -1,94 +1,115 @@
-import globalVariable from '../../config/variables';
-import * as _ from "lodash";
+/* eslint-disable */
+import globalVariable from '../config/variables';
+import * as _ from 'lodash';
 
 let colorUtil;
 class ColorUtil {
+  constructor() {}
 
-    constructor(){
+  getColours() {
+    const keys = [
+      'lips',
+      'drySoil',
+      'sand',
+      'glass',
+      'numberCruncher',
+      'higherGround',
+      'mailaise',
+      'explorer',
+      'blackSnout'
+    ];
 
-    }
+    const colours = _.map(keys, key => {
+      return globalVariable[key];
+    });
 
-    getColours(){
-		const keys = ["lips",
-			"drySoil",
-			"sand",
-			"glass",
-			"numberCruncher",
-			"higherGround",
-			"mailaise",
-			"explorer",
-			"blackSnout"]
+    console.log('colours: ', colours);
 
-		const colours = _.map(keys, key => {
-			return globalVariable[key];
-		});
+    return colours;
+  }
 
-		console.log("colours: ", colours);
+  hexToRgb(hex) {
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
-		return colours;
-	}
+    let r = parseInt(result[1], 16);
+    let g = parseInt(result[2], 16);
+    let b = parseInt(result[3], 16);
 
-    hexToRgb(hex) {
-	    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-	   
-	    let r = parseInt(result[1], 16);
-	    let g = parseInt(result[2], 16);
-	    let b = parseInt(result[3], 16);
-	   
-	    return "rgb(" + String(r) + "," + String(g) + "," + String(b) + ")";
-	}
+    return 'rgb(' + String(r) + ',' + String(g) + ',' + String(b) + ')';
+  }
 
-	// color credit: http://stackoverflow.com/questions/5560248/programmatically-lighten-or-darken-a-hex-color-or-rgb-and-blend-colors
-	getShadedColor(color, percent) {
-	  let f = color.split(","),
-	    t = percent < 0 ? 0 : 255,
-	    p = percent < 0 ? percent * -1 : percent,
-	    R = parseInt(f[0].slice(4)),
-	    G = parseInt(f[1]),
-	    B = parseInt(f[2]);
-	  return "rgb(" + (Math.round((t - R) * p) + R) + "," + (Math.round((t - G) * p) + G) + "," + (Math.round((t - B) * p) + B) + ")";
-	};
+  // color credit: http://stackoverflow.com/questions/5560248/programmatically-lighten-or-darken-a-hex-color-or-rgb-and-blend-colors
+  getShadedColor(color, percent) {
+    let f = color.split(','),
+      t = percent < 0 ? 0 : 255,
+      p = percent < 0 ? percent * -1 : percent,
+      R = parseInt(f[0].slice(4)),
+      G = parseInt(f[1]),
+      B = parseInt(f[2]);
+    return (
+      'rgb(' +
+      (Math.round((t - R) * p) + R) +
+      ',' +
+      (Math.round((t - G) * p) + G) +
+      ',' +
+      (Math.round((t - B) * p) + B) +
+      ')'
+    );
+  }
 
-	getBlendedColor(c0, c1, p) {
-	  let f = c0.split(","),
-	    t = c1.split(","),
-	    R = parseInt(f[0].slice(4)),
-	    G = parseInt(f[1]),
-	    B = parseInt(f[2]);
-	  return "rgb(" + (Math.round((parseInt(t[0].slice(4)) - R) * p) + R) + "," + (Math.round((parseInt(t[1]) - G) * p) + G) + "," + (Math.round((parseInt(t[2]) - B) * p) + B) + ")";
-	};
+  getBlendedColor(c0, c1, p) {
+    let f = c0.split(','),
+      t = c1.split(','),
+      R = parseInt(f[0].slice(4)),
+      G = parseInt(f[1]),
+      B = parseInt(f[2]);
+    return (
+      'rgb(' +
+      (Math.round((parseInt(t[0].slice(4)) - R) * p) + R) +
+      ',' +
+      (Math.round((parseInt(t[1]) - G) * p) + G) +
+      ',' +
+      (Math.round((parseInt(t[2]) - B) * p) + B) +
+      ')'
+    );
+  }
 
-	lighten( colorData  ){
+  lighten(colorData) {
+    let percent = colorData.lightCount * 10 / 100;
+    let originalColor = colorData.originalColor;
 
-	  let percent = ( colorData.lightCount * 10 ) / 100;
-	  let originalColor = colorData.originalColor;
-	  
-	  colorData.curColor = this.getBlendedColor(colorData.originalColor, "rgb(255,255,255)", percent );
-	  
-	  if (colorData.lightCount >= 10) colorData.lightCount = 9;
-	  colorData.lightCount++;
-	  
-	  if (colorData.darkCount <= 0) colorData.darkCount = 1;
-	  colorData.darkCount--;
+    colorData.curColor = this.getBlendedColor(
+      colorData.originalColor,
+      'rgb(255,255,255)',
+      percent
+    );
 
-	  return colorData; 
-	}
+    if (colorData.lightCount >= 10) colorData.lightCount = 9;
+    colorData.lightCount++;
 
-	darken( colorData ){
-	  let percent = ( colorData.darkCount * 10 ) / 100;
-	  let originalColor = colorData.originalColor;
-	  
-	  colorData.curColor = this.getBlendedColor(colorData.originalColor, "rgb(0,0,0)", percent );
-	  
-	  if (colorData.darkCount >= 10) colorData.darkCount = 9;
-	  colorData.darkCount++;
-	  
-	  if ( colorData.lightCount <= 0)  colorData.lightCount = 1;
-	  colorData.lightCount--;
-	  return colorData;
-	}
+    if (colorData.darkCount <= 0) colorData.darkCount = 1;
+    colorData.darkCount--;
 
-};
+    return colorData;
+  }
 
-export default colorUtil = new ColorUtil();
+  darken(colorData) {
+    let percent = colorData.darkCount * 10 / 100;
+    let originalColor = colorData.originalColor;
 
+    colorData.curColor = this.getBlendedColor(
+      colorData.originalColor,
+      'rgb(0,0,0)',
+      percent
+    );
+
+    if (colorData.darkCount >= 10) colorData.darkCount = 9;
+    colorData.darkCount++;
+
+    if (colorData.lightCount <= 0) colorData.lightCount = 1;
+    colorData.lightCount--;
+    return colorData;
+  }
+}
+
+export default (colorUtil = new ColorUtil());

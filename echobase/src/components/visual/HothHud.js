@@ -1,9 +1,9 @@
+/* eslint-disable */
 import React from 'react';
 import expandIcon from './expand.svg';
 import styles from './hud.css';
 
 export default function HothHud() {
-  
   /*
   var [ hours, minutes, seconds ] = [
     props.hours,
@@ -19,14 +19,13 @@ export default function HothHud() {
   const where = 'Queen Maud Land';
   const base = 'Troll Station';
   const about = base + ' ' + where + ' Population 8';
-  const temp =  '−60 °C (−76 °F) Wind Speeds 60 m/s (200 ft/s)'
-  const measures = 'Measures aerosols, organic and inorganic pollution, ozone and ultraviolet (UV) radiation, ozone depletion and the Antarctic ozone hole';
+  const temp = '−60 °C (−76 °F) Wind Speeds 60 m/s (200 ft/s)';
+  const measures =
+    'Measures aerosols, organic and inorganic pollution, ozone and ultraviolet (UV) radiation, ozone depletion and the Antarctic ozone hole';
 
-  const expand = () => {
+  const expand = () => {};
 
-  }; 
-
-  return ( 
+  return (
     <div className={styles.hud}>
       <div className={styles.hud_textContainer}>
         <h1 className={styles.hud_title}>{place}</h1>

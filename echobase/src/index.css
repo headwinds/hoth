@@ -8,11 +8,3 @@ body {
 li {
   list-style-type: square;
 }
-
-.main {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: 0px;
-  padding: 0px;
-}

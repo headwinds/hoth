@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import HousingGraph from '../city/HousingGraph';
+import RussianGamingGraph from '../projects/1CCompany/RussianGamingGraph';
+import About from '../projects/1CCompany/About';
 import './Main.css';
 
 const linkStyle = {
@@ -15,7 +16,7 @@ class Main extends Component {
   render() {
     return (
       <div className="main">
-        <div className="about">
+        <div className="bio">
           <h1>Brandon Flowers</h1>
           <p>
             I'm a designer/developer and budding data scientist. As a hybrid, I
@@ -100,8 +101,11 @@ class Main extends Component {
             </a>{' '}
           </p>
         </div>
+        <div className="about">
+          <About />
+        </div>
         <div className="graph">
-          <HousingGraph />
+          <RussianGamingGraph />
         </div>
       </div>
     );

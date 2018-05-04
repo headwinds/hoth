@@ -69,13 +69,13 @@ class RussianGamingGraph extends Component {
       .style('fill', 'red');
       */
 
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = window.innerWidth / 1.5;
+    const height = window.innerHeight / 1.5;
     const viewport = d3
       .select('#viewport')
       .append('svg')
       .attr('width', width)
-      .attr('height', height)
+      .attr('height', 900)
       .style('margin', '0 auto');
 
     const svg = viewport;

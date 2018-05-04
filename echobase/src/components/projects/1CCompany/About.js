@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LogMay4 from './LogMay4';
 
 export default class About extends Component {
   render() {
@@ -7,7 +8,8 @@ export default class About extends Component {
         style={{
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'flex-end'
+          justifyContent: 'flex-end',
+          pointerEvents: 'none'
         }}
       >
         <div style={{ display: 'block', marginRight: 40, marginTop: 0 }}>
@@ -28,20 +30,13 @@ export default class About extends Component {
               fontSize: 14,
               color: '#cb778b',
               margin: 0,
-              padding: 0
+              padding: 0,
+              marginBottom: 20
             }}
           >
-            Working through this Kaggle competition (May 1/2018 - Day 3)
+            Work-n-progress Kaggle Competition (Start May 1/2018 - Day 4)
           </p>
-          <p
-            style={{
-              display: 'block',
-              fontSize: 14,
-              color: '#cb778b',
-              margin: 0,
-              padding: 0
-            }}
-          />
+          <LogMay4 />
         </div>
       </div>
     );

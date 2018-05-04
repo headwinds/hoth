@@ -21,9 +21,10 @@ class Main extends Component {
           <p>
             I'm a designer/developer and budding data scientist. As a hybrid, I
             primarily enjoy working on the data presentation layer collaborating
-            with business and scientists to build products with Javascript,
-            Python, SQL and NoSQL, that convert big data into trends and
-            insights through NLP and probability statistics.
+            with business and scientists to build products with Javascript
+            (Angular/RxJS or React/Redux), Python, SQL and NoSQL, that convert
+            big data into trends and insights through NLP and probability
+            statistics.
           </p>
           <p>
             I{`'`}m currently a frontend developer at{' '}

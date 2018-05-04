@@ -1,0 +1,119 @@
+.log {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+
+.log_article {
+  display: block;
+}
+
+.log_title_container {
+
+}
+
+.log_title {
+  font-size:24px;
+  font-weight: normal;
+  pointer-events: all;
+  cursor: pointer;
+  margin: 0px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 0px; 
+}
+
+h1.log_title {
+  font-size: 24px;
+  font-weight: normal;
+  color: $explorer;
+  margin-bottom: 10px;
+  font-family: $contentFont;
+}
+
+h2.log_date {
+  font-size: 14px;
+  font-weight: normal;
+  color: $sand;
+  margin: 0px;
+  margin-bottom: 20px;
+  padding: 0px;
+  font-family: $contentFont;
+}
+
+a {
+  color: $glass;
+}
+
+a:hover {
+  color: $explorer;
+}
+
+li {
+  background-color: transparent;
+}
+
+.tdlr {
+  color:#000; 
+  font-size: 16px;
+}
+
+@media screen and (max-width: 400px) {
+  .log {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    min-width: 300px;
+    max-width: 400px
+  }
+
+  .log_article {
+    display: block;
+    min-width: 300px;
+    max-width: 400px
+  }
+
+  .log_content {
+    display: block;
+    position: relative;
+    min-width: 300px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 401px) {
+  .log {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    min-width: 400px;
+  }
+
+  .log_article {
+    display: block;
+    min-width: 400px;
+    max-width: 600px;
+  }
+
+  .log_content {
+    display: block;
+    position: relative;
+    max-width: 600px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  
+}
+
+
+@media screen and (min-width: 1200px) {
+
+}
+

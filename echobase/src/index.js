@@ -16,7 +16,6 @@ import Main from './components/main/Main';
 import LogRead from './components/logs/LogRead';
 import MedicalCentre from './components/medicalcentre/MedicalCentre';
 import LogMenu from './components/logs/LogMenu';
-import './Index.css';
 import 'typeface-roboto';
 
 import registerServiceWorker from './registerServiceWorker';

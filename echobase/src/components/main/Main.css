@@ -1,21 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron:700|Teko:500');
+
+.science {
+  font-family: 'Teko', sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.hud {
+  font-family: 'Orbitron', sans-serif;
+}
+
 body {
   display: block;
   margin: 0px;
   padding: 0px;
   overflow: hidden;
 }
-.main {
-  display: block;
-  top: 0;
-  left: 0;
+
+.mobileMain {
+  display: grid;
+  grid-template-columns: 1fr;
   position: relative;
-  width: 100vw;
-  height: 100vh;
   padding: 0px;
   margin: 0px;
   color: #666;
   z-index: 1;
   overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.desktopMain {
+  display: grid;
+  grid-template-columns: 20px 300px 1fr;
+  column-gap: 10px;
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  color: #666;
+  z-index: 1;
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .bio {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LogMay4 from './LogMay4';
+import { theme } from '../../theme/Theme';
 
 export default class About extends Component {
   render() {
@@ -37,6 +38,16 @@ export default class About extends Component {
             Work-n-progress Kaggle Competition (Start May 1/2018 - Day 4)
           </p>
           <LogMay4 />
+          <a
+            href="/"
+            style={{
+              ...theme.linkStyle,
+              pointerEvents: 'all',
+              cursor: 'pointer'
+            }}
+          >
+            Back
+          </a>
         </div>
       </div>
     );

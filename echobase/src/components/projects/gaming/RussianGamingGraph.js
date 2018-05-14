@@ -153,7 +153,8 @@ class RussianGamingGraph extends Component {
         const updateTooltip = (title, subTitle) => {
           const titleLen = title.length;
           const subTitleLen = subTitle.length;
-          const useLen = titleLen > subTitleLen ? titleLen : subTitleLen;
+          const useLen =
+            titleLen > subTitleLen ? titleLen + 10 : subTitleLen + 10;
 
           tooltip
             .style('top', event.pageY - 10 + 'px')

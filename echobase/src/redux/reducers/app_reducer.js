@@ -1,17 +1,24 @@
 /* eslint-disable */
-import * as types from "../types/types"; 
+import * as types from '../types/types';
+import { mobileDetect } from '../../utils/MobileDetect';
 
-function appReducer(state = {
-    status: "ok"                   
-}, action) {
+const isMobile = mobileDetect();
+
+function appReducer(
+  state = {
+    status: 'ok',
+    isMobile
+  },
+  action
+) {
   switch (action.type) {
     case types.APP_STATUS_CHANGE:
       return Object.assign({}, state, {
-        status: "ok"
+        status: 'ok'
       });
     default:
-      return state
+      return state;
   }
 }
 
-export {appReducer};
+export { appReducer };

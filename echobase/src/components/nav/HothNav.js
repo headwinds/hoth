@@ -1,16 +1,17 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styles from './HothNav.module.css';
+//import styles from './HothNav.module.css';
 import identity from '../../data/identity';
 import { TweenMax, TimelineMax, Back, Quad } from 'gsap';
 import CSSPlugin from 'gsap/CSSPlugin';
-import TweetEmbed from 'react-tweet-embed';
-import Logo from './Logo';
+//import TweetEmbed from 'react-tweet-embed';
+//import Logo from './Logo';
 import DragonDropship from './DragonDropship';
 import * as _ from 'lodash';
 import ColorUtil from '../../utils/ColorUtil';
 import { push } from 'react-router-redux';
+import './Nav.css';
 
 class HothNav extends Component {
   constructor(props) {
@@ -71,10 +72,10 @@ class HothNav extends Component {
       const colours = ColorUtil.getColours();
 
       return (
-        <div className={styles.hoth_nav}>
-          <ul>
+        <div className={''}>
+          <ul className={'none'}>
             <li
-              className={styles.menu_item}
+              className={''}
               ref={div => {
                 this.state.ships[0] = div;
               }}
@@ -85,7 +86,7 @@ class HothNav extends Component {
               <DragonDropship name={'home'} colour={colours[2]} />
             </li>
             <li
-              className={styles.menu_item}
+              className={''}
               ref={div => {
                 this.state.ships[1] = div;
               }}
@@ -96,7 +97,7 @@ class HothNav extends Component {
               <DragonDropship name={'logs'} colour={colours[6]} />
             </li>
             <li
-              className={styles.menu_item}
+              className={''}
               ref={div => {
                 this.state.ships[2] = div;
               }}
@@ -109,7 +110,7 @@ class HothNav extends Component {
               </a>
             </li>
             <li
-              className={styles.menu_item}
+              className={''}
               ref={div => {
                 this.state.ships[3] = div;
               }}
@@ -122,7 +123,7 @@ class HothNav extends Component {
               </a>
             </li>
             <li
-              className={styles.menu_item}
+              className={''}
               ref={div => {
                 this.state.ships[4] = div;
               }}
@@ -134,27 +135,23 @@ class HothNav extends Component {
                 />
               </a>
             </li>
-            <li
-              className={styles.menu_item}
-              ref={div => {
-                this.state.ships[5] = div;
-              }}
-            >
-              <a className="twitter-share-button" href={tweetUrl}>
-                <img src={tweet} alt="tweet" />
-              </a>
-            </li>
           </ul>
         </div>
       );
     };
 
-    return (
-      <div className={styles.hoth_nav}>
-        {getLogo()}
-        <div className={styles.menu}>{getShips()}</div>
-      </div>
-    );
+    const getLayout = () => {
+      return null;
+
+      return (
+        <div className={''}>
+          {getLogo()}
+          <div className={''}>{getShips()}</div>
+        </div>
+      );
+    };
+
+    return <div>{getLayout()}</div>;
   }
 }
 const mapStateToProps = state => ({

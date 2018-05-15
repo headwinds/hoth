@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Bio from '../projects/bio/Bio';
+//import Bio from '../projects/bio/Bio';
 //import SplashGraph from '../splash/SplashGraph';
 import HothNav from '../nav/HothNav';
 import './Main.css';
@@ -28,7 +28,7 @@ class Main extends Component {
             <HothNav />
             <div className={mainClass}>
               <div className="propulsion" />
-              <Bio />
+              {this.props.children}
               <div />
             </div>
           </div>
@@ -39,7 +39,7 @@ class Main extends Component {
             <HothNav />
             <div className={mainClass}>
               <div className="gap" />
-              <Bio />
+              {this.props.children}
               <div />
             </div>
           </div>

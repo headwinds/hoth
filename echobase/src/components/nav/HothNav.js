@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import styles from './HothNav.module.css';
-import identity from '../../data/identity';
+
 import { TweenMax, TimelineMax, Back, Quad } from 'gsap';
 import CSSPlugin from 'gsap/CSSPlugin';
 //import TweetEmbed from 'react-tweet-embed';
@@ -71,78 +71,36 @@ class HothNav extends Component {
     const getShips = () => {
       const colours = ColorUtil.getColours();
 
-      return (
-        <div className={''}>
-          <ul className={'none'}>
+      const shipData = [{ name: 'home' }, { name: 'bio' }, { name: 'science' }];
+
+      const shipStyle = { display: 'block', position: 'absolute' };
+
+      const createShips = () => {
+        return _.map(shipData, (ship, uid) => {
+          return (
             <li
-              className={''}
+              style={shipStyle}
               ref={div => {
-                this.state.ships[0] = div;
+                this.state.ships[uid] = div;
               }}
               onClick={e => {
                 this.changeRoute(e, '/');
               }}
             >
-              <DragonDropship name={'home'} colour={colours[2]} />
+              <DragonDropship name={ship.name} colour={colours[uid]} />
             </li>
-            <li
-              className={''}
-              ref={div => {
-                this.state.ships[1] = div;
-              }}
-              onClick={e => {
-                this.changeRoute(e, '/logs');
-              }}
-            >
-              <DragonDropship name={'logs'} colour={colours[6]} />
-            </li>
-            <li
-              className={''}
-              ref={div => {
-                this.state.ships[2] = div;
-              }}
-            >
-              <a href={identity.works.link}>
-                <DragonDropship
-                  name={identity.works.name}
-                  colour={colours[3]}
-                />
-              </a>
-            </li>
-            <li
-              className={''}
-              ref={div => {
-                this.state.ships[3] = div;
-              }}
-            >
-              <a href={identity.about.link}>
-                <DragonDropship
-                  name={identity.about.name}
-                  colour={colours[4]}
-                />
-              </a>
-            </li>
-            <li
-              className={''}
-              ref={div => {
-                this.state.ships[4] = div;
-              }}
-            >
-              <a href={identity.contact.link}>
-                <DragonDropship
-                  name={identity.contact.name}
-                  colour={colours[5]}
-                />
-              </a>
-            </li>
-          </ul>
+          );
+        });
+      };
+
+      return (
+        <div className={''}>
+          <ul className={'none'}>{createShips()}</ul>
         </div>
       );
     };
 
     const getLayout = () => {
-      return null;
-
       return (
         <div className={''}>
           {getLogo()}

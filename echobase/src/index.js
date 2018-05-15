@@ -13,6 +13,7 @@ import {
 import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './redux/configureStore';
 import Main from './components/main/Main';
+import Bio from './components/projects/bio/Bio';
 import RussianGamingCompanyProject from './components/projects/gaming/RussianGamingCompanyProject';
 import LogRead from './components/logs/LogRead';
 import MedicalCentre from './components/medicalcentre/MedicalCentre';
@@ -28,6 +29,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={Main}>
+        <Route path="/bio" component={Bio} />
         {/*
         <IndexRoute component={MedicalCentre} />
         <Route path="/logs" component={LogMenu} />
@@ -36,19 +38,19 @@ ReactDOM.render(
           path="2016/03/codepen-angular2-typescript-build-component-playgrounds/"
           component={LogRead}
         />*/}
-      </Route>
-      <Route
-        path="/budding-data-scientist"
-        component={RussianGamingCompanyProject}
-      >
-        {/*
-        <IndexRoute component={MedicalCentre} />
-        <Route path="/logs" component={LogMenu} />
-        <Route path="2016/04/redux-data-table/(:key)" component={LogRead} />
         <Route
-          path="2016/03/codepen-angular2-typescript-build-component-playgrounds/"
-          component={LogRead}
-        />*/}
+          path="/budding-data-scientist"
+          component={RussianGamingCompanyProject}
+        >
+          {/*
+          <IndexRoute component={MedicalCentre} />
+          <Route path="/logs" component={LogMenu} />
+          <Route path="2016/04/redux-data-table/(:key)" component={LogRead} />
+          <Route
+            path="2016/03/codepen-angular2-typescript-build-component-playgrounds/"
+            component={LogRead}
+          />*/}
+        </Route>
       </Route>
     </Router>
   </Provider>,

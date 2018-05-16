@@ -24,6 +24,8 @@ export default class DragonDropship extends Component {
       .attr('height', height)
       .style('margin', '0 auto');
 
+    const ship = svg.append('g').attr('id', `${this.props.name}Ship`);
+
     const triangleData = function(color, size, x, y, rotation) {
       return {
         color: color,
@@ -59,7 +61,7 @@ export default class DragonDropship extends Component {
         .type(d3.symbolTriangle)
         .size(triangleData.size);
 
-      const groupsEnter = svg
+      const groupsEnter = ship
         .selectAll('g')
         .data([triangleData])
         .enter();
@@ -85,21 +87,33 @@ export default class DragonDropship extends Component {
   }
 
   render() {
+    //const tipTop = -12;
+    //const tipLeft = 80;
+
     const tipStyle = {
       display: 'block',
       position: 'absolute',
       zIndex: 1,
       top: 45,
-      left: 50
+      left: 50,
+      userSelect: 'none'
     };
     const tipTxtStyle = {
-      background: 'white',
-      padding: '0px 10px',
+      //background: 'white',
+      padding: 0,
+      paddingLeft: 20,
       fontStyle: 'Arial',
       fontSize: '12px',
       color: this.props.colour
     };
-    const shipStyle = { display: 'block', position: 'absolute', zIndex: 0 };
+
+    const shipStyle = {
+      display: 'block',
+      position: 'absolute',
+      zIndex: 0
+    };
+
+    const callsignId = `${this.props.name}Callsign`;
 
     return (
       <div
@@ -107,7 +121,7 @@ export default class DragonDropship extends Component {
           this.ship = div;
         }}
       >
-        <div style={tipStyle}>
+        <div style={tipStyle} id={callsignId}>
           <p style={tipTxtStyle}>{this.props.name}</p>
         </div>
         <div

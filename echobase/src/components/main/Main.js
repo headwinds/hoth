@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import Bio from '../projects/bio/Bio';
-//import SplashGraph from '../splash/SplashGraph';
+import HomeGraph from '../home/HomeGraph';
 import HothNav from '../nav/HothNav';
 import './Main.css';
 //import { theme } from '../theme/Theme';
@@ -31,6 +31,7 @@ class Main extends Component {
               {this.props.children}
               <div />
             </div>
+            <HomeGraph />
           </div>
         );
       } else {
@@ -42,6 +43,7 @@ class Main extends Component {
               {this.props.children}
               <div />
             </div>
+            <HomeGraph />
           </div>
         );
       }

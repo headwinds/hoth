@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RussianGamingGraph from './RussianGamingGraph';
+//import RussianGamingGraph from './RussianGamingGraph';
 import About from './About';
 //
 
@@ -15,13 +15,21 @@ class RussianGamingCompanyProject extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          display: 'block',
+          position: 'relative',
+          height: '100vh',
+          width: '100vw',
+          overflow: 'hidden'
+        }}
+      >
         <div className="about">
           <About />
         </div>
-        <div className="graph">
+        {/*<div className="graph">
           <RussianGamingGraph />
-        </div>
+        </div>*/}
       </div>
     );
   }

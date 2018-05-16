@@ -7,7 +7,7 @@ export default class Bio extends Component {
   render() {
     return (
       <div className="bio">
-        <h1>Brandon Flowers</h1>
+        <h1 style={{ margin: 0 }}>Brandon Flowers</h1>
         <p>
           I{`'`}m a designer/developer and{' '}
           <a

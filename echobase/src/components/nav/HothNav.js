@@ -171,7 +171,11 @@ class HothNav extends Component {
       );
     };
 
-    return <div>{getLayout()}</div>;
+    return (
+      <div className="nav" stye={{ zIndex: 1 }}>
+        {getLayout()}
+      </div>
+    );
   }
 }
 const mapStateToProps = state => ({

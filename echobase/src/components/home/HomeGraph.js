@@ -8,19 +8,37 @@ import data from './northern-colony.csv';
 import ColorUtil from '../../utils/ColorUtil';
 import * as d3 from 'd3';
 
+const homeStyle = {
+  dislay: 'block',
+  position: 'absolute',
+  top: 80,
+  left: 0,
+  padding: 0,
+  margin: 0,
+  width: '100vw',
+  height: '100vh',
+  zIndex: 0
+};
+
 class HomeGraph extends Component {
   constructor(props, context) {
     super(props, context);
     this.props = props;
 
-    this.visualize = this.visualize.bind(this);
+    this.drawWorld = this.drawWorld.bind(this);
+    this.drawColonists = this.drawColonists.bind(this);
+    this.drawHud = this.drawHud.bind(this);
     this.updateTooltip = this.updateTooltip.bind(this);
     this.createTooltip = this.createTooltip.bind(this);
     this.animateInColonists = this.animateInColonists.bind(this);
     this.animateOutColonists = this.animateOutColonists.bind(this);
 
     this.state = {
-      colonists: []
+      colonists: [],
+      width: window.innerWidth / 1.5,
+      height: window.innerHeight / 1.5,
+      colours: ColorUtil.getColours(),
+      homeStyle
     };
 
     console.log('HomeGraph constructor this.props: ', this.props);
@@ -30,7 +48,9 @@ class HomeGraph extends Component {
 
   componentDidMount() {
     console.log('HomeGraph componentDidMount');
-    this.visualize();
+    const world = this.drawWorld();
+    this.drawColonists(world);
+    this.drawHud(world);
   }
 
   componentDidUpdate(nextProps) {
@@ -46,6 +66,14 @@ class HomeGraph extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.props = nextProps;
+
+    if (document.location.pathname === '/') {
+      const newHomeStyle = { ...homeStyle, display: 'block' };
+      this.state.homeStyle = newHomeStyle;
+    } else {
+      const newHomeStyle = { ...homeStyle, display: 'none' };
+      this.state.homeStyle = newHomeStyle;
+    }
   }
 
   clear() {
@@ -64,6 +92,13 @@ class HomeGraph extends Component {
         .duration(500)
         .style('opacity', 0);
     });
+
+    const hudNode = d3.select('#hud');
+
+    hudNode
+      .transition()
+      .duration(500)
+      .style('opacity', 0);
   }
 
   animateInColonists() {
@@ -76,9 +111,14 @@ class HomeGraph extends Component {
         .transition()
         .duration(500)
         .style('opacity', 1);
-
-      console.log('hey ', colonistNode);
     });
+
+    const hudNode = d3.select('#hud');
+
+    hudNode
+      .transition()
+      .duration(500)
+      .style('opacity', 1);
   }
 
   animateTooltipWarning(tooltipId) {
@@ -175,42 +215,99 @@ class HomeGraph extends Component {
     return tooltip;
   }
 
-  visualize() {
-    console.log('HomeGraph drawActivity');
+  drawHud(world) {
+    const hud = world
+      .append('g')
+      .style('opacity', 0)
+      .attr('id', 'hud');
 
-    const self = this;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
 
-    const tooltip = this.createTooltip();
+    const hudX = centerX - 95;
+    const hudY = centerY - 255;
 
-    const width = window.innerWidth / 1.5;
-    const height = window.innerHeight / 1.5;
-    const viewport = d3
-      .select('#home-viewport')
-      .append('svg')
-      .attr('width', width)
-      .attr('height', 900)
-      .style('margin', '0 auto');
+    hud.attr('transform', 'translate(' + hudX + ',' + hudY + ')');
 
-    const svg = viewport;
+    const date = new Date();
 
-    const format = d3.format(',d');
+    const fontColor = this.state.colours[6];
 
-    const color = d3.scaleOrdinal(d3.schemeCategory20c);
+    hud
+      .append('text')
+      .style('font-family', 'Orbitron') // or Teko?!
+      .style('font-size', '70')
+      .style('fill', fontColor)
+      .text(date.getDate());
 
-    const pack = d3
-      .pack()
-      .size([width, width])
-      .padding(1.5);
+    const barX = 100;
+    const iconX = 80;
 
-    const world = svg.append('g').attr('id', 'world');
+    const healthIcon = hud
+      .append('g')
+      .append('rect')
+      .attr('width', 16)
+      .attr('height', 4)
+      .style('fill', 'darkred')
+      .attr('transform', 'translate(' + iconX + ',' + -40 + ')');
 
+    const healthBar = hud
+      .append('g')
+      .append('rect')
+      .attr('width', 80)
+      .attr('height', 4)
+      .style('fill', fontColor)
+      .attr('transform', 'translate(' + barX + ',' + -40 + ')');
+
+    const energyIcon = hud
+      .append('g')
+      .append('rect')
+      .attr('width', 16)
+      .attr('height', 4)
+      .style('fill', 'gold')
+      .attr('transform', 'translate(' + iconX + ',' + -30 + ')');
+
+    const energyBar = hud
+      .append('g')
+      .append('rect')
+      .attr('width', 40)
+      .attr('height', 4)
+      .style('fill', fontColor)
+      .attr('transform', 'translate(' + barX + ',' + -30 + ')');
+
+    const foodIcon = hud
+      .append('g')
+      .append('rect')
+      .attr('width', 16)
+      .attr('height', 4)
+      .style('fill', 'darkgreen')
+      .attr('transform', 'translate(' + iconX + ',' + -20 + ')');
+
+    const foodBar = hud
+      .append('g')
+      .append('rect')
+      .attr('width', 60)
+      .attr('height', 4)
+      .style('fill', fontColor)
+      .attr('transform', 'translate(' + barX + ',' + -20 + ')');
+  }
+
+  drawColonists(world) {
     const echo = world.append('g').attr('id', 'echo');
+
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    const echoX = centerX - 50;
+    const echoY = centerY - 80;
 
     echo
       .append('circle')
-      .attr('r', 30)
-      .style('fill', '#eee');
+      .attr('r', 160)
+      .attr('transform', 'translate(' + echoX + ',' + echoY + ')')
+      .style('fill', '#f9f9f9');
     const colonists = [];
+
     d3.csv(
       data,
       d => {
@@ -223,8 +320,10 @@ class HomeGraph extends Component {
           return d;
         });
 
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
+        const pack = d3
+          .pack()
+          .size([this.state.width, this.state.width])
+          .padding(1.5);
 
         let node = world
           .selectAll('.node')
@@ -294,39 +393,38 @@ class HomeGraph extends Component {
             return '#' + d.id;
           });
 
-        /*
-  	  node.append("text")
-  	      .attr("clip-path", function(d) { return "url(#clip-" + d.id + ")"; })
-  	      .attr("text-anchor", "middle")
-  	    .selectAll("tspan")
-  	    .data(function(d) { return d.class.split(/(?=[A-Z][^A-Z])/g); })
-  	    .enter().append("tspan")
-  	      .attr("x", 0)
-  	      .attr("y", function(d, i, nodes) { return 13 + (i - nodes.length / 2 - 0.5) * 10; })
-  	      .text(function(d) { return d; });
-
-
-  	  node.append("title")
-  	      .text(function(d) { return d.id + "\n" + format(d.value); });
-  	         */
-        console.log('here colonists: ', colonists);
         this.setState({ colonists });
       }
     );
   }
 
+  drawWorld() {
+    console.log('HomeGraph drawActivity');
+
+    const self = this;
+
+    const tooltip = this.createTooltip();
+
+    const viewport = d3
+      .select('#home-viewport')
+      .append('svg')
+      .attr('width', this.state.width)
+      .attr('height', this.state.height)
+      .style('margin', '0 auto');
+
+    const svg = viewport;
+
+    const format = d3.format(',d');
+
+    const color = d3.scaleOrdinal(d3.schemeCategory20c);
+
+    const world = svg.append('g').attr('id', 'world');
+
+    return world;
+  }
+
   render() {
-    const homeStyle = {
-      dislay: 'block',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      padding: 0,
-      margin: 0,
-      width: '100vw',
-      height: '100vh'
-    };
-    return <div id="home-viewport" style={homeStyle} />;
+    return <div id="home-viewport" style={this.state.homeStyle} />;
   }
 }
 

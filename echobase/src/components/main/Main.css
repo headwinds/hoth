@@ -12,6 +12,11 @@ ul {
   font-family: 'Orbitron', sans-serif;
 }
 
+.nav {
+  display: block;
+  z-index: 1;
+}
+
 body {
   display: block;
   margin: 0px;

@@ -20,6 +20,9 @@ const homeStyle = {
   zIndex: 0
 };
 
+const fontTeko = 'Teko';
+const fontOribitron = 'Orbitron';
+
 class HomeGraph extends Component {
   constructor(props, context) {
     super(props, context);
@@ -30,13 +33,16 @@ class HomeGraph extends Component {
     this.drawHud = this.drawHud.bind(this);
     this.updateTooltip = this.updateTooltip.bind(this);
     this.createTooltip = this.createTooltip.bind(this);
+    this.getTooltip = this.getTooltip.bind(this);
     this.animateInColonists = this.animateInColonists.bind(this);
     this.animateOutColonists = this.animateOutColonists.bind(this);
 
+    const width = props.app.isMobile ? 350 : window.innerWidth / 1.5;
+
     this.state = {
       colonists: [],
-      width: window.innerWidth / 1.5,
-      height: window.innerHeight / 1.5,
+      width,
+      height: window.innerHeight,
       colours: ColorUtil.getColours(),
       homeStyle
     };
@@ -185,13 +191,21 @@ class HomeGraph extends Component {
       .style('background-color', 'white')
       .style('opacity', '0.9');
 
-    const tooltipG = tooltip.append('svg').append('g');
+    const tooltipG = tooltip
+      .append('svg')
+      .append('g')
+      .attr('transform', 'translate(0,-5)');
+
+    const fontColor = this.state.colours[6];
 
     tooltipG
       .append('text')
       .attr('x', 0)
       .attr('y', 20)
       .attr('class', 'tooltipFirstText')
+      .style('fill', fontColor)
+      .style('font-size', '20px')
+      .style('font-family', 'Teko')
       .text('a simple tooltip');
 
     tooltipG
@@ -200,7 +214,8 @@ class HomeGraph extends Component {
       .attr('y', 40)
       .style('fill', '#999')
       .attr('class', 'tooltipSecondText')
-      .style('font-size', '12px')
+      .style('font-size', '14px')
+      .style('font-family', 'Teko')
       .text('a simple tooltip 2');
     /*
     tooltipG
@@ -215,6 +230,10 @@ class HomeGraph extends Component {
     return tooltip;
   }
 
+  getTooltip() {
+    return d3.select('#tooltip');
+  }
+
   drawHud(world) {
     const hud = world
       .append('g')
@@ -224,8 +243,8 @@ class HomeGraph extends Component {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    const hudX = centerX - 95;
-    const hudY = centerY - 255;
+    const hudX = centerX - 80;
+    const hudY = centerY - 230;
 
     hud.attr('transform', 'translate(' + hudX + ',' + hudY + ')');
 
@@ -240,8 +259,8 @@ class HomeGraph extends Component {
       .style('fill', fontColor)
       .text(date.getDate());
 
-    const barX = 100;
-    const iconX = 80;
+    const barX = 110;
+    const iconX = 90;
 
     const healthIcon = hud
       .append('g')
@@ -295,17 +314,24 @@ class HomeGraph extends Component {
   drawColonists(world) {
     const echo = world.append('g').attr('id', 'echo');
 
+    const self = this;
+
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    const echoX = centerX - 50;
-    const echoY = centerY - 80;
+    const echoX = centerX - 30;
+    const echoY = centerY - 60;
 
     echo
       .append('circle')
-      .attr('r', 160)
+      .attr('r', 0)
       .attr('transform', 'translate(' + echoX + ',' + echoY + ')')
-      .style('fill', '#f9f9f9');
+      .style('fill', '#f9f9f9')
+      .transition()
+      .duration(1000)
+      .ease(d3.easeElastic)
+      .attr('r', 160);
+
     const colonists = [];
 
     d3.csv(
@@ -352,6 +378,8 @@ class HomeGraph extends Component {
         };
 
         //d3.event.preventDefault();
+
+        const tooltip = self.getTooltip();
 
         node
           .append('rect')
@@ -418,7 +446,10 @@ class HomeGraph extends Component {
 
     const color = d3.scaleOrdinal(d3.schemeCategory20c);
 
-    const world = svg.append('g').attr('id', 'world');
+    const world = svg
+      .append('g')
+      .attr('id', 'world')
+      .attr('transform', 'translate(' + 50 + ',' + 50 + ')');
 
     return world;
   }

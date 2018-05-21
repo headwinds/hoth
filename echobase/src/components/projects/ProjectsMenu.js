@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RussianGamingGraph from '../projects/1CCompany/RussianGamingGraph';
-import About from '../projects/1CCompany/About';
-import Bio from '../projects/bio/Bio';
+//import RussianGamingGraph from '../projects/1CCompany/RussianGamingGraph';
+//import About from '../projects/1CCompany/About';
+//import Bio from '../projects/bio/Bio';
 //import { theme } from '../theme/Theme';
-import { log } from '../../utils/LogUtil';
+//import { log } from '../../utils/LogUtil';
 import { Link } from 'react-router';
 
 class ProjectsMenu extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   render() {
     return (
       <div>
-        <h2>About Me</h2>
-        <Link to="/bio">Bio</Link>
         {/*
+        <h2>Data Visualization</h2>
+        <Link to="/bio">Bio</Link>
+
           Filter by Time or by Topic
           */}
         <h2>Data Science</h2>

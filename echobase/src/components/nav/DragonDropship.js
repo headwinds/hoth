@@ -28,11 +28,11 @@ export default class DragonDropship extends Component {
 
     const triangleData = function(color, size, x, y, rotation) {
       return {
-        color: color,
-        size: size,
-        x: x,
-        y: y,
-        rotation: rotation
+        color,
+        size,
+        x,
+        y,
+        rotation
       };
     };
 
@@ -41,7 +41,7 @@ export default class DragonDropship extends Component {
     const rotation = 0;
 
     const innerTriData = triangleData(
-      '#f5f5f5',
+      'rgb(245, 245, 245, 0.8)',
       600,
       centerX,
       centerY,

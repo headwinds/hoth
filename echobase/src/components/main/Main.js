@@ -20,13 +20,17 @@ class Main extends Component {
 
   render() {
     const mainClass = this.props.app.isMobile ? 'mobileMain' : 'desktopMain';
+    const mainStyle =
+      this.props.location.pathname === '/' ? { top: 0 } : { top: 150 };
+
+    console.log('location: ', this.props.location);
 
     const getLayout = () => {
       if (this.props.app.isMobile) {
         return (
           <div>
             <HothNav />
-            <div className={mainClass}>
+            <div className={mainClass} style={mainStyle}>
               <div className="propulsion" />
               {this.props.children}
               <div />
@@ -38,7 +42,7 @@ class Main extends Component {
         return (
           <div>
             <HothNav />
-            <div className={mainClass}>
+            <div className={mainClass} style={mainStyle}>
               <div className="gap" />
               {this.props.children}
               <div />

@@ -6,12 +6,13 @@ import { TweenMax, TimelineMax, Back, Quad } from 'gsap';
 import CSSPlugin from 'gsap/CSSPlugin';
 import data from './northern-colony.csv';
 import ColorUtil from '../../utils/ColorUtil';
+import { drawSurface } from './drawSurface';
 import * as d3 from 'd3';
 
 const homeStyle = {
   dislay: 'block',
   position: 'absolute',
-  top: 80,
+  top: 0,
   left: 0,
   padding: 0,
   margin: 0,
@@ -37,11 +38,11 @@ class HomeGraph extends Component {
     this.animateInColonists = this.animateInColonists.bind(this);
     this.animateOutColonists = this.animateOutColonists.bind(this);
 
-    const width = props.app.isMobile ? 350 : window.innerWidth / 1.5;
+    //const width = props.app.isMobile ? 350 : window.innerWidth / 1.5;
 
     this.state = {
       colonists: [],
-      width,
+      width: window.innerWidth,
       height: window.innerHeight,
       colours: ColorUtil.getColours(),
       homeStyle
@@ -54,9 +55,11 @@ class HomeGraph extends Component {
 
   componentDidMount() {
     console.log('HomeGraph componentDidMount');
-    const world = this.drawWorld();
-    this.drawColonists(world);
-    this.drawHud(world);
+    if (document.location.pathname === '/') {
+      const world = this.drawWorld();
+      this.drawColonists(world);
+      this.drawHud(world);
+    }
   }
 
   componentDidUpdate(nextProps) {
@@ -243,8 +246,10 @@ class HomeGraph extends Component {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
+    const y = this.props.app.isMobile ? 390 : 0;
+
     const hudX = centerX - 80;
-    const hudY = centerY - 230;
+    const hudY = centerY - 230 + y;
 
     hud.attr('transform', 'translate(' + hudX + ',' + hudY + ')');
 
@@ -330,6 +335,7 @@ class HomeGraph extends Component {
       .transition()
       .duration(1000)
       .ease(d3.easeElastic)
+      .style('opacity', 0.25)
       .attr('r', 160);
 
     const colonists = [];
@@ -446,10 +452,19 @@ class HomeGraph extends Component {
 
     const color = d3.scaleOrdinal(d3.schemeCategory20c);
 
+    //const y = this.props.app.isMobile ? 100 : 0;
+
     const world = svg
       .append('g')
       .attr('id', 'world')
-      .attr('transform', 'translate(' + 50 + ',' + 50 + ')');
+      .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
+
+    drawSurface(
+      world,
+      this.state.width,
+      this.state.height,
+      this.props.app.isMobile
+    );
 
     return world;
   }

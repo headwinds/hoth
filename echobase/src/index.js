@@ -14,7 +14,9 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './redux/configureStore';
 import Main from './components/main/Main';
 import Bio from './components/projects/bio/Bio';
-import RussianGamingCompanyProject from './components/projects/gaming/RussianGamingCompanyProject';
+//import RussianGamingCompanyProject from './components/projects/gaming/RussianGamingCompanyProject';
+import WindProject from './components/projects/wind/WindProject';
+import ProjectsMenu from './components/projects/ProjectsMenu';
 import LogRead from './components/logs/LogRead';
 import MedicalCentre from './components/medicalcentre/MedicalCentre';
 import LogMenu from './components/logs/LogMenu';
@@ -38,10 +40,7 @@ ReactDOM.render(
           path="2016/03/codepen-angular2-typescript-build-component-playgrounds/"
           component={LogRead}
         />*/}
-        <Route
-          path="/budding-data-scientist"
-          component={RussianGamingCompanyProject}
-        >
+        <Route path="/budding-data-scientist" component={WindProject}>
           {/*
           <IndexRoute component={MedicalCentre} />
           <Route path="/logs" component={LogMenu} />

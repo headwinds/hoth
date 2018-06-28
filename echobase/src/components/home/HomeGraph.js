@@ -9,15 +9,18 @@ import ColorUtil from '../../utils/ColorUtil';
 import { drawSurface } from './drawSurface';
 import * as d3 from 'd3';
 
+const width = 1000;
+const height = width;
+
 const homeStyle = {
   dislay: 'block',
   position: 'absolute',
   top: 0,
   left: 0,
   padding: 0,
-  margin: 0,
-  width: '100vw',
-  height: '100vh',
+  margin: 100,
+  width: width,
+  height: height,
   zIndex: 0
 };
 
@@ -37,13 +40,15 @@ class HomeGraph extends Component {
     this.getTooltip = this.getTooltip.bind(this);
     this.animateInColonists = this.animateInColonists.bind(this);
     this.animateOutColonists = this.animateOutColonists.bind(this);
+    this.updateDimensions = this.updateDimensions.bind(this);
+    this.draw = this.draw.bind(this);
 
     //const width = props.app.isMobile ? 350 : window.innerWidth / 1.5;
 
     this.state = {
       colonists: [],
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: width,
+      height: width,
       colours: ColorUtil.getColours(),
       homeStyle
     };
@@ -51,15 +56,15 @@ class HomeGraph extends Component {
     console.log('HomeGraph constructor this.props: ', this.props);
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    window.removeEventListener('resize', this.updateDimensions.bind(this));
+  }
 
   componentDidMount() {
     console.log('HomeGraph componentDidMount');
-    if (document.location.pathname === '/') {
-      const world = this.drawWorld();
-      this.drawColonists(world);
-      this.drawHud(world);
-    }
+
+    this.updateDimensions();
+    window.addEventListener('resize', this.updateDimensions.bind(this));
   }
 
   componentDidUpdate(nextProps) {
@@ -83,6 +88,32 @@ class HomeGraph extends Component {
       const newHomeStyle = { ...homeStyle, display: 'none' };
       this.state.homeStyle = newHomeStyle;
     }
+  }
+
+  draw() {
+    if (document.location.pathname === '/') {
+      const world = this.drawWorld();
+
+      const colony0 = d3.select('#colony0');
+      const colony0Pos = colony0.node().getScreenCTM();
+      const colony0Box = colony0.node().getBBox();
+      console.log('colony: ', colony0Box);
+
+      this.drawColonists(world, colony0Box);
+      this.drawHud(world, colony0Box);
+    }
+  }
+
+  updateDimensions() {
+    return;
+
+    // do I want a redraw and then re-create state?!
+    // or simply an aspect ratio preserved scale?!
+
+    // clear svg
+    d3.select('svg').remove();
+
+    this.draw();
   }
 
   clear() {
@@ -237,14 +268,14 @@ class HomeGraph extends Component {
     return d3.select('#tooltip');
   }
 
-  drawHud(world) {
+  drawHud(world, colonyBox) {
     const hud = world
       .append('g')
       .style('opacity', 0)
       .attr('id', 'hud');
 
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+    const centerX = colonyBox.x;
+    const centerY = colonyBox.y;
 
     const y = this.props.app.isMobile ? 390 : 0;
 
@@ -257,15 +288,20 @@ class HomeGraph extends Component {
 
     const fontColor = this.state.colours[6];
 
-    hud
+    const hudText = hud
       .append('text')
       .style('font-family', 'Orbitron') // or Teko?!
       .style('font-size', '70')
       .style('fill', fontColor)
       .text(date.getDate());
 
-    const barX = 110;
-    const iconX = 90;
+    const hudBox = hudText.node().getBBox();
+    console.log('hud', hudBox);
+
+    const startX = hudBox.width;
+
+    const barX = startX + 70;
+    const iconX = startX + 50;
 
     const healthIcon = hud
       .append('g')
@@ -316,13 +352,13 @@ class HomeGraph extends Component {
       .attr('transform', 'translate(' + barX + ',' + -20 + ')');
   }
 
-  drawColonists(world) {
+  drawColonists(world, colonyBox) {
     const echo = world.append('g').attr('id', 'echo');
 
     const self = this;
 
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+    const centerX = colonyBox.x;
+    const centerY = colonyBox.y;
 
     const echoX = centerX - 30;
     const echoY = centerY - 60;
@@ -442,15 +478,16 @@ class HomeGraph extends Component {
     const viewport = d3
       .select('#home-viewport')
       .append('svg')
-      .attr('width', this.state.width)
-      .attr('height', this.state.height)
+      //.attr('viewBox', '0 0 100 100')
+      .attr('preserveAspectRatio', 'xMidYMid meet')
+      .attr('width', '10000px')
+      .attr('height', '10000px')
       .style('margin', '0 auto');
 
     const svg = viewport;
 
-    const format = d3.format(',d');
-
-    const color = d3.scaleOrdinal(d3.schemeCategory20c);
+    //const format = d3.format(',d');
+    //const color = d3.scaleOrdinal(d3.schemeCategory20c);
 
     //const y = this.props.app.isMobile ? 100 : 0;
 

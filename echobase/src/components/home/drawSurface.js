@@ -75,11 +75,35 @@ export function drawSurface(target, width, height, isMobile) {
         return color(d.value);
       });
 
-    const y = isMobile ? 0 : -800;
+    const surfaceBox = target.node().getBBox();
+    console.log('surface: ', surfaceBox);
+
+    target
+      .append('rect')
+      .attr('width', surfaceBox.width)
+      .attr('height', surfaceBox.height)
+      .attr('transform', 'translate(5,5)')
+      .style('stroke-width', '10px')
+      .style('fill', 'transparent')
+      .style('stroke', '#b1d8da');
+
+    const colonyX = Math.floor(surfaceBox.width / 1.5);
+    const colonyY = Math.floor(surfaceBox.height / 1.5);
+
+    target
+      .append('rect')
+      .attr('id', 'colony0')
+      .attr('width', 10)
+      .attr('height', 10)
+      .style('fill', '#bfd0cd')
+      .attr('x', colonyX)
+      .attr('y', colonyY);
+
+    const y = isMobile ? 0 : 0;
 
     d3
       .select('#surface')
-      .attr('transform', 'translate(0,' + y + ') scale(3,3)');
+      .attr('transform', 'translate(0,' + y + ') scale(1,1)');
   };
 
   drawPlanet('hoth', terrain);

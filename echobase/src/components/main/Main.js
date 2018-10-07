@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import Bio from '../projects/bio/Bio';
 import HomeGraph from '../home/HomeGraph';
-import HothNav from '../nav/HothNav';
+//import HothNav from '../nav/HothNav';
 import './Main.css';
 //import { theme } from '../theme/Theme';
 //import { log } from '../../utils/LogUtil';
@@ -29,7 +29,7 @@ class Main extends Component {
       if (this.props.app.isMobile) {
         return (
           <div>
-            <HothNav />
+            {/*<HothNav />*/}
             <div className={mainClass} style={mainStyle}>
               <div className="propulsion" />
               {this.props.children}
@@ -41,7 +41,7 @@ class Main extends Component {
       } else {
         return (
           <div>
-            <HothNav />
+              {/*<HothNav />*/}
             <div className={mainClass} style={mainStyle}>
               <div className="gap" />
               {this.props.children}

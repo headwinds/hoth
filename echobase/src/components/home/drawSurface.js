@@ -84,6 +84,7 @@ export function drawSurface(target, width, height, isMobile) {
       .attr('height', surfaceBox.height)
       .attr('transform', 'translate(5,5)')
       .style('stroke-width', '10px')
+      .style('stroke-dashArray', '400px')
       .style('fill', 'transparent')
       .style('stroke', '#b1d8da');
 

@@ -4,6 +4,14 @@
   font-family: 'Teko', sans-serif;
 }
 
+a {
+  color: #de1b84;
+}
+
+a:visited {
+  color: #de1b84;
+}
+
 ul {
   list-style-type: none;
 }
@@ -68,7 +76,7 @@ body {
 .about {
   display: inline-block;
   position: relative;
-  max-width: 450px;
+  max-width: 350px;
   color: #666;
   z-index: 3;
   font-size: 14px;
@@ -76,6 +84,7 @@ body {
   opacity: 1;
   left: 0px;
   top: 0px;
+  margin-right: 0px;
   pointer-events: none;
 }
 

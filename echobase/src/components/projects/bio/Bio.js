@@ -2,63 +2,56 @@ import React, { Component } from 'react';
 import { theme } from '../../theme/Theme';
 
 const linkStyle = theme.linkStyle;
+const paralinkStyle = theme.paralinkStyle;
 
 export default class Bio extends Component {
   render() {
     return (
-      <div className="bio" style={{ height: 1300 }}>
-        <h1 style={{ margin: 0, marginBottom: 20 }}>Brandon Flowers</h1>
+      <div className="bio" style={{ height: 760, background: "white" }}>
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+          <div>
+          <h1 style={{ margin: 0, marginBottom: 10 }}>Brandon Flowers</h1>
+          </div>
+          <div>
+          <a
+            href="/"
+            style={linkStyle}
+          >
+            X
+          </a></div>
+        </div>
+        <h2 style={{ margin: 0, marginBottom: 10 }}>Design JS Python Clojure DB</h2>
         <div>
-          <p>
-            I{`'`}m a designer/developer and{' '}
-            <a
-              href="/budding-data-scientist"
-              rel="noopener noreferrer"
-              style={linkStyle}
-              onClick={this.props.handleBudding}
-            >
-              budding data scientist
-            </a>{' '}
-            . As a hybrid, I primarily enjoy working on the data presentation
-            layer collaborating with business and scientists to build products
-            with Javascript (Angular/RxJS or React/Redux), Python, SQL and
-            NoSQL, that convert big data into trends and insights through NLP
-            and probability statistics.
+        <p>
+          Today, I{"'"}m a proud part of the 4th industrial revolution building blockchain at{' '}
+          <a
+            href="https://www.todaqfinancial.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={paralinkStyle}
+          >
+            TODAQ Financial.
+          </a>{' '}
+        </p>
+        <p>
+          While I consider myself Fullstack having some SQL & NoSQL chops, I mainly concern myself with the UI,
+          data visualization, and the interaction design between it and our API capable of servicing millions of decentralized apps around the world.
           </p>
           <p>
-            I{`'`}m currently a frontend developer at{' '}
-            <a
-              href="https://qochealth.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyle}
-            >
-              QoC Health.
-            </a>{' '}
-            I mainly write React/Redux against a Spring Java/MS SQL backend but,
-            on my last project, I was able to do some fullstack work. I worked
-            with Python to pump data across platforms, and used Firebase to
-            store the behavioral analytics for{' '}
-            <a
-              href="https://mythoughtspot.ca"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyle}
-            >
-              Thoughtspot
-            </a>, a responsive (desktop & mobile) web app for CAMH. It talks to
-            both the Google Places and Mapbox APIs as well as performs full text
-            and geolocation proximity search through the HIPAA-compliant QoC
-            API.
-          </p>
-          <p>
-            Previously, I worked at 24-7 INC on an analytics and natural
+            Previously, I enjoyed 4 years working at     <a
+                  href="https://www.247.ai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={paralinkStyle}
+                >
+                  24-7 ai
+                </a>{' '} building an analytics and natural
             language processing app,{' '}
             <a
               href="https://www.youtube.com/watch?v=5KZofZX3XaY"
               target="_blank"
               rel="noopener noreferrer"
-              style={linkStyle}
+              style={paralinkStyle}
             >
               Voices
             </a>{' '}
@@ -71,6 +64,7 @@ export default class Bio extends Component {
           I'm constantly learning and am currently tinkering with Python. The graph you see on this page is my latest submission to the housing prices competition applying Random Forest and Xboost. I have a ways to go to move up the leaderboard.
         </p>*/}
         </div>
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
         <div>
           <p>
             <a
@@ -106,6 +100,7 @@ export default class Bio extends Component {
               Twitter
             </a>{' '}
           </p>
+        </div>
         </div>
       </div>
     );

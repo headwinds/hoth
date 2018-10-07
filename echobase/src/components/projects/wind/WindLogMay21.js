@@ -1,40 +1,30 @@
 import React, { Component } from 'react';
 import { theme } from '../../theme/Theme';
 //import manufacturers from './manufacturers.png';
+const paralinkStyle = theme.paralinkStyle;
 
 export default class WindLogMay21 extends Component {
   render() {
     return (
       <div>
         <p>
-          On the front page of kaggle, a kaggler posted a fresh dataset covering
-          over 20 years of US Wind Turbine production. I was pleasantly
-          surprised to be the first to dive into this rich dataset.
-        </p>
-        {/*
-        <div>
-          <img
-            src={manufacturers}
-            alt="wind turbine manufacturers"
-            width={300}
-          />
-        </div>*/}
-        <div>
+          While searching through datasets on Kaggle, I discovered a fresh dataset covering
+          over 20 years of US Wind Turbine production, and was pleasantly
+          surprised to be the first to dive into this rich dataset and results can be seen in this{' '}
           <a
             href="https://www.kaggle.com/headwinds/us-wind-turbines"
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              ...theme.linkStyle,
+              ...paralinkStyle,
               marginTop: 0,
-              marginBottom: 10,
+              marginBottom: 20,
               pointerEvents: 'all',
               cursor: 'pointer'
             }}
           >
-            Kernel
-          </a>{' '}
-        </div>
+            Data Visualization.
+          </a></p>
         <p>
           Instead of predictiong future production like I have done in the other
           competitions, I wanted to explore production at the state level and

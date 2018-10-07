@@ -1,1 +1,0 @@
-<img src="http://ghchart.rshah.org/409ba5/headwinds" alt="headwinds Github Chart" />

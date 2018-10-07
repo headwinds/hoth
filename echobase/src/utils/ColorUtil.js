@@ -1,6 +1,18 @@
 /* eslint-disable */
-import globalVariable from '../config/variables';
+//import globalVariable from '../config/variables';
 import * as _ from 'lodash';
+
+const globalVariable = {
+  'lips': "#c0c0c0",
+  'drySoil': "#c8b51d",
+  'sand': "#efe9e2",  // me 
+  'glass': "#c0c8d9",
+  'numberCruncher': "#718fb4",
+  'higherGround': "#a68573",
+  'mailaise': "#4e596c",
+  'explorer': "#3d3335",
+  'blackSnout': "#120f12",
+}
 
 let colorUtil;
 class ColorUtil {

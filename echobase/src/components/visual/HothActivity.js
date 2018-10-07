@@ -25,7 +25,7 @@ export function drawActivity(){
 
 	var format = d3.format(",d");
 
-	var color = d3.scaleOrdinal(d3.schemeCategory20c);
+	var color = d3.scaleOrdinal(d3.schemePaired);
 
 	var pack = d3.pack()
 	    .size([width, width])
@@ -99,7 +99,7 @@ export function drawActivity(){
 	    .append("use")
 	      .attr("xlink:href", function(d) { return "#" + d.id; });
 
-	  /*    
+	  /*
 	  node.append("text")
 	      .attr("clip-path", function(d) { return "url(#clip-" + d.id + ")"; })
 	      .attr("text-anchor", "middle")
@@ -116,4 +116,3 @@ export function drawActivity(){
 	         */
 	});
 };
-	

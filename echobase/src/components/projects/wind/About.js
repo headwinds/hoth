@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import WindLogMay21 from './WindLogMay21';
 import { theme } from '../../theme/Theme';
 
+const linkStyle = theme.linkStyle;
+
+
+
 export default class About extends Component {
   render() {
     return (
@@ -10,21 +14,24 @@ export default class About extends Component {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'flex-end',
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          background: "white",
+          padding: 20
         }}
       >
-        <div style={{ display: 'block', marginRight: 40, marginTop: 0 }}>
-          <p
-            style={{
-              display: 'block',
-              fontSize: 20,
-              color: '#bd6e81',
-              margin: 0,
-              padding: 0
-            }}
+        <div style={{ display: 'block', marginRight: 0, marginTop: 0 }}>
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+          <div>
+          <h1 style={{ margin: 0, marginBottom: 10 }}>US Wind Turbines</h1>
+          </div>
+          <div>
+          <a
+            href="/"
+            style={linkStyle}
           >
-            US Wind Turbine Production
-          </p>
+            X
+          </a></div>
+        </div>
           <p
             style={{
               display: 'block',
@@ -36,18 +43,6 @@ export default class About extends Component {
             }}
           />
           <WindLogMay21 />
-          <div>
-            <a
-              href="/"
-              style={{
-                ...theme.linkStyle,
-                pointerEvents: 'all',
-                cursor: 'pointer'
-              }}
-            >
-              Back
-            </a>
-          </div>
         </div>
       </div>
     );

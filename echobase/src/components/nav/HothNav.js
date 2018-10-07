@@ -1,12 +1,11 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import styles from './HothNav.module.css';
 
 import { TweenMax, TimelineMax, Back, Quad } from 'gsap';
 import CSSPlugin from 'gsap/CSSPlugin';
-//import TweetEmbed from 'react-tweet-embed';
-//import Logo from './Logo';
+
+import Logo from './Logo';
 import DragonDropship from './DragonDropship';
 import * as _ from 'lodash';
 import ColorUtil from '../../utils/ColorUtil';
@@ -48,7 +47,7 @@ class HothNav extends Component {
 
         TweenMax.to(ship.div, 2, {
           css: { top: newTop, left: newLeft, width: 5, heigth: 5 },
-          ease: Quad.easeOut,
+          //ease: Quad.easeOut,
           delay: delay
         });
 
@@ -59,14 +58,14 @@ class HothNav extends Component {
           .attr('transform', 'translate(20,20)scale(0.75,0.75)rotate(0)');
         TweenMax.to(callsign, 1, {
           css: { left: '50px' },
-          ease: Quad.easeOut,
+          //ease: Quad.easeOut,
           delay: 0
         });
       } else {
         let newLeft = index * 100 + 'px';
         TweenMax.to(ship.div, 1, {
           css: { top: '5px', left: newLeft, width: 5, heigth: 5 },
-          ease: Quad.easeOut,
+          //ease: Quad.easeOut,
           delay: delay
         });
         d3
@@ -76,7 +75,7 @@ class HothNav extends Component {
           .attr('transform', 'translate(75,75)scale(1,1)rotate(180)');
         TweenMax.to(callsign, 1, {
           css: { left: '35px' },
-          ease: Quad.easeOut,
+          //ease: Quad.easeOut,
           delay: 0
         });
       }
@@ -185,7 +184,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   navigateTo: newRoute => {
-    dispatch(push(newRoute));
+    dispatch(this.props.history.push(newRoute));
   },
   dispatch
 });

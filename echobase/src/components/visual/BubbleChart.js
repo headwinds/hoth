@@ -1,7 +1,7 @@
 /* eslint-disable */
 /* to do lint this file */
 
-// http://blockbuilder.org/larsvers/5f8ab586c29faa8c2d0e3d2e4b424759	
+// http://blockbuilder.org/larsvers/5f8ab586c29faa8c2d0e3d2e4b424759
 import * as d3 from 'd3';
 
 export function drawBubbleChart(){
@@ -9,7 +9,7 @@ export function drawBubbleChart(){
 	console.log("drawBubbleChart");
 
 	let width = 500; //window.innerWidth;
-	let height = 500; //window.innerHeight; 
+	let height = 500; //window.innerHeight;
 	let viewport = d3.select('#viewport').append('svg').attr('width', width).attr('height', height).style("margin", "0 auto");
 
 	var svg = viewport;
@@ -18,7 +18,7 @@ export function drawBubbleChart(){
 
 	var format = d3.format(",d");
 
-	var color = d3.scaleOrdinal(d3.schemeCategory20c);
+	var color = d3.scaleOrdinal(d3.schemePaired);
 
 	var pack = d3.pack()
 	    .size([width, width])
@@ -79,4 +79,3 @@ export function drawBubbleChart(){
 	      .text(function(d) { return d.id + "\n" + format(d.value); });
 	});
 };
-	

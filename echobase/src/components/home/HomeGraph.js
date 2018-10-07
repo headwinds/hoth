@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TweenMax, TimelineMax, Back, Quad } from 'gsap';
 import CSSPlugin from 'gsap/CSSPlugin';
-import data from './northern-colony.csv';
+import { push } from 'react-router-redux';
 import ColorUtil from '../../utils/ColorUtil';
 import { drawSurface } from './drawSurface';
 import * as d3 from 'd3';
@@ -50,7 +50,9 @@ class HomeGraph extends Component {
       width: width,
       height: width,
       colours: ColorUtil.getColours(),
-      homeStyle
+      homeStyle,
+      currentRoute: null,
+      curSelectedActor: null,
     };
 
     console.log('HomeGraph constructor this.props: ', this.props);
@@ -69,6 +71,10 @@ class HomeGraph extends Component {
 
   componentDidUpdate(nextProps) {
     console.log('HomeGraph componentDidUpdate', this.state);
+
+
+    return;
+    /*
     if (this.state.colonists.length > 0) {
       if (document.location.pathname === '/') {
         this.animateInColonists();
@@ -76,18 +82,27 @@ class HomeGraph extends Component {
         this.animateOutColonists();
       }
     }
+    */
   }
 
   componentWillReceiveProps(nextProps) {
     this.props = nextProps;
 
+    /*
     if (document.location.pathname === '/') {
       const newHomeStyle = { ...homeStyle, display: 'block' };
       this.state.homeStyle = newHomeStyle;
     } else {
       const newHomeStyle = { ...homeStyle, display: 'none' };
       this.state.homeStyle = newHomeStyle;
+    } */
+  }
+
+  changeRoute(d) {
+    if (this.state.currentRoute !== d.route) {
+       this.props.navigateTo(d.route);
     }
+    this.setState({ curSelectedActor: d.title, currentRoute: d.route });
   }
 
   draw() {
@@ -105,7 +120,7 @@ class HomeGraph extends Component {
   }
 
   updateDimensions() {
-    return;
+    //return;
 
     // do I want a redraw and then re-create state?!
     // or simply an aspect ratio preserved scale?!
@@ -196,7 +211,7 @@ class HomeGraph extends Component {
     tooltip
       .style('top', d3.event.pageY - 10 + 'px')
       .style('left', d3.event.pageX + 10 + 'px')
-      .style('width', useLen * 6 + 'px');
+      .style('width', useLen * 4 + 'px');
     //tooltip.text(title);
     d3
       .select('#tooltip')
@@ -216,7 +231,7 @@ class HomeGraph extends Component {
       .append('div')
       .attr('id', 'tooltip')
       .style('pointer-events', 'none')
-      .style('width', '150px')
+      .style('width', '50px')
       .style('height', '40px')
       .style('position', 'absolute')
       .style('z-index', '10')
@@ -296,7 +311,7 @@ class HomeGraph extends Component {
       .text(date.getDate());
 
     const hudBox = hudText.node().getBBox();
-    console.log('hud', hudBox);
+    console.log('drawHud', hudBox);
 
     const startX = hudBox.width;
 
@@ -376,100 +391,149 @@ class HomeGraph extends Component {
 
     const colonists = [];
 
-    d3.csv(
-      data,
-      d => {
-        return d;
-      },
-      (error, classes) => {
-        if (error) throw error;
+    const buildMap = () => {
 
-        let root = d3.hierarchy({ children: classes }).each(d => {
-          return d;
+    //  let root = d3.hierarchy({ children: classes }).each(d => {
+      //  return d;
+    //  });
+
+    //id,energy,income,expenses,debt,sentiment,adults,kids,x,y,title,subTitle
+
+
+    const turbine = { id: 2,
+                      route: "/budding-data-scientist",
+                      energy: 1500,
+                      income: 10000,
+                      expenses: 8000,
+                      debt: 1200,
+                      sentiment: 5,
+                      adults: "UI engineer/actuary",
+                      kids: "2 girls",
+                      x: 480,
+                      y: 420,
+                      title:"wind turbine",
+                      subTitle:"wind turbine 24"};
+
+    const colonist0 = {  id: 1,
+                        route: "/bio",
+                        energy: 1500,
+                        income: 10000,
+                        expenses: 8000,
+                        debt: 1200,
+                        sentiment: 5,
+                        adults: "UI engineer/actuary",
+                        kids: "2 girls",
+                        x: 80,
+                        y: 80,
+                        title:"The Flowers",
+                        subTitle:"Brandon, Jessica, Mabel & Elodie"};
+
+    const colonist1 = {  id: 2,
+                        route: "/no-route",
+                        energy: 1500,
+                        income: 10000,
+                        expenses: 8000,
+                        debt: 1200,
+                        sentiment: 5,
+                        adults: "miner/farmer",
+                        kids: "3 boys",
+                        x: 35,
+                        y: 120,
+                        title:"The Bells",
+                        subTitle:"Hendrick, Ashe, Aethan, Hendrick II, & Talon"};
+
+    const actors = [turbine, colonist0, colonist1];
+
+    /*
+    1,1500,10000,8000,1200,5,engineer/police,2 girls/1 boy,80,80,robinsons,colonist 87
+    2,1500,10000,8000,1200,5,nurse/physician,3 girls,20,20,flowers,colonist 12
+    3,1500,10000,8000,1200,5,miner/farmer,0,35,120,bells,colonist 19
+    4,1500,10000,8000,1200,5,janitor/finance,2 girls/3 boys,-10,67,smiths,colonist 453
+    5,1500,10000,8000,1200,5,builder/biologist,1 girl,80,25,hendersons,colonist 46
+    */
+
+
+      let node = world
+        .selectAll('.node')
+        .data(actors)
+        .enter()
+        .append('g')
+        .attr('class', 'node')
+        //.style('opacity', 0)
+        .attr('id', d => {
+          return `colonist${d.id}`;
+        })
+        .attr('transform', function(d) {
+          const transX = centerX - Number(d.x);
+          const transY = centerY - Number(d.y);
+
+          colonists.push({ data: d, nodeId: `colonist${d.id}` });
+
+          return 'translate(' + transX + ',' + transY + ')';
         });
 
-        const pack = d3
-          .pack()
-          .size([this.state.width, this.state.width])
-          .padding(1.5);
+      //const aqua = 'rgba(51, 197, 197, 0.20)';
+      const colours = ColorUtil.getColours();
 
-        let node = world
-          .selectAll('.node')
-          .data(pack(root).leaves())
-          .enter()
-          .append('g')
-          .attr('class', 'node')
-          .style('opacity', 0)
-          .attr('id', d => {
-            return `colonist${d.data.id}`;
-          })
-          .attr('transform', function(d) {
-            const transX = centerX - Number(d.data.x);
-            const transY = centerY - Number(d.data.y);
+      let getColor = i => {
+        return colours[i];
+      };
 
-            colonists.push({ data: d.data, nodeId: `colonist${d.data.id}` });
+      //d3.event.preventDefault();
 
-            return 'translate(' + transX + ',' + transY + ')';
-          });
+      const tooltip = self.getTooltip();
 
-        //const aqua = 'rgba(51, 197, 197, 0.20)';
-        const colours = ColorUtil.getColours();
+      node
+        .append('rect')
+        .attr('id', function(d) {
+          return d.id;
+        })
+        .attr('width', function(d) {
+          return 20;
+        })
+        .attr('height', function(d) {
+          return 20;
+        })
+        .style('fill', function(d, i) {
+          return getColor(i);
+        })
+        .style('cursor', 'pointer')
+        .on('mouseover', function() {
+          return tooltip.style('visibility', 'visible');
+        })
+        .on('mousemove', function(d) {
+          const subTitle = `${d.total} Shops which sold ${d.count} Items`;
+          const title = d.title;
+          return self.updateTooltip(d.title, d.subTitle, tooltip);
+        })
+        .on('mouseout', function() {
+          return tooltip.style('visibility', 'hidden');
+        })
+        .on('click', function(d) {
+          console.log(d);
+          if (d.route === "/no-route") return;
+          self.changeRoute(d)
+        });
 
-        let getColor = i => {
-          return colours[i];
-        };
+      node
+        .append('clipPath')
+        .attr('id', function(d) {
+          return 'clip-' + d.id;
+        })
+        .append('use')
+        .attr('xlink:href', function(d) {
+          return '#' + d.id;
+        });
+    }
 
-        //d3.event.preventDefault();
+    buildMap();
 
-        const tooltip = self.getTooltip();
+    this.setState({ colonists });
 
-        node
-          .append('rect')
-          .attr('id', function(d) {
-            return d.id;
-          })
-          .attr('width', function(d) {
-            return 20;
-          })
-          .attr('height', function(d) {
-            return 20;
-          })
-          .style('fill', function(d, i) {
-            return getColor(i);
-          })
-          .style('cursor', 'pointer')
-          .on('mouseover', function() {
-            return tooltip.style('visibility', 'visible');
-          })
-          .on('mousemove', function(d) {
-            const subTitle = `${d.total} Shops which sold ${d.count} Items`;
-            const title = d.title;
-            return self.updateTooltip(d.data.title, d.data.subTitle, tooltip);
-          })
-          .on('mouseout', function() {
-            return tooltip.style('visibility', 'hidden');
-          })
-          .on('click', function(d) {
-            console.log(d);
-          });
-
-        node
-          .append('clipPath')
-          .attr('id', function(d) {
-            return 'clip-' + d.id;
-          })
-          .append('use')
-          .attr('xlink:href', function(d) {
-            return '#' + d.id;
-          });
-
-        this.setState({ colonists });
-      }
-    );
   }
 
   drawWorld() {
-    console.log('HomeGraph drawActivity');
+    console.log('HomeGraph drawWorld');
 
     const self = this;
 
@@ -516,10 +580,12 @@ const mapStateToProps = state => ({
   routing: state.routing
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    dispatch: dispatch
-  };
-};
+// note: push = import { push } from 'react-router-redux';
+const mapDispatchToProps = dispatch => ({
+  navigateTo: newRoute => {
+    dispatch(push(newRoute));
+  },
+  dispatch
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeGraph);

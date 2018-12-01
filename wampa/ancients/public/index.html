@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>profile</title>
+    <style>
+    body {
+  font: 12px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  //fill: #ddd;
+  stroke: #ddd;
+}
+
+.tick {
+fill: #999;
+  }
+
+.rivarly-line {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 4px;
+}
+
+
+.expected-line {
+  fill: none;
+  stroke: #008281;
+  stroke-width: 4px;
+}
+
+.actual-line {
+  fill: none;
+  stroke: #0e1a36;
+  stroke-width: 4px;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 4px;
+}
+
+.selectedline {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 8px;
+}
+
+ .lineSelected {
+
+ }
+
+circle {
+  pointer-events: all;
+  cursor: points;
+}
+
+.datapoint {
+  pointer-events: "all";
+  cursor: "pointer" !imporantant;
+  stroke-width: 2px;
+}
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but ancients doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

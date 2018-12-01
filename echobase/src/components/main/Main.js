@@ -21,7 +21,7 @@ class Main extends Component {
   render() {
     const mainClass = this.props.app.isMobile ? 'mobileMain' : 'desktopMain';
     const mainStyle =
-      this.props.location.pathname === '/' ? { top: 0 } : { top: 150 };
+      this.props.location.pathname === '/' ? { top: 0 } : { top: 25 };
 
     console.log('location: ', this.props.location);
 
@@ -33,7 +33,7 @@ class Main extends Component {
             <div className={mainClass} style={mainStyle}>
               <div className="propulsion" />
               {this.props.children}
-              <div />
+              <div style={{pointerEvents: "none"}} />
             </div>
             <HomeGraph />
           </div>
@@ -45,7 +45,7 @@ class Main extends Component {
             <div className={mainClass} style={mainStyle}>
               <div className="gap" />
               {this.props.children}
-              <div />
+              <div style={{pointerEvents: "none"}} />
             </div>
             <HomeGraph />
           </div>

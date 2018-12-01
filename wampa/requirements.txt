@@ -1,0 +1,4 @@
+sanic==0.8.1
+sanic-cors==0.9.6
+aiohttp==3.4.1
+PyNaCl==1.2.1

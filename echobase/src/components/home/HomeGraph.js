@@ -9,6 +9,8 @@ import ColorUtil from '../../utils/ColorUtil';
 import { drawSurface } from './drawSurface';
 import * as d3 from 'd3';
 
+import identity from "../../data/identity";
+
 const width = 1000;
 const height = width;
 
@@ -26,6 +28,15 @@ const homeStyle = {
 
 const fontTeko = 'Teko';
 const fontOribitron = 'Orbitron';
+const colors = ["#00bd9c","#1dce6c","#2d97dd","#9b56b9","#344960","#cfb53b"];
+const colorsMap = {
+  "Health" : colors[0],
+  "Customer Service" : colors[1],
+  "Entertainment" : colors[2],
+  "Lifestyle" : colors[3],
+  "Automotive" : colors[4],
+  "Brandon, Jessica, Mabel & Elodie" : colors[5],
+}
 
 class HomeGraph extends Component {
   constructor(props, context) {
@@ -63,7 +74,7 @@ class HomeGraph extends Component {
   }
 
   componentDidMount() {
-    console.log('HomeGraph componentDidMount');
+    console.log('HomeGraph componentDidMount 2');
 
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions.bind(this));
@@ -106,7 +117,13 @@ class HomeGraph extends Component {
   }
 
   draw() {
-    if (document.location.pathname === '/') {
+
+    console.log("HomeGraph draw ? ",document.location.pathname )
+
+    //if (document.location.pathname === '/') {
+
+      console.log("HomeGraph draw")
+
       const world = this.drawWorld();
 
       const colony0 = d3.select('#colony0');
@@ -116,7 +133,9 @@ class HomeGraph extends Component {
 
       this.drawColonists(world, colony0Box);
       this.drawHud(world, colony0Box);
-    }
+
+      //d3.select('#colonist1').select('rect').dispatch('click');
+    //}
   }
 
   updateDimensions() {
@@ -283,10 +302,36 @@ class HomeGraph extends Component {
     return d3.select('#tooltip');
   }
 
+  moveHiliteCircleToTarget(d){
+
+    const foundColonist = this.state.colonists.filter( colonist => (colonist.title === d.name ) );
+
+    console.log("HomeGraph foundColonist ",d.name)
+
+    if (foundColonist.length > 0) {
+
+      const newX = foundColonist[0].x + 600;
+      const newY = foundColonist[0].y + 300;
+
+      d3.select("#spotlight")
+        .transition()
+          .ease(d3.easeCubic)
+          .duration(2000)
+          .attr('transform', 'translate(' + newX + ',' + newY + ')');
+    }
+
+
+  }
+
   drawHud(world, colonyBox) {
+
+    console.log("HomeGraph drawHud")
+
+    const self = this;
+
     const hud = world
       .append('g')
-      .style('opacity', 0)
+      .style('opacity', 1)
       .attr('id', 'hud');
 
     const centerX = colonyBox.x;
@@ -365,9 +410,82 @@ class HomeGraph extends Component {
       .attr('height', 4)
       .style('fill', fontColor)
       .attr('transform', 'translate(' + barX + ',' + -20 + ')');
+
+      const lengendX = 450;
+
+      const clientsFilters = hud
+        .append('g')
+        .attr('transform', 'translate(' + lengendX + ',' + -180 + ')');
+
+        // function for dynamic sorting
+        function compareValues(key, order='asc') {
+          return function(a, b) {
+            if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+              // property doesn't exist on either object
+              return 0;
+            }
+
+            const varA = (typeof a[key] === 'string') ?
+              a[key].toUpperCase() : a[key];
+            const varB = (typeof b[key] === 'string') ?
+              b[key].toUpperCase() : b[key];
+
+            let comparison = 0;
+            if (varA > varB) {
+              comparison = 1;
+            } else if (varA < varB) {
+              comparison = -1;
+            }
+            return (
+              (order == 'desc') ? (comparison * -1) : comparison
+            );
+          };
+        }
+
+        const projects = identity.projects.sort(compareValues("vertical"));
+
+        projects.map( (item, i) => {
+
+          const name = item.client + " - " + item.vertical;
+
+          const clientBarWidrth = ( name.length < 5 ) ? 60 : name.length * 9;
+          const y = i * 46;
+
+          const clientBar = clientsFilters
+            .append('g');
+
+          clientBar
+            .append('rect')
+            .attr('width', clientBarWidrth)
+            .attr('height', 40)
+            .style("pointer-events","all")
+            .style("cursor", "pointer")
+            .on("click", function(){
+              console.log("HomeGraph click bar");
+              return self.moveHiliteCircleToTarget(item)})
+            .style('fill', colorsMap[item.vertical]);
+
+          clientBar
+            .append('text')
+            .attr("x", 5)
+            .attr("y", 20)
+            .attr("dy", ".35em")
+            .style("fill","white")
+            .style("user-select","none")
+            .style("pointer-events","none")
+            .style("cursor", "default")
+            .text(function(){return name})
+
+          clientBar
+            .attr('transform', 'translate(' + 0 + ',' + y + ')');
+
+        });
+
   }
 
   drawColonists(world, colonyBox) {
+
+
     const echo = world.append('g').attr('id', 'echo');
 
     const self = this;
@@ -381,6 +499,7 @@ class HomeGraph extends Component {
     echo
       .append('circle')
       .attr('r', 0)
+      .attr("id", "spotlight")
       .attr('transform', 'translate(' + echoX + ',' + echoY + ')')
       .style('fill', '#f9f9f9')
       .transition()
@@ -410,9 +529,9 @@ class HomeGraph extends Component {
                       adults: "UI engineer/actuary",
                       kids: "2 girls",
                       x: 480,
-                      y: 420,
+                      y: 260,
                       title:"wind turbine",
-                      subTitle:"wind turbine 24"};
+                      subTitle:"a python experiment exploring turbines across the US"};
 
     const colonist0 = {  id: 1,
                         route: "/bio",
@@ -428,30 +547,38 @@ class HomeGraph extends Component {
                         title:"The Flowers",
                         subTitle:"Brandon, Jessica, Mabel & Elodie"};
 
-    const colonist1 = {  id: 2,
-                        route: "/no-route",
-                        energy: 1500,
-                        income: 10000,
-                        expenses: 8000,
-                        debt: 1200,
-                        sentiment: 5,
-                        adults: "miner/farmer",
-                        kids: "3 boys",
-                        x: 35,
-                        y: 120,
-                        title:"The Bells",
-                        subTitle:"Hendrick, Ashe, Aethan, Hendrick II, & Talon"};
+      const coords = [{x: 0, y: 50},
+                      {x: 80, y: 80},
+                      {x: 55, y: 120},
+                      {x: 135, y: 170},
+                      {x: 235, y: 270},
+                      {x: 335, y: 335},
+                      {x: 350, y: 30},
+                      {x: 400, y: 20},
+                      {x: 450, y: 80},
+                      {x: 500, y: 50},
+                      {x: 540, y: 40},
+                      {x: 580, y: 200}];
 
-    const actors = [turbine, colonist0, colonist1];
+    const colonists = identity.projects.map( (project, i) => {
+      return {  id: i,
+                route: project.route,
+                energy: 1500,
+                income: 10000,
+                expenses: 8000,
+                debt: 1200,
+                sentiment: 5,
+                adults: "miner/farmer",
+                kids: "3 boys",
+                fill: '',
+                x: coords[i].x,
+                y: coords[i].y,
+                title: project.client,
+                subTitle: project.vertical,
+                ...project}
+    });
 
-    /*
-    1,1500,10000,8000,1200,5,engineer/police,2 girls/1 boy,80,80,robinsons,colonist 87
-    2,1500,10000,8000,1200,5,nurse/physician,3 girls,20,20,flowers,colonist 12
-    3,1500,10000,8000,1200,5,miner/farmer,0,35,120,bells,colonist 19
-    4,1500,10000,8000,1200,5,janitor/finance,2 girls/3 boys,-10,67,smiths,colonist 453
-    5,1500,10000,8000,1200,5,builder/biologist,1 girl,80,25,hendersons,colonist 46
-    */
-
+    const actors = [turbine, ...colonists];
 
       let node = world
         .selectAll('.node')
@@ -479,23 +606,24 @@ class HomeGraph extends Component {
         return colours[i];
       };
 
-      //d3.event.preventDefault();
 
       const tooltip = self.getTooltip();
 
       node
-        .append('rect')
+        .append('circle')
         .attr('id', function(d) {
           return d.id;
         })
-        .attr('width', function(d) {
-          return 20;
+        .attr('r', function(d) {
+          return 10;
         })
+        /*
         .attr('height', function(d) {
           return 20;
-        })
+        })*/
         .style('fill', function(d, i) {
-          return getColor(i);
+          const color = (d.vertical) ? colorsMap[d.vertical] : getColor(i);
+          return color;
         })
         .style('cursor', 'pointer')
         .on('mouseover', function() {
@@ -524,11 +652,11 @@ class HomeGraph extends Component {
         .attr('xlink:href', function(d) {
           return '#' + d.id;
         });
+
+        self.setState({colonists})
     }
 
-    buildMap();
-
-    this.setState({ colonists });
+    return buildMap();
 
   }
 

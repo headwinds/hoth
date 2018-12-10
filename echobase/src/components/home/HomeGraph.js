@@ -9,33 +9,44 @@ import ColorUtil from '../../utils/ColorUtil';
 import { drawSurface } from './drawSurface';
 import * as d3 from 'd3';
 
+import automotive from "./icons/automotive.svg";
+import chat from "./icons/chat.svg";
+import health from "./icons/health.svg";
+import entertainment from "./icons/entertainment.svg";
+import financial from "./icons/financial.svg";
+import headwinds from "./icons/headwinds.svg";
+import lifestyle from "./icons/lifestyle.svg";
+import fwa from "./icons/fwa.svg";
+import base from "./icons/base.svg";
+
 import identity from "../../data/identity";
 
 const width = 1000;
 const height = width;
 
 const homeStyle = {
-  dislay: 'block',
+  display: 'flex',
   position: 'absolute',
   top: 0,
   left: 0,
+  alignItems: 'center',
   padding: 0,
-  margin: 100,
-  width: width,
-  height: height,
+  margin: 20,
   zIndex: 0
 };
 
 const fontTeko = 'Teko';
 const fontOribitron = 'Orbitron';
-const colors = ["#00bd9c","#1dce6c","#2d97dd","#9b56b9","#344960","#cfb53b"];
+const colors = ["#00bd9c","#1dce6c","#2d97dd","#9b56b9","#344960","#cfb53b","#ff0e45","#878787"];
 const colorsMap = {
   "Health" : colors[0],
   "Customer Service" : colors[1],
   "Entertainment" : colors[2],
   "Lifestyle" : colors[3],
   "Automotive" : colors[4],
-  "Brandon, Jessica, Mabel & Elodie" : colors[5],
+  "Brandon Flowers" : colors[5],
+  "Financial" : colors[6],
+  "Energy" : colors[7],
 }
 
 class HomeGraph extends Component {
@@ -120,22 +131,22 @@ class HomeGraph extends Component {
 
     console.log("HomeGraph draw ? ",document.location.pathname )
 
-    //if (document.location.pathname === '/') {
+    console.log("HomeGraph draw")
 
-      console.log("HomeGraph draw")
+    const world = this.drawWorld();
 
-      const world = this.drawWorld();
+    const colony0 = d3.select('#colony0');
+    const colony0Pos = colony0.node().getScreenCTM();
+    const colony0Box = colony0.node().getBBox();
+    console.log('colony: ', colony0Box);
 
-      const colony0 = d3.select('#colony0');
-      const colony0Pos = colony0.node().getScreenCTM();
-      const colony0Box = colony0.node().getBBox();
-      console.log('colony: ', colony0Box);
+    this.drawColonists(world, colony0Box);
+    const hud = this.drawHud(world, colony0Box);
+    this.drawClientFilters(hud);
+    this.drawAward();
 
-      this.drawColonists(world, colony0Box);
-      this.drawHud(world, colony0Box);
+    //d3.select('#colonist1').select('rect').dispatch('click');
 
-      //d3.select('#colonist1').select('rect').dispatch('click');
-    //}
   }
 
   updateDimensions() {
@@ -304,19 +315,24 @@ class HomeGraph extends Component {
 
   moveHiliteCircleToTarget(d){
 
-    const foundColonist = this.state.colonists.filter( colonist => (colonist.title === d.name ) );
-
-    console.log("HomeGraph foundColonist ",d.name)
+    const foundColonist = this.state.colonists.filter( colonist => (colonist.name === d.name ) );
 
     if (foundColonist.length > 0) {
+        console.log("HomeGraph foundColonist ",foundColonist[0])
 
-      const newX = foundColonist[0].x + 600;
-      const newY = foundColonist[0].y + 300;
+        const colony0 = d3.select('#colony0');
+        const colony0Box = colony0.node().getBBox();
+
+        const centerX = colony0Box.x;
+        const centerY = colony0Box.y;
+
+      const newX = centerX - foundColonist[0].x;
+      const newY = centerY - foundColonist[0].y;
 
       d3.select("#spotlight")
         .transition()
           .ease(d3.easeCubic)
-          .duration(2000)
+          .duration(1000)
           .attr('transform', 'translate(' + newX + ',' + newY + ')');
     }
 
@@ -342,7 +358,7 @@ class HomeGraph extends Component {
     const hudX = centerX - 80;
     const hudY = centerY - 230 + y;
 
-    hud.attr('transform', 'translate(' + hudX + ',' + hudY + ')');
+    hud.attr('transform', 'translate(' + hudX + ',' + 184 + ')');
 
     const date = new Date();
 
@@ -411,80 +427,205 @@ class HomeGraph extends Component {
       .style('fill', fontColor)
       .attr('transform', 'translate(' + barX + ',' + -20 + ')');
 
-      const lengendX = 450;
+      return hud;
 
-      const clientsFilters = hud
-        .append('g')
-        .attr('transform', 'translate(' + lengendX + ',' + -180 + ')');
+  }
 
-        // function for dynamic sorting
-        function compareValues(key, order='asc') {
-          return function(a, b) {
-            if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
-              // property doesn't exist on either object
-              return 0;
+  drawClientFilters(hud){
+
+    const self = this;
+
+    const lengendX = 450;
+
+    const clientsFilters = hud
+      .append('g')
+      .attr('transform', 'translate(' + lengendX + ',' + -160 + ')');
+
+      // function for dynamic sorting
+      function compareValues(key, order='asc') {
+        return function(a, b) {
+          if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+            // property doesn't exist on either object
+            return 0;
+          }
+
+          const varA = (typeof a[key] === 'string') ?
+            a[key].toUpperCase() : a[key];
+          const varB = (typeof b[key] === 'string') ?
+            b[key].toUpperCase() : b[key];
+
+          let comparison = 0;
+          if (varA > varB) {
+            comparison = 1;
+          } else if (varA < varB) {
+            comparison = -1;
+          }
+          return (
+            (order == 'desc') ? (comparison * -1) : comparison
+          );
+        };
+      }
+
+      const projects = identity.projects.sort(compareValues("vertical"));
+
+      projects.map( (item, i) => {
+
+        const name = item.client;
+
+        const iconWitdh = 50;
+
+        const clientBarWidrth = ( name.length < 6 ) ? 120 : name.length * 10 + iconWitdh;
+        const y = i * 46;
+
+        const client = (item.client !== '247') ? item.client : 'twentyFourSeven';
+
+        const clientBar = clientsFilters
+          .append('g')
+                .attr("id", client + "Bar");
+
+        clientBar
+          .append('rect')
+          .attr('width', clientBarWidrth)
+          .attr('height', 40)
+          .style("pointer-events","all")
+          .style("cursor", "pointer")
+          .on("click", function(){
+            console.log("HomeGraph click bar");
+            return self.moveHiliteCircleToTarget(item)})
+          .style('fill', colorsMap[item.vertical]);
+
+        clientBar
+          .append('text')
+          .attr("x", 50)
+          .attr("y", 20)
+          .attr("dy", ".35em")
+          .style("fill","white")
+          .style("user-select","none")
+          .style("pointer-events","none")
+          .style("cursor", "default")
+          .text(function(){return name})
+
+        clientBar
+          .attr('transform', 'translate(' + 0 + ',' + y + ')');
+
+          let vertical;
+
+          if ( item.vertical.toLowerCase() === "brandon flowers" ) {
+            vertical = "headwinds";
+          } else if ( item.vertical.toLowerCase() === "customer service" ) {
+            vertical = "chat"
+          } else {
+            vertical = item.vertical.toLowerCase();
+          }
+
+          const path = "./icons/" + vertical + ".svg";
+
+          const getIcon = (vertical) => {
+            switch(vertical.toLowerCase()) {
+              case "health" :
+                return health;
+              case "automotive" :
+                return automotive;
+              case "financial" :
+                return financial;
+              case "customer service" :
+                return chat;
+              case "brandon flowers" :
+                  return headwinds;
+              case "lifestyle" :
+                  return lifestyle;
+              case "entertainment" :
+                  return entertainment;
+              default :
+                return headwinds;
+
             }
+          }
 
-            const varA = (typeof a[key] === 'string') ?
-              a[key].toUpperCase() : a[key];
-            const varB = (typeof b[key] === 'string') ?
-              b[key].toUpperCase() : b[key];
+          d3.xml( getIcon(item.vertical) )
+            .then(data => {
+                const selection = d3.select(d3.select(data).select("defs")._groups[0][0]).select('g');
 
-            let comparison = 0;
-            if (varA > varB) {
-              comparison = 1;
-            } else if (varA < varB) {
-              comparison = -1;
-            }
-            return (
-              (order == 'desc') ? (comparison * -1) : comparison
-            );
-          };
-        }
+                const icon =  d3.select("#" + client + "Bar")
+                    .append('g');
 
-        const projects = identity.projects.sort(compareValues("vertical"));
+                const graphic = icon
+                                  .append( () => selection.node() )
+                                    .select('path')
+                                      .attr("fill","white");
 
-        projects.map( (item, i) => {
+                  icon
+                    .attr("transform", "translate(5,0) scale(0.18,0.18)")
+            })
 
-          const name = item.client + " - " + item.vertical;
+      });
+  }
 
-          const clientBarWidrth = ( name.length < 5 ) ? 60 : name.length * 9;
-          const y = i * 46;
+  drawAward(client){
 
-          const clientBar = clientsFilters
-            .append('g');
+    d3.xml( fwa )
+      .then(data => {
+          const selection = d3.select(d3.select(data).select("defs")._groups[0][0]).select('g');
+          const url = "https://thefwa.com/cases/lancer-earth";
 
-          clientBar
-            .append('rect')
-            .attr('width', clientBarWidrth)
-            .attr('height', 40)
-            .style("pointer-events","all")
-            .style("cursor", "pointer")
-            .on("click", function(){
-              console.log("HomeGraph click bar");
-              return self.moveHiliteCircleToTarget(item)})
-            .style('fill', colorsMap[item.vertical]);
+          const icon =  d3.select("#MitsubishiBar")
+              .append('g')
+              .style("cursor", "pointer")
+              .style("pointer-events","all")
+              .on("click", () => {
+                window.open(url,'_blank');
+              })
 
-          clientBar
-            .append('text')
-            .attr("x", 5)
-            .attr("y", 20)
-            .attr("dy", ".35em")
-            .style("fill","white")
-            .style("user-select","none")
-            .style("pointer-events","none")
-            .style("cursor", "default")
-            .text(function(){return name})
+          const graphic = icon
+                            .append( () => selection.node() );
 
-          clientBar
-            .attr('transform', 'translate(' + 0 + ',' + y + ')');
+          const hitArea = icon.append("rect")
+                              .attr('width', 250)
+                              .attr('height', 250)
+                              .attr("fill","transparent")
 
-        });
+            icon
+              .attr("transform", "translate(160,-10) scale(0.30,0.30)")
+      })
+  }
+
+  drawBases(colonists){
+
+    console.log("drawBases colonists:",colonists)
+
+    colonists.map( (d,i) => {
+      d3.xml( base )
+        .then(data => {
+
+            const selection = d3.select(d3.select(data).select("defs")._groups[0][0]).select('g');
+
+            const id = `#colonist${d.id}`
+
+            const icon =  d3.select(id)
+                .append("g")
+                .style("pointer-events","none")
+
+            const fill = colorsMap[ d.vertical ];
+
+            const base = icon
+                            .append( () => selection.node() )
+                              .select("path")
+                                .attr("fill", fill);
+
+              icon
+                .attr("transform", "translate(10,-120) scale(0,0)")
+                .transition()
+                  .duration(500)
+                  .ease(d3.easeCubic)
+                  .delay( i * 250)
+                  .attr("transform", "translate(-25,-40) scale(0.50,0.50)")
+
+        })
+    })
 
   }
 
   drawColonists(world, colonyBox) {
-
 
     const echo = world.append('g').attr('id', 'echo');
 
@@ -493,8 +634,8 @@ class HomeGraph extends Component {
     const centerX = colonyBox.x;
     const centerY = colonyBox.y;
 
-    const echoX = centerX - 30;
-    const echoY = centerY - 60;
+    const echoX = centerX + 40;
+    const echoY = centerY + 40;
 
     echo
       .append('circle')
@@ -508,59 +649,35 @@ class HomeGraph extends Component {
       .style('opacity', 0.25)
       .attr('r', 160);
 
-    const colonists = [];
-
     const buildMap = () => {
 
-    //  let root = d3.hierarchy({ children: classes }).each(d => {
-      //  return d;
-    //  });
-
-    //id,energy,income,expenses,debt,sentiment,adults,kids,x,y,title,subTitle
-
-
-    const turbine = { id: 2,
-                      route: "/budding-data-scientist",
-                      energy: 1500,
-                      income: 10000,
-                      expenses: 8000,
-                      debt: 1200,
-                      sentiment: 5,
-                      adults: "UI engineer/actuary",
-                      kids: "2 girls",
-                      x: 480,
-                      y: 260,
-                      title:"wind turbine",
-                      subTitle:"a python experiment exploring turbines across the US"};
-
-    const colonist0 = {  id: 1,
-                        route: "/bio",
-                        energy: 1500,
-                        income: 10000,
-                        expenses: 8000,
-                        debt: 1200,
-                        sentiment: 5,
-                        adults: "UI engineer/actuary",
-                        kids: "2 girls",
-                        x: 80,
-                        y: 80,
-                        title:"The Flowers",
-                        subTitle:"Brandon, Jessica, Mabel & Elodie"};
-
-      const coords = [{x: 0, y: 50},
-                      {x: 80, y: 80},
-                      {x: 55, y: 120},
-                      {x: 135, y: 170},
-                      {x: 235, y: 270},
-                      {x: 335, y: 335},
-                      {x: 350, y: 30},
-                      {x: 400, y: 20},
-                      {x: 450, y: 80},
-                      {x: 500, y: 50},
-                      {x: 540, y: 40},
-                      {x: 580, y: 200}];
+    const coords = [{x: 20, y: 150},
+                    {x: -80, y: 80},
+                    {x: -40, y: -50},
+                    {x: 55, y: 20},
+                    {x: 135, y: 170},
+                    {x: 235, y: 270},
+                    {x: 335, y: 335},
+                    {x: 350, y: 30},
+                    {x: 400, y: 20},
+                    {x: 450, y: 80},
+                    {x: 480, y: 260},
+                    {x: 500, y: 50},
+                    {x: 540, y: 40},
+                    {x: 580, y: 200}];
 
     const colonists = identity.projects.map( (project, i) => {
+
+      const x = coords[i].x;
+      const y = coords[i].y;
+
+      const title = project.client;
+
+      console.log("-------------------");
+      console.log("title: ", title);
+      console.log("x: ", x);
+      console.log("y: ", y);
+
       return {  id: i,
                 route: project.route,
                 energy: 1500,
@@ -571,18 +688,16 @@ class HomeGraph extends Component {
                 adults: "miner/farmer",
                 kids: "3 boys",
                 fill: '',
-                x: coords[i].x,
-                y: coords[i].y,
-                title: project.client,
+                x,
+                y,
+                title,
                 subTitle: project.vertical,
                 ...project}
     });
 
-    const actors = [turbine, ...colonists];
-
-      let node = world
+      const node = world
         .selectAll('.node')
-        .data(actors)
+        .data(colonists)
         .enter()
         .append('g')
         .attr('class', 'node')
@@ -599,13 +714,11 @@ class HomeGraph extends Component {
           return 'translate(' + transX + ',' + transY + ')';
         });
 
-      //const aqua = 'rgba(51, 197, 197, 0.20)';
       const colours = ColorUtil.getColours();
 
       let getColor = i => {
         return colours[i];
       };
-
 
       const tooltip = self.getTooltip();
 
@@ -615,15 +728,17 @@ class HomeGraph extends Component {
           return d.id;
         })
         .attr('r', function(d) {
-          return 10;
-        })
-        /*
-        .attr('height', function(d) {
           return 20;
-        })*/
+        })
+
+        .attr('cy', function(d) {
+          return -10;
+        })
         .style('fill', function(d, i) {
-          const color = (d.vertical) ? colorsMap[d.vertical] : getColor(i);
-          return color;
+          return "red";
+        })
+        .style('opacity', function(d, i) {
+          return 0;
         })
         .style('cursor', 'pointer')
         .on('mouseover', function() {
@@ -639,6 +754,9 @@ class HomeGraph extends Component {
         })
         .on('click', function(d) {
           console.log(d);
+
+          self.moveHiliteCircleToTarget(d)
+
           if (d.route === "/no-route") return;
           self.changeRoute(d)
         });
@@ -653,8 +771,12 @@ class HomeGraph extends Component {
           return '#' + d.id;
         });
 
+        this.drawBases(colonists)
+
         self.setState({colonists})
     }
+
+
 
     return buildMap();
 
@@ -672,16 +794,11 @@ class HomeGraph extends Component {
       .append('svg')
       //.attr('viewBox', '0 0 100 100')
       .attr('preserveAspectRatio', 'xMidYMid meet')
-      .attr('width', '10000px')
+      .attr('width', '1350px')
       .attr('height', '10000px')
       .style('margin', '0 auto');
 
     const svg = viewport;
-
-    //const format = d3.format(',d');
-    //const color = d3.scaleOrdinal(d3.schemeCategory20c);
-
-    //const y = this.props.app.isMobile ? 100 : 0;
 
     const world = svg
       .append('g')
@@ -699,6 +816,7 @@ class HomeGraph extends Component {
   }
 
   render() {
+
     return <div id="home-viewport" style={this.state.homeStyle} />;
   }
 }

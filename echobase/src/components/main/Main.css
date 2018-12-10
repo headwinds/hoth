@@ -26,6 +26,18 @@ ul {
   z-index: 1;
 }
 
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #ddd;
+  opacity: 0.5;
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 body {
   display: block;
   margin: 0px;
@@ -62,6 +74,22 @@ body {
   pointer-events: none;
 }
 
+.project {
+  display: inline-block;
+  position: relative;
+  top: 0;
+  left: 0;
+  max-width: 300px;
+  color: #666;
+  z-index: 2;
+  font-size: 14px;
+  padding: 20px;
+  opacity: 1;
+  -webkit-box-shadow: 0px 2px 13px -2px rgba(110,110,110,0.63);
+  -moz-box-shadow: 0px 2px 13px -2px rgba(110,110,110,0.63);
+  box-shadow: 0px 2px 13px -2px rgba(110,110,110,0.63);
+}
+
 .bio {
   display: inline-block;
   position: relative;
@@ -73,6 +101,9 @@ body {
   font-size: 14px;
   padding: 20px;
   opacity: 1;
+  -webkit-box-shadow: 0px 2px 13px -2px rgba(110,110,110,0.63);
+  -moz-box-shadow: 0px 2px 13px -2px rgba(110,110,110,0.63);
+  box-shadow: 0px 2px 13px -2px rgba(110,110,110,0.63);
 }
 
 .about {
@@ -82,12 +113,15 @@ body {
   color: #666;
   z-index: 3;
   font-size: 14px;
-  padding: 20px;
+  padding: 0px;
   opacity: 1;
   left: 0px;
   top: 0px;
   margin-right: 0px;
   pointer-events: none;
+  -webkit-box-shadow: 0px 2px 13px -2px rgba(110,110,110,0.63);
+  -moz-box-shadow: 0px 2px 13px -2px rgba(110,110,110,0.63);
+  box-shadow: 0px 2px 13px -2px rgba(110,110,110,0.63);
 }
 
 .graph {

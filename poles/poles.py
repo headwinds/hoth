@@ -22,31 +22,32 @@ parser = argparse.ArgumentParser(
 	description='Creates csv of twitter data from our poles')
 
 # a path for the location data to be saved in a csv
-parser.add_argument('file', type=str, 
+parser.add_argument('file', type=str,
                    help='assign a filename')
-# the lat of the location 
+# the lat of the location
 parser.add_argument('lat', type=float, default=63.7467,
                    help='assign the latitute')
-# the long of the location 
+# the long of the location
 parser.add_argument('long', type=float, default=68.5170,
                    help='assign the longitude)')
 
-# the long of the location 
+# the radius for the range of the location
 parser.add_argument('range', type=int, default=5,
                    help='assign the radius range in kms)')
 
-# the long of the location 
+# the max amount of records
 parser.add_argument('--max', type=int, default=5,
                    help='max records to be created)')
 
+# create a model of these arguments
 args = parser.parse_args()
 
 
-# Toronto City Hall - python poles.py 'cityhall.csv' 43.653908 -79.384293 5  
+# Toronto City Hall - python poles.py 'cityhall.csv' 43.653908 -79.384293 5
 
-latitude = args.lat	# geographical centre of search
+latitude = args.lat		# geographical centre of search
 longitude = args.long	# geographical centre of search
-max_range = args.range	 		# search range in kilometres
+max_range = args.range	# search range in kilometres
 num_results = 10		# minimum results to obtain
 
 print colored("file name: %s" % args.file,'green')
@@ -59,10 +60,10 @@ outfileJSONRaw = "northernRaw.json"
 bellwoodslat = 43.647459
 bellwoodslong = -79.413852
 bellwoodsCSV = "bellwoods.csv"
-bellwoods_max_range = 1 	
+bellwoods_max_range = 1
 
 #-----------------------------------------------------------------------
-# load our API credentials 
+# load our API credentials
 #-----------------------------------------------------------------------
 config = {}
 execfile("config.py", config)
@@ -120,10 +121,10 @@ while result_count <  num_results:
 			text = text.encode('ascii', 'replace')
 			latitude = result["geo"]["coordinates"][0]
 			longitude = result["geo"]["coordinates"][1]
-			# validate the content 
+			# validate the content
 			validRow = validateRow(row)
-			if validRow: 
-				# now write this row to our CSV file if its valid 
+			if validRow:
+				# now write this row to our CSV file if its valid
 				# row = [ userid, value, user, text, latitude, longitude ]
 			 	rowText = [ text, latitude, longitude ]
 				csvwriter.writerow(rowText)
@@ -133,7 +134,7 @@ while result_count <  num_results:
 				#with open(outfileJSON, 'w') as outfile:
 				#  json.dump(jsonData, outfile)
 				#with open(outfileJSONRaw, 'w') as outfile:
-				#  json.dump(result, outfile)  
+				#  json.dump(result, outfile)
 				result_count += 1
 		last_id = result["id"]
 
@@ -149,6 +150,5 @@ while result_count <  num_results:
 csvfile.close()
 
 
-# don't print json yet 
+# don't print json yet
 # print "written to %s" % outfile
-

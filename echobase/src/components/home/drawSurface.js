@@ -73,7 +73,8 @@ export function drawSurface(target, width, height, isMobile) {
       .attr('d', d3.geoPath(d3.geoIdentity().scale(width / terrain.width)))
       .attr('fill', d => {
         return color(d.value);
-      });
+      })
+      .attr('transform', 'translate(2,0)');
 
     const surfaceBox = target.node().getBBox();
     console.log('surface: ', surfaceBox);
@@ -83,8 +84,17 @@ export function drawSurface(target, width, height, isMobile) {
       .attr('width', surfaceBox.width)
       .attr('height', surfaceBox.height)
       .attr('transform', 'translate(5,5)')
-      .style('stroke-width', '10px')
+      .style('stroke-width', '8px')
       .style('stroke-dashArray', '400px')
+      .style('fill', 'transparent')
+      .style('stroke', '#b1d8da');
+
+    target
+      .append('rect')
+      .attr('width', surfaceBox.width + 2)
+      .attr('height', surfaceBox.height + 2)
+      .attr('transform', 'translate(0,0)')
+      .style('stroke-width', '2px')
       .style('fill', 'transparent')
       .style('stroke', '#b1d8da');
 

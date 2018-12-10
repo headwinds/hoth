@@ -16,13 +16,49 @@ const identity = {
   },
   projects: [
     {
+      name: 'US Wind Turbines',
+      description:
+        'Frontend Developer,UI Design & Data Visualization',
+      client: 'Kaggle',
+      company: 'Kaggle',
+      tags: 'security,file sharing, messaging',
+      vertical: "Energy",
+      duration: 25,
+      team: 1,
+      role: 'Lead UI',
+      tech: 'Python',
+      year: 2018,
+      localized: false,
+      locked: false,
+      route: "/budding-data-scientist",
+      id: 1
+    },
+    {
+      name: 'TODAQ Financial',
+      description:
+        'Frontend Developer,UI Design & Data Visualization',
+      client: 'TODAQ',
+      company: 'TODAQ',
+      tags: 'security,file sharing, messaging',
+      vertical: "Financial",
+      duration: 25,
+      team: 1,
+      role: 'Lead UI',
+      tech: 'ClojureScript',
+      year: 2018,
+      localized: false,
+      locked: false,
+      route: "/no-route",
+      id: 2
+    },
+    {
       name: 'Brandon Flowers',
       description:
         'Frontend Developer,UI Design & Data Visualization',
       client: 'Headwinds',
       company: 'QoC Health',
       tags: 'security,file sharing, messaging',
-      vertical: "Brandon, Jessica, Mabel & Elodie",
+      vertical: "Brandon Flowers",
       duration: 25,
       team: 1,
       role: 'Lead UI',
@@ -31,14 +67,14 @@ const identity = {
       localized: false,
       locked: false,
       route: "/bio",
-      id: 99
+      id: 3
     },
     {
       name: 'Patient Network',
       description:
         'The Trioova Patient Network enables patients to connect with care-givers and other providers. Patients can form their own connected care circle and engage in private or team chat. They can also upload and share files as well as search a marketplace to connect with providers across the country',
       client: 'Trioova',
-      company: 'QoC Health',
+      company: 'QoC',
       tags: 'security,file sharing, messaging',
       vertical: "Health",
       duration: 4,
@@ -49,7 +85,7 @@ const identity = {
       localized: false,
       locked: false,
       route: "/no-route",
-      id: 0
+      id: 4
     },
     {
       name: 'Thought Spot',
@@ -67,13 +103,13 @@ const identity = {
       year: 2017,
       locked: false,
       route: "/no-route",
-      id: 1
+      id: 5
     },
     {
       name: 'ML Tools',
       description:
         'Agents were required to manually tag thousands of lines of chat data. Natural Language Processing and Machine Learning alorigthms can now automatically tag the vast majority of this text reducing human involment down to much more manageable results. Inspired by an excel-like interface that talks to ML services, this tool allows an agent to quickly review problematic tags and reduced the time it takes to develop a model for the Data Science team down from 3 months to 1 week.',
-      client: '247 ai',
+      client: '247',
       company: '247 ai',
       vertical: "Customer Service",
       tags: 'security,experience,game,world',
@@ -85,25 +121,7 @@ const identity = {
       localized: true,
       locked: false,
       route: "/no-route",
-      id: 2
-    },
-    {
-      name: 'Voices',
-      description:
-        'I was hired to lead the Flash development on a project for Microsoft. In order to promote version 2 of the MSN search toolbar, we developed a global guiz contest -- the MSN World Tour -- that would be played out in real-time over the course of 4 weeks and may involve as many as 12 million users. I helped the team of designers and developers assemble the game assests, and developed the game logic that relies on Flash/XML communication with ASP.NET. We also did some complex encryption to protect our users, and produced two versions in French and English.',
-      client: '247 ai',
-      company: '247 ai',
-      tags: 'security,experience,game,world',
-      duration: 4,
-      vertical: "Customer Service",
-      team: 4,
-      role: 'Fullstack',
-      localized: true,
-      tech: '',
-      year: 2015,
-      locked: false,
-      route: "/no-route",
-      id: 3
+      id: 6
     },
     {
       name: 'Total Drama Avatar Builder',
@@ -121,7 +139,7 @@ const identity = {
       year: 2010,
       locked: false,
       route: "/no-route",
-      id: 4
+      id: 7
     },
     {
       name: 'Lancer Earth',
@@ -137,7 +155,7 @@ const identity = {
       year: 2007,
       locked: false,
       route: "/no-route",
-      id: 5
+      id: 8
     },
     {
       name: 'World Tour',
@@ -154,7 +172,7 @@ const identity = {
       year: 2005,
       locked: false,
       route: "/no-route",
-      id: 6
+      id: 9
     },
     {
       name: 'BMW Car Configurator',
@@ -172,7 +190,7 @@ const identity = {
       year: 2017,
       locked: false,
       route: "/no-route",
-      id: 8
+      id: 10
     },
     {
       name: 'Bacardi 360 Video',
@@ -189,7 +207,7 @@ const identity = {
       year: 2013,
       locked: false,
       route: "/no-route",
-      id: 9
+      id: 11
     },
     {
       name: 'Wii Fitness',
@@ -201,13 +219,13 @@ const identity = {
       duration: 4,
       team: 4,
       role: 'Fullstack',
-      vertical: "Lifestyle",
+      vertical: "Entertainment",
       tech: '',
       api: 'None',
       year: 2010,
       locked: false,
       route: "/no-route",
-      id: 10
+      id: 12
     },
     {
       name: 'Labatt Wolf Pack',
@@ -223,7 +241,7 @@ const identity = {
       year: 2006,
       locked: false,
       route: "/no-route",
-      id: 11
+      id: 13
     }
   ]
 };

@@ -40,7 +40,7 @@ ReactDOM.render(
           path="2016/03/codepen-angular2-typescript-build-component-playgrounds/"
           component={LogRead}
         />*/}
-        <Route path="/budding-data-scientist" component={WindProject}>
+        <Route path="/budding-data-scientist" component={WindProject} />
           {/*
           <IndexRoute component={MedicalCentre} />
           <Route path="/logs" component={LogMenu} />
@@ -49,7 +49,6 @@ ReactDOM.render(
             path="2016/03/codepen-angular2-typescript-build-component-playgrounds/"
             component={LogRead}
           />*/}
-        </Route>
       </Route>
     </Router>
   </Provider>,

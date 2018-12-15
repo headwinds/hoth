@@ -26,7 +26,7 @@ const height = width;
 
 const homeStyle = {
   display: 'flex',
-  position: 'absolute',
+  position: 'relative',
   top: 0,
   left: 0,
   alignItems: 'center',
@@ -35,7 +35,7 @@ const homeStyle = {
   zIndex: 0
 };
 
-const fontTeko = 'Teko';
+const fontTeko = 'Asap Condensed';
 const fontOribitron = 'Orbitron';
 const colors = ["#00bd9c","#1dce6c","#2d97dd","#9b56b9","#344960","#cfb53b","#ff0e45","#878787"];
 const colorsMap = {
@@ -87,8 +87,11 @@ class HomeGraph extends Component {
   componentDidMount() {
     console.log('HomeGraph componentDidMount 2');
 
+    /*
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions.bind(this));
+    */
+    this.draw();
   }
 
   componentDidUpdate(nextProps) {
@@ -156,9 +159,11 @@ class HomeGraph extends Component {
     // or simply an aspect ratio preserved scale?!
 
     // clear svg
+    /*
     d3.select('svg').remove();
 
-    this.draw();
+
+    */
   }
 
   clear() {
@@ -284,7 +289,7 @@ class HomeGraph extends Component {
       .attr('class', 'tooltipFirstText')
       .style('fill', fontColor)
       .style('font-size', '20px')
-      .style('font-family', 'Teko')
+      .style('font-family', fontTeko)
       .text('a simple tooltip');
 
     tooltipG
@@ -294,7 +299,7 @@ class HomeGraph extends Component {
       .style('fill', '#999')
       .attr('class', 'tooltipSecondText')
       .style('font-size', '14px')
-      .style('font-family', 'Teko')
+      .style('font-family', fontTeko)
       .text('a simple tooltip 2');
     /*
     tooltipG
@@ -327,13 +332,23 @@ class HomeGraph extends Component {
         const centerY = colony0Box.y;
 
       const newX = centerX - foundColonist[0].x;
-      const newY = centerY - foundColonist[0].y;
+      const newY = centerY - foundColonist[0].y - 10;
 
       d3.select("#spotlight")
+      .transition()
+        .ease(d3.easeCubic)
+        .duration(1000)
+        .attr('transform', 'translate(' + newX + ',' + newY + ') scale(0.5,0.5)')
         .transition()
-          .ease(d3.easeCubic)
-          .duration(1000)
-          .attr('transform', 'translate(' + newX + ',' + newY + ')');
+          .ease(d3.easeBounce)
+          .delay(500)
+          .duration(500)
+          .attr('transform', 'translate(' + newX + ',' + newY + ') scale(1,1) rotate(270)')
+          .transition()
+            .ease(d3.easeLinear)
+            .delay(700)
+            .duration(500)
+            .attr('transform', 'translate(' + newX + ',' + newY + ') scale(0.6,0.6) rotate(0)');
     }
 
 
@@ -368,11 +383,14 @@ class HomeGraph extends Component {
       .append('text')
       .style('font-family', 'Orbitron') // or Teko?!
       .style('font-size', '70')
+      .style('opacity', 0)
       .style('fill', fontColor)
       .text(date.getDate());
 
     const hudBox = hudText.node().getBBox();
     console.log('drawHud', hudBox);
+
+    /*
 
     const startX = hudBox.width;
 
@@ -426,6 +444,7 @@ class HomeGraph extends Component {
       .attr('height', 4)
       .style('fill', fontColor)
       .attr('transform', 'translate(' + barX + ',' + -20 + ')');
+      */
 
       return hud;
 
@@ -496,13 +515,14 @@ class HomeGraph extends Component {
 
         clientBar
           .append('text')
-          .attr("x", 50)
+          .attr("x", 47)
           .attr("y", 20)
           .attr("dy", ".35em")
           .style("fill","white")
           .style("user-select","none")
           .style("pointer-events","none")
           .style("cursor", "default")
+          .style("font-family", fontTeko)
           .text(function(){return name})
 
         clientBar
@@ -637,17 +657,45 @@ class HomeGraph extends Component {
     const echoX = centerX + 40;
     const echoY = centerY + 40;
 
-    echo
+    const spotlight = echo.append("g")
+                          .attr('transform', 'translate(' + echoX + ',' + echoY + ')')
+                            .attr("id", "spotlight");
+
+    spotlight
       .append('circle')
-      .attr('r', 0)
-      .attr("id", "spotlight")
-      .attr('transform', 'translate(' + echoX + ',' + echoY + ')')
-      .style('fill', '#f9f9f9')
-      .transition()
-      .duration(1000)
-      .ease(d3.easeElastic)
-      .style('opacity', 0.25)
-      .attr('r', 160);
+        .attr('r', 0)
+        .style('fill', '#f9f9f9')
+        .transition()
+          .duration(1000)
+          .ease(d3.easeElastic)
+          .style('opacity', 0.25)
+          .attr('r', 160);
+
+    spotlight
+      .append('circle')
+        .attr('r', 0)
+        .style('fill', '#f9f9f9')
+        .transition()
+          .duration(1000)
+          .delay(500)
+          .ease(d3.easeElastic)
+          .style('opacity', 0.45)
+          .attr('r', 140);
+
+
+   spotlight
+      .append('circle')
+        .attr('r', 0)
+        .style("fill", "transparent")
+        .style("stroke", "#199ea5")
+        .style("stroke-dasharray", "4,10,20,5")
+        .transition()
+          .duration(1000)
+          .delay(1000)
+          .ease(d3.easeElastic)
+          //.style('opacity', 0.25)
+          .attr('r', 80);
+
 
     const buildMap = () => {
 

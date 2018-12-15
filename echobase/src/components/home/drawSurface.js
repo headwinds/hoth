@@ -84,19 +84,19 @@ export function drawSurface(target, width, height, isMobile) {
       .attr('width', surfaceBox.width)
       .attr('height', surfaceBox.height)
       .attr('transform', 'translate(5,5)')
-      .style('stroke-width', '8px')
-      .style('stroke-dashArray', '400px')
-      .style('fill', 'transparent')
-      .style('stroke', '#b1d8da');
+      //.style('stroke-width', '8px')
+      //.style('stroke-dashArray', '400px')
+      .style('fill', 'transparent');
+      //.style('stroke', '#b1d8da');
 
     target
       .append('rect')
       .attr('width', surfaceBox.width + 2)
       .attr('height', surfaceBox.height + 2)
       .attr('transform', 'translate(0,0)')
-      .style('stroke-width', '2px')
-      .style('fill', 'transparent')
-      .style('stroke', '#b1d8da');
+      //.style('stroke-width', '2px')
+      .style('fill', 'transparent');
+      //.style('stroke', '#b1d8da');
 
     const colonyX = Math.floor(surfaceBox.width / 1.5);
     const colonyY = Math.floor(surfaceBox.height / 1.5);

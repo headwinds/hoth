@@ -26,6 +26,7 @@
     "react-scripts": "^1.1.4",
     "react-scripts-cssmodules": "^1.0.171",
     "react-tweet-embed": "^1.0.3",
+    "react-twitter-auth": "0.0.12",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "typeface-roboto": "^0.0.54"

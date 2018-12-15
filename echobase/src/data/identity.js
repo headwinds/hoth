@@ -34,11 +34,11 @@ const identity = {
       id: 1
     },
     {
-      name: 'TODAQ Financial',
+      name: 'TodaQ Financial',
       description:
         'Frontend Developer,UI Design & Data Visualization',
-      client: 'TODAQ',
-      company: 'TODAQ',
+      client: 'TodaQ',
+      company: 'TodaQ',
       tags: 'security,file sharing, messaging',
       vertical: "Financial",
       duration: 25,
@@ -48,7 +48,7 @@ const identity = {
       year: 2018,
       localized: false,
       locked: false,
-      route: "/no-route",
+      route: "/toda",
       id: 2
     },
     {
@@ -84,7 +84,7 @@ const identity = {
       year: 2018,
       localized: false,
       locked: false,
-      route: "/no-route",
+      route: "/trioova",
       id: 4
     },
     {
@@ -102,7 +102,7 @@ const identity = {
       tech: '',
       year: 2017,
       locked: false,
-      route: "/no-route",
+      route: "/camh",
       id: 5
     },
     {
@@ -120,7 +120,7 @@ const identity = {
       year: 2016,
       localized: true,
       locked: false,
-      route: "/no-route",
+      route: "/247",
       id: 6
     },
     {
@@ -138,7 +138,7 @@ const identity = {
       localized: false,
       year: 2010,
       locked: false,
-      route: "/no-route",
+      route: "/totaldrama",
       id: 7
     },
     {
@@ -154,7 +154,7 @@ const identity = {
       localized: true,
       year: 2007,
       locked: false,
-      route: "/no-route",
+      route: "/mitsubishi",
       id: 8
     },
     {
@@ -171,7 +171,7 @@ const identity = {
       localized: true,
       year: 2005,
       locked: false,
-      route: "/no-route",
+      route: "/microsoft",
       id: 9
     },
     {
@@ -189,7 +189,7 @@ const identity = {
       api: 'None',
       year: 2017,
       locked: false,
-      route: "/no-route",
+      route: "/bmw",
       id: 10
     },
     {
@@ -206,7 +206,7 @@ const identity = {
       api: 'Facebook',
       year: 2013,
       locked: false,
-      route: "/no-route",
+      route: "/bacardi",
       id: 11
     },
     {
@@ -224,7 +224,7 @@ const identity = {
       api: 'None',
       year: 2010,
       locked: false,
-      route: "/no-route",
+      route: "/nintendo",
       id: 12
     },
     {
@@ -240,7 +240,7 @@ const identity = {
       tech: 'Flash AS2',
       year: 2006,
       locked: false,
-      route: "/no-route",
+      route: "/labatt",
       id: 13
     }
   ]

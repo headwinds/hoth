@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
+import { drawLabatt } from './labatt/drawLabatt'
 
-export function drawRing() {
+export function drawColony(type, dispatch) {
 
   const sentimentData = [{label: "frontend dev", value:70, color:"rgb(0, 189, 156)"},
                        		 {label: "design", color:"#999", value:20},
@@ -32,8 +33,6 @@ export function drawRing() {
       .attr("height", height)
     .append("g")
       .attr("transform", "translate(" + width / 2  + "," + height / 2 + ")");
-
-
 
   const textGroup = svg.append('g');
 

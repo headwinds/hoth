@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import WindLogMay21 from './WindLogMay21';
 import { theme } from '../../theme/Theme';
+import { Link } from 'react-router';
 
 const linkStyle = theme.linkStyle;
 
@@ -25,12 +26,8 @@ export default class About extends Component {
           <h1 style={{ margin: 0, marginBottom: 10 }}>US Wind Turbines</h1>
           </div>
           <div>
-          <a
-            href="/"
-            style={linkStyle}
-          >
-            X
-          </a></div>
+            <Link to={`/`} style={linkStyle}>X</Link>
+          </div>
         </div>
           <p
             style={{

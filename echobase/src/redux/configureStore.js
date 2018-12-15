@@ -5,6 +5,7 @@ import createLogger from 'redux-logger'
 import {appReducer} from './reducers/app_reducer';
 import {logReducer} from './reducers/log_reducer';
 import {gridReducer} from './reducers/grid_reducer';
+import {gameReducer} from './reducers/game_reducer';
 import {browserHistory} from 'react-router';
 import { routerMiddleware, routerReducer } from 'react-router-redux'
 
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   app: appReducer,
   log: logReducer,
   grid: gridReducer,
-  routing: routerReducer
+  routing: routerReducer,
+  game: gameReducer,
 });
 
 export default function configureStore(preloadedState) {

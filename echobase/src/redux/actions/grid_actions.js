@@ -1,7 +1,7 @@
 /* eslint-disable */
 import fetch from 'isomorphic-fetch';
 import * as types from '../types/types';
-import * as social from './config/social';
+/import * as social from './config/social';
 
 
 export const requestRows = () => {
@@ -29,7 +29,7 @@ export const fetchTweetsByLocation = () => {
 
 export const getTweets = () => {
   return dispatch => {
-
+    /*
     var Twitter =  require('twitter-node-client').Twitter;
     var error = function (err, response, body) {
         console.log('ERROR [%s]', err);
@@ -41,8 +41,6 @@ export const getTweets = () => {
 
     var twitter = new Twitter(config);
     twitter.getSearch({'q':'#haiku','count': 10}, error, success);
+    */
   }
 }
-
-
-

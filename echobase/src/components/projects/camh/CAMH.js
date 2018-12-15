@@ -1,34 +1,36 @@
 import React, { Component } from 'react';
 import { theme } from '../../theme/Theme';
-import { drawRing } from './drawRing';
+import { drawColony } from '../drawColony';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 const linkStyle = theme.linkStyle;
 const paralinkStyle = theme.paralinkStyle;
 
-export default class Bio extends Component {
+class CAMH extends Component {
 
   componentDidMount() {
-    console.log('Bio componentDidMount ');
+    console.log('CAMH componentDidMount ');
 
-    // something clears all the svg from the dom so I need to track that down!
-    drawRing();
+    setTimeout( () => {
+      drawColony("camh");
+    }, 500);
 
   }
 
   render() {
     return (
-      <div className="bio" style={{ height: 700, background: "white", padding: 10, pointerEvents: "all" }}>
+      <div className="bio" style={{ height: 620, background: "white", padding: 10, pointerEvents: "all" }}>
         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
           <div>
-          <h1 style={{ margin: 0, marginBottom: 10 }}>Brandon Flowers</h1>
+          <h1 style={{ margin: 0, marginBottom: 10 }}>CAMH Thought Spot</h1>
           </div>
           <div>
-          <Link to={`/`} style={linkStyle}>X</Link>
+            <Link to={`/`} style={linkStyle}>X</Link>
           </div>
         </div>
         <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: ""}}>
-          <div id="ring" style={{display: "block", width: 200, height: 270}}></div>
+          <div id="colony" style={{display: "block", width: 200, height: 150}}></div>
         </div>
         <div style={{ overflow: "hidden",
                       overflowY: "scroll",
@@ -38,38 +40,18 @@ export default class Bio extends Component {
                       border: "1px solid #eee",
                       margin: "0px",
                       marginBottom: "20px"}}>
-        <p>
-        Today, I{"'"}m thrilled to have joined <a
-          href="https://www.ada.support"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={paralinkStyle}
-        >
-          Ada
-        </a>{' '} as a Frontend Architect. I enjoy prototyping, interaction design, data visualization, and leading a frontend team.
-        </p>
           <p>
-            Previously, I had an amazing 5 years working at     <a
-                  href="https://www.247.ai/"
+            {' '}  <a
+                  href="https://mythoughtspot.ca/"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={paralinkStyle}
                 >
-                  24-7 ai
-                </a>{' '} building an analytics and natural
-            language processing app,{' '}
-            <a
-              href="https://www.youtube.com/watch?v=5KZofZX3XaY"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={paralinkStyle}
-            >
-              Voices
-            </a>{' '}
-            that visualizes and tracks the customer journey across the
-            omnichannel. </p><p>I also contributed to a machine learning tool which
-            enables custom service to rapidly bulk tag and classify chat
-            conversations.
+                  CAMH Thoughspot
+                </a>{' '} </p>
+                <p>
+            We built a social mapping application for CAMH for users to collect places
+            of interest using Google and Mapbox APIs.
           </p>
         </div>
         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
@@ -114,3 +96,17 @@ export default class Bio extends Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  app: state.app,
+  location: ownProps.location,
+  game: state.game
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CAMH);

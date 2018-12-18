@@ -13,7 +13,7 @@ class Toda extends Component {
     console.log('Toda componentDidMount ');
 
     setTimeout( () => {
-      drawColony("toda");
+      drawColony("toda", this.props);
     }, 500);
 
   }

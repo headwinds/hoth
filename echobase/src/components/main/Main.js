@@ -41,7 +41,7 @@ class Main extends Component {
       } else {
         return (
           <div>
-            <HothNav />
+           {/* Sign in <HothNav /> */}
             <div className={mainClass} style={mainStyle}>
               <div className="gap" />
               {this.props.children}

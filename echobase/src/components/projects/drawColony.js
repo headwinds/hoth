@@ -58,9 +58,9 @@ const drawIcon = (vertical) => {
 
 }
 
-const drawHud = (world, colonyBox, props) => {
+const drawHud = (type, world, colonyBox, props) => {
 
-  console.log("HomeGraph drawHud")
+  console.log("HomeGraph drawHud props.game.colonies[type]: ", props.game.colonies[type])
 
   const self = this;
 
@@ -77,7 +77,7 @@ const drawHud = (world, colonyBox, props) => {
   const hudX = centerX - 80;
   const hudY = centerY - 230 + y;
 
-  hud.attr('transform', 'translate(' + hudX + ',' + 184 + ')');
+  hud.attr('transform', 'translate(' + 0 + ',' + 0 + ')');
 
   const date = new Date();
 
@@ -87,8 +87,8 @@ const drawHud = (world, colonyBox, props) => {
   const hudText = hud
     .append('text')
     .style('font-family', 'Orbitron') // or Teko?!
-    .style('font-size', '70')
-    .style('opacity', 0)
+    .style('font-size', '20')
+    .style('opacity', 1)
     .style('fill', fontColor)
     .text(date.getDate());
 
@@ -99,6 +99,14 @@ const drawHud = (world, colonyBox, props) => {
 
   const barX = startX + 70;
   const iconX = startX + 50;
+
+  /*
+  health
+  food
+  shelter
+  production
+  energy
+  */
 
   const healthIcon = hud
     .append('g')
@@ -148,6 +156,38 @@ const drawHud = (world, colonyBox, props) => {
     .style('fill', fontColor)
     .attr('transform', 'translate(' + barX + ',' + -20 + ')');
 
+  const productionIcon = hud
+    .append('g')
+    .append('rect')
+    .attr('width', 16)
+    .attr('height', 4)
+    .style('fill', 'darkgreen')
+    .attr('transform', 'translate(' + iconX + ',' + -20 + ')');
+
+  const productionBar = hud
+    .append('g')
+    .append('rect')
+    .attr('width', 60)
+    .attr('height', 4)
+    .style('fill', fontColor)
+    .attr('transform', 'translate(' + barX + ',' + -20 + ')');  
+
+  const shelterIcon = hud
+    .append('g')
+    .append('rect')
+    .attr('width', 16)
+    .attr('height', 4)
+    .style('fill', 'darkgreen')
+    .attr('transform', 'translate(' + iconX + ',' + -20 + ')');
+
+  const shelterBar = hud
+    .append('g')
+    .append('rect')
+    .attr('width', 60)
+    .attr('height', 4)
+    .style('fill', fontColor)
+    .attr('transform', 'translate(' + barX + ',' + -20 + ')');    
+
     return hud;
 
 }
@@ -181,6 +221,6 @@ export function drawColony(type, props) {
       svg.append("g")
           .attr("id", "base");
 
-    drawHud(svg, {x: 0, y: 0}, props)
+    drawHud(type, svg, {x: 0, y: 0}, props)
 
 }

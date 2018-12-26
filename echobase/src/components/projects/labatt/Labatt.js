@@ -4,6 +4,9 @@ import { drawColony } from '../drawColony';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
+import wolfpack1 from './wolfpack1.png';
+import wolfpack2 from './wolfpack2.png';
+
 import {
 	submitAnswer,
 } from '../../../redux/actions/game_actions';
@@ -43,10 +46,12 @@ class Labatt extends Component {
                       border: "1px solid #eee",
                       margin: "0px",
                       marginBottom: "20px"}}>
+        <img src={wolfpack1} />              
         <p>
         I designed and developed this loyalty program for Labatt Call Centre Representatives who handle
         clients across the country.
         </p>
+        <img src={wolfpack2} />     
         <p>
         The system tracks their business goals and will remind them of their next steps and
         offer rewards based on their progress.

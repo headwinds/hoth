@@ -15,7 +15,12 @@ const paralinkStyle = {
   pointerEvents: "all"
 };
 
+
+const titleStyle = { margin: 0, marginBottom: 10, fontSize: 18, color: "#666" };
+
 export const theme = {
   linkStyle,
-  paralinkStyle
+  paralinkStyle,
+  titleStyle
 };
+

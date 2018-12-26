@@ -1,4 +1,4 @@
-# Jedis & Wampas
+# Miners & Lumberjacks
 
 A card game based on Mages & Monsters but replacing them with characters inspired by Star Wars, specifically the ones from that desolate, ice-encrusted planet, Hoth. We can use traits from [Rebels](https://www.starwars.com/news/echo-base-personnel-meet-the-rebels-on-ice),[Snowtroopers](http://starwars.wikia.com/wiki/Cold_assault_stormtrooper), and [Wampas](http://starwars.wikia.com/wiki/Wampa) to create our own unique game.
 
@@ -59,6 +59,8 @@ Before we create our own unique rule set, let's get inspired by some existing ca
 [REIGNS: Her Majesty](https://www.devolverdigital.com/games/view/reigns-her-majesty)
 [Magic: the gathering](https://magic.wizards.com/en)
 [Hearthstone](https://playhearthstone.com/en-us/)
+[zeit sanic](https://simonwillison.net/2017/Oct/14/async-python-sanic-now/)
+[auth](https://pypi.org/project/sanic-oauth/0.1.1/)
 
 ## Rules
 

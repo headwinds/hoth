@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 const linkStyle = theme.linkStyle;
+const titleStyle = theme.titleStyle;
 const paralinkStyle = theme.paralinkStyle;
 
 class Toda extends Component {
@@ -23,7 +24,7 @@ class Toda extends Component {
       <div className="bio" style={{ height: 620, background: "white", padding: 10, pointerEvents: "all" }}>
         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
           <div>
-          <h1 style={{ margin: 0, marginBottom: 10 }}>TodaQ Blockchain</h1>
+          <h1 style={titleStyle}>TodaQ Blockchain</h1>
           </div>
           <div>
             <Link to={`/`} style={linkStyle}>X</Link>
@@ -47,10 +48,25 @@ class Toda extends Component {
           rel="noopener noreferrer"
           style={paralinkStyle}
         >
-           Hassan Khan.
-        </a>
-        </p>
-        </div>
+           Hassan Khan. 
+           </a></p>
+           <p>Meet {' '}
+        <a
+          href="https://www.youtube.com/watch?v=JpAhj8SJY-Y"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={paralinkStyle}
+        >
+           Dann Toliver. 
+           </a></p>
+           <p>Hassan and Dann present the mission of TodaQ to enable
+           emerging markets to preserve value and invest within their economy by using digital currency that can be tracked unlike cash.
+           </p>
+          <p>Toda is a blockchain service, which along with a currency, can produce many secure file types like identities, art or virtual items.
+            With a Toda file, you have full control who can access that file and who you can share it with. As a decentralized network, Toda makes
+            it easier to share and track files then a centralized database which is attracting many different verticals that struggle with this problem.
+         </p>
+         </div>
         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
         <div>
           <p>

@@ -19,6 +19,11 @@ import lifestyle from "./icons/lifestyle.svg";
 import fwa from "./icons/fwa.svg";
 import base from "./icons/base.svg";
 
+import * as _ from "lodash";
+
+import capBack from "./icons/mushroomCapsBack.svg";
+import capFront from "./icons/mushroomCapsFront.svg";
+
 import identity from "../../data/identity";
 
 const width = 1000;
@@ -358,95 +363,16 @@ class HomeGraph extends Component {
 
     console.log("HomeGraph drawHud")
 
-    const self = this;
-
     const hud = world
       .append('g')
       .style('opacity', 1)
       .attr('id', 'hud');
 
     const centerX = colonyBox.x;
-    const centerY = colonyBox.y;
-
-    const y = this.props.app.isMobile ? 390 : 0;
-
     const hudX = centerX - 80;
-    const hudY = centerY - 230 + y;
-
     hud.attr('transform', 'translate(' + hudX + ',' + 184 + ')');
 
-    const date = new Date();
-
-    const fontColor = this.state.colours[6];
-
-    const hudText = hud
-      .append('text')
-      .style('font-family', 'Orbitron') // or Teko?!
-      .style('font-size', '70')
-      .style('opacity', 0)
-      .style('fill', fontColor)
-      .text(date.getDate());
-
-    const hudBox = hudText.node().getBBox();
-    console.log('drawHud', hudBox);
-
-    /*
-
-    const startX = hudBox.width;
-
-    const barX = startX + 70;
-    const iconX = startX + 50;
-
-    const healthIcon = hud
-      .append('g')
-      .append('rect')
-      .attr('width', 16)
-      .attr('height', 4)
-      .style('fill', 'darkred')
-      .attr('transform', 'translate(' + iconX + ',' + -40 + ')');
-
-    const healthBar = hud
-      .append('g')
-      .append('rect')
-      .attr('width', 80)
-      .attr('height', 4)
-      .style('fill', fontColor)
-      .attr('transform', 'translate(' + barX + ',' + -40 + ')');
-
-    const energyIcon = hud
-      .append('g')
-      .append('rect')
-      .attr('width', 16)
-      .attr('height', 4)
-      .style('fill', 'gold')
-      .attr('transform', 'translate(' + iconX + ',' + -30 + ')');
-
-    const energyBar = hud
-      .append('g')
-      .append('rect')
-      .attr('width', 40)
-      .attr('height', 4)
-      .style('fill', fontColor)
-      .attr('transform', 'translate(' + barX + ',' + -30 + ')');
-
-    const foodIcon = hud
-      .append('g')
-      .append('rect')
-      .attr('width', 16)
-      .attr('height', 4)
-      .style('fill', 'darkgreen')
-      .attr('transform', 'translate(' + iconX + ',' + -20 + ')');
-
-    const foodBar = hud
-      .append('g')
-      .append('rect')
-      .attr('width', 60)
-      .attr('height', 4)
-      .style('fill', fontColor)
-      .attr('transform', 'translate(' + barX + ',' + -20 + ')');
-      */
-
-      return hud;
+    return hud;
 
   }
 
@@ -562,6 +488,8 @@ class HomeGraph extends Component {
             }
           }
 
+          // draw icon
+
           d3.xml( getIcon(item.vertical) )
             .then(data => {
                 const selection = d3.select(d3.select(data).select("defs")._groups[0][0]).select('g');
@@ -569,16 +497,52 @@ class HomeGraph extends Component {
                 const icon =  d3.select("#" + client + "Bar")
                     .append('g');
 
-                const graphic = icon
-                                  .append( () => selection.node() )
-                                    .select('path')
-                                      .attr("fill","white");
+                icon
+                    .append( () => selection.node() )
+                      .select('path')
+                        .attr("fill","white");
 
-                  icon
-                    .attr("transform", "translate(5,0) scale(0.18,0.18)")
+                icon
+                  .attr("transform", "translate(5,0) scale(0.18,0.18)");
             })
 
+            // draw front cap
+
+            d3.xml( capFront )
+              .then(data => {
+                const selection = d3.select(d3.select(data).select("defs")._groups[0][0]).select('g');
+                const client = (item.client !== '247') ? item.client : 'twentyFourSeven';
+                const id = "#" + client + "Bar";
+
+                d3.select(id)
+                .append('g')
+                .append( () => selection.node() )
+                  .attr("transform", "translate(-16,-9) scale(0.545,0.545)")
+                    .select('path')
+                    .style('fill', colorsMap[item.vertical]);
+                
+              })
+
+              d3.xml( capBack )
+              .then(data => {
+                const selection = d3.select(data).select("path");
+                const client = (item.client !== '247') ? item.client : 'twentyFourSeven';
+                const id = "#" + client + "Bar";
+
+                const xPos = clientBarWidrth - 150;
+
+                d3.select(id)
+                .append('g')
+                .attr("transform", "translate(" + xPos + ",-9) scale(0.545,0.545)")
+                .append( () => selection.node() )
+                    .style('fill', colorsMap[item.vertical]);
+                
+              })
+
       });
+    
+      // draw back cap 
+
   }
 
   drawAward(client){
@@ -605,7 +569,7 @@ class HomeGraph extends Component {
                               .attr("fill","transparent")
 
             icon
-              .attr("transform", "translate(160,-10) scale(0.30,0.30)")
+              .attr("transform", "translate(165,-15) scale(0.30,0.30)")
       })
   }
 

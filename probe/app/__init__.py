@@ -42,7 +42,7 @@ def twitter_login():
 
 @app.route('/')
 def index_client():
-    dist_dir = current_app.config['DIST_DIR']
+    dist_dir = current_app.config['dist']
     entry = os.path.join(dist_dir, 'index.html')
     return send_file(entry)
 

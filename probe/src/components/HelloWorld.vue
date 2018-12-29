@@ -52,7 +52,7 @@ export default {
 
         const self = this;
 
-      axios.get('http://127.0.0.1:5000/twitter/auth').then( response => {
+      axios.get('https://probe.now.sh/twitter/auth').then( response => {
             //
             console.log("Twitter response: ", response.data);
 

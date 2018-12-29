@@ -23,3 +23,6 @@ selenium-debug.log
 *.sln
 *security-sgps.py
 *security_backend.py
+
+# comment out when committing to now!
+.flaskenv

@@ -3,24 +3,31 @@ from flask import Flask, current_app, send_file, redirect, url_for, json
 
 from flask_dance.contrib.twitter import make_twitter_blueprint, twitter
 from flask_cors import CORS
+from werkzeug.contrib.fixers import ProxyFix
+
+app = Flask(__name__)
+
 
 from .api import api_bp
 from .client import client_bp
 
 app = Flask(__name__, static_folder='../dist/static')
+app.wsgi_app = ProxyFix(app.wsgi_app)
 CORS(app)
 app.secret_key = "supersekrit"
-consumer_key='GX6Zh0AyFv4OVXg5jncCkLkg9'
-consumer_secret='YLzKwcUWnhYOGtUiyo9QnQYEjQIKjk80WKNsVlBjeqADONZyWl'
+consumer_key=os.getenv('FLASK_TWITTER_KEY')
+consumer_secret=os.getenv('FLASK_TWITTER_SECRET')
 app.register_blueprint(api_bp)
+print("key ", consumer_key)
+print("secret ", consumer_secret)
 # app.register_blueprint(client_bp)
 
 from .config import Config
 app.logger.info('>>> {}'.format(Config.FLASK_ENV))
 
 blueprint = make_twitter_blueprint(
-    api_key='GX6Zh0AyFv4OVXg5jncCkLkg9',
-    api_secret='YLzKwcUWnhYOGtUiyo9QnQYEjQIKjk80WKNsVlBjeqADONZyWl',
+    api_key=os.getenv('FLASK_TWITTER_KEY'),
+    api_secret=os.getenv('FLASK_TWITTER_SECRET'),
 )
 app.register_blueprint(blueprint, url_prefix="/login")
 

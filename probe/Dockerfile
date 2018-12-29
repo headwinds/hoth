@@ -1,10 +1,9 @@
-FROM python:3
-
+FROM python:3.6 as python-base 
 COPY . /app
 WORKDIR /app
-RUN pip install pipenv
-RUN pipenv install --system --deploy
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 EXPOSE 5000
-
 CMD ["python", "run.py"]
+
 

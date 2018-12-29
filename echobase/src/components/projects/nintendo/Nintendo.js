@@ -48,7 +48,7 @@ class Nintendo extends Component {
           style={paralinkStyle}
         >
           Wii Fit
-        </a>{' '} and built an interactive user guilde and video gallery to teach customers how to use this neat fitness product.</p>
+        </a>{' '} and built an interactive user guide and video gallery to teach customers how to use this neat fitness product.</p>
 
         </div>
         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>

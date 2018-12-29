@@ -66,77 +66,7 @@ async def head(session, url):
             'error': str(e),
             'url': url,
         }
-
- 
-
-# Twitter 
-
-from flask_dance.contrib.twitter import make_twitter_blueprint, twitter
-
-app.secret_key = "supersekrit"
-consumer_key='GX6Zh0AyFv4OVXg5jncCkLkg9'
-consumer_secret='YLzKwcUWnhYOGtUiyo9QnQYEjQIKjk80WKNsVlBjeqADONZyWl'
-
-blueprint = make_twitter_blueprint(
-    api_key='GX6Zh0AyFv4OVXg5jncCkLkg9',
-    api_secret='YLzKwcUWnhYOGtUiyo9QnQYEjQIKjk80WKNsVlBjeqADONZyWl',
-)
-app.register_blueprint(blueprint, url_prefix="/login")
-
-@app.route("/")
-def index():
-    if not twitter.authorized:
-        return redirect(url_for("twitter.login"))
-    resp = twitter.get("account/settings.json")
-    assert resp.ok
-    return "You are @{screen_name} on Twitter".format(screen_name=resp.json()["screen_name"])
-
-@app.route('/signinwithtwitter', methods=["GET",])
-async def handle_request(request):
-    session = aiohttp.ClientSession()
-    twitter = TwitterClient(
-        session,
-        consumer_key='GX6Zh0AyFv4OVXg5jncCkLkg9',
-        consumer_secret='YLzKwcUWnhYOGtUiyo9QnQYEjQIKjk80WKNsVlBjeqADONZyWl',
-    )
-
-    request_token, request_token_secret, _ = await twitter.get_request_token()
-
-    authorize_url = twitter.get_authorize_url(request_token)
-
-    print("Open",authorize_url,"in a browser")
-
-    return authorize_url
-    
-    # ...
-    # Reload client to authorize_url and get oauth_verifier
-    # http://127.0.0.1:4000/?oauth_token=oJlTOgAAAAAAYtRcAAABZ-c30bU&oauth_verifier=nk7vEVhN6ol9xdXfc0LRe4D8VjCVFP6l
-    # ...
-    
-    oauth_verifier = input()
-    oauth_token, oauth_token_secret, _ = await twitter.get_access_token(oauth_verifier)
-
-    print("PIN code oauth_token:", oauth_token)
-
-    # Save the tokens for later use
-
-    # ...
-
-    twitter = TwitterClient(
-        session,
-        consumer_key='GX6Zh0AyFv4OVXg5jncCkLkg9',
-        consumer_secret='YLzKwcUWnhYOGtUiyo9QnQYEjQIKjk80WKNsVlBjeqADONZyWl',
-        oauth_token=oauth_token,
-        oauth_token_secret=oauth_token_secret,
-    )
-
-    timeline = await twitter.request('GET', 'statuses/home_timeline.json')
-    content = await timeline.read()
-    print(content)
-    session.close()
-    return response.json({  "content" : content,
-                         })
-
+        
 @app.route('/new-game/<integer_arg:int>/<player_1_arg:int>/<player_2_arg:int>')
 async def handle_request(request, integer_arg):
     new_game_id = integer_arg

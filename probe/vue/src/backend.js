@@ -28,6 +28,11 @@ export default {
       .then(response => response.data)
   },
 
+  fetchResourceCabinQuest (name) {
+    return $axios.get(`resource/cabinquest/` + name)
+      .then(response => response.data)
+  },
+
   fetchSecureResource () {
     return $axios.get(`secure-resource/zzz`)
       .then(response => response.data)

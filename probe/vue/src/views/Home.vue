@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js + Flask App"/>
+    <Quiz msg="And now, your highness..."/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Quiz from '@/components/Quiz.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    Quiz
   }
 }
 </script>

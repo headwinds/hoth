@@ -5,3 +5,5 @@ flask
 flask-dance
 flask-cors
 werkzeug
+flask_restful
+requests
